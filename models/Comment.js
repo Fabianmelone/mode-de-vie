@@ -11,10 +11,21 @@ Comment.init(
             primaryKey: true,
             autoIncrement: true,
         },
+        message: {
+            type: DataTypes.INTEGER,
+            allowNull: false
+        },
         user_id: {
             type: DataTypes.INTEGER,
             references: {
                 model: 'user',
+                key: 'id',
+            },
+        },
+        post_id: {
+            type: DataTypes.INTEGER,
+            references: {
+                model: 'post',
                 key: 'id',
             },
         },

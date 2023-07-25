@@ -37,6 +37,11 @@ Post.init(
             allowNull: false,
             defaultValue: 0,
         },
+        views: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            defaultValue: 0,
+        },
         user_id: {
             type: DataTypes.INTEGER,
             references: {
@@ -44,7 +49,13 @@ Post.init(
                 key: 'id',
             },
         },
-
+        gallery_id: {
+            type: DataTypes.INTEGER,
+            references: {
+                model: 'gallery',
+                key: 'id'
+            }
+        }
     },
     {
         sequelize,

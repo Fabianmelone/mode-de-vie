@@ -11,10 +11,10 @@ Gallery.init(
             primaryKey: true,
             autoIncrement: true,
         },
-        user_id: {
+        post_id: {
             type: DataTypes.INTEGER,
             references: {
-                model: 'user',
+                model: 'post',
                 key: 'id',
             },
         },

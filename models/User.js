@@ -31,6 +31,14 @@ User.init(
                 len: [8],
             },
         },
+        follower_id: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            references: {
+                model: 'user',
+                key: 'id'
+            }
+        }
     },
     {
         hooks: {
