@@ -1,0 +1,121 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+:root {
+  --primary: #6A56B3;
+  --secondary: #503F8D;
+  --accent: #C1B9DF;
+  --background-color: #F3F3F3;
+  --text-color: #252232;
+
+  // Login page
+  --link-text-color: #4F4868;
+
+  // Input fields
+  --input-background: #E8E8E8;
+  --inactive-text: #BEBEBE;
+}
+
+* {
+  font-family: "Montserrat", sans-serif;
+  box-sizing: border-box;
+}
+body {
+  padding: 0;
+  margin: 0;
+}
+
+.checkbox-container {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+
+  color: var(--text-color);
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.12rem;
+
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+
+  input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+  }
+  
+  .checkmark {
+    height: 25px;
+    width: 25px;
+
+    position: absolute;
+    top: 0; left: 0;
+    
+    background-color: var(--input-background);
+    border-radius: 0.25rem;
+
+    transition: filter 100ms ease;
+  }
+
+  /* On mouse-over, add a grey background color */
+  &:hover input ~ .checkmark {
+    filter: brightness(0.9);
+    transition: filter 100ms ease;
+  }
+
+  /* When the checkbox is checked, add background color */
+  input:checked ~ .checkmark {
+    background-color: var(--primary);
+  }
+
+  /* Create the checkmark/indicator (hidden when not checked) */
+  .checkmark:after {
+    content: "";
+    display: none;
+  }
+
+  /* Show the checkmark when checked */
+  input:checked ~ .checkmark:after {
+    display: block;
+  }
+
+  /* Style the checkmark/indicator */
+  .checkmark:after {
+    width: 0.5rem;
+    height: 1rem;
+
+    position: absolute;
+    left: 9px; top: 2px;
+
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }
+}
+
+button {
+  background-color: var(--primary);
+  border-radius: 0.5rem;
+
+  padding: 1.40rem 1rem;
+
+  color: var(--background-color);
+  font-family: inherit;
+  font-size: 1.25rem;
+  font-weight: 800;
+  letter-spacing: 0.25rem;
+
+}
+// Call-to-action button
+.btn-cta {
+  background-color: var(--accent);
+}
+
