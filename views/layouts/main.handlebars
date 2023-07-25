@@ -1,0 +1,22 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Main</title>
+    <link rel="stylesheet" href="./css/global.css" />
+  </head>
+
+  <body>
+    {{#if showNavbar}}
+      {{! Navbar }}
+      <nav>
+        {{! Navbar content }}
+        <h1>navbar</h1>
+      </nav>
+    {{/if}}
+    {{! Content area, where page content is rendered }}
+    <main>
+      {{{body}}}
+    </main>
+  </body>
+</html>
