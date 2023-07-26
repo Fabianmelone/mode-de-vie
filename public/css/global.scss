@@ -380,9 +380,16 @@ $closeSpeed: 350ms;
     
     transition: width $closeSpeed ease;
 
+    h1 {
+      font-size: 18px;
+      font-family: "Montserrat", "Libre Franklin", sans-serif;
+      font-weight: 600;
+      letter-spacing: 0.125rem;
+    }
+
     #sidebar--profile-photo {
       width: 3.5rem;
-      height: 3.5rem;
+      aspect-ratio: fixed;
 
       background-color: var(--primary);
       border: solid var(--accent) 0.125rem;
@@ -391,6 +398,14 @@ $closeSpeed: 350ms;
       display: flex;
       align-items: center;
       justify-content: center;
+      
+      overflow: hidden;
+      
+      #user_pfp {
+        width: 100%;
+        height: 100%;
+        z-index: 99;
+      }
     }
   }
 
