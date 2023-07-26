@@ -1,0 +1,58 @@
+<svg width="134" height="150" viewBox="0 0 134 150" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Logo">
+<g id="Group 1">
+<g id="Rectangle 2" opacity="0.2">
+<mask id="path-1-inside-1_4_170" fill="white">
+<rect width="59.7103" height="59.7103" rx="3" transform="matrix(0.709288 -0.704919 0.709288 0.704919 24.7178 107.33)"/>
+</mask>
+<rect width="59.7103" height="59.7103" rx="3" transform="matrix(0.709288 -0.704919 0.709288 0.704919 24.7178 107.33)" stroke="#C1B9DF" stroke-width="10" mask="url(#path-1-inside-1_4_170)"/>
+</g>
+<g id="Rectangle 3" opacity="0.4">
+<mask id="path-2-inside-2_4_170" fill="white">
+<rect width="41.7972" height="41.7972" rx="3" transform="matrix(0.709288 -0.704919 0.709288 0.704919 37.4233 107.33)"/>
+</mask>
+<rect width="41.7972" height="41.7972" rx="3" transform="matrix(0.709288 -0.704919 0.709288 0.704919 37.4233 107.33)" stroke="#C1B9DF" stroke-width="10" mask="url(#path-2-inside-2_4_170)"/>
+</g>
+<g id="Rectangle 6" opacity="0.6">
+<mask id="path-3-inside-3_4_170" fill="white">
+<rect width="8.95655" height="8.95655" rx="2" transform="matrix(0.709288 -0.704919 0.709288 0.704919 60.7168 107.751)"/>
+</mask>
+<rect width="8.95655" height="8.95655" rx="2" transform="matrix(0.709288 -0.704919 0.709288 0.704919 60.7168 107.751)" fill="#C1B9DF" stroke="#C1B9DF" stroke-width="8.95655" mask="url(#path-3-inside-3_4_170)"/>
+</g>
+<g id="Rectangle 7" opacity="0.6">
+<mask id="path-4-inside-4_4_170" fill="white">
+<rect width="16.96" height="16.96" rx="3" transform="matrix(0.709288 -0.704919 0.709288 0.704919 55 28.9554)"/>
+</mask>
+<rect width="16.96" height="16.96" rx="3" transform="matrix(0.709288 -0.704919 0.709288 0.704919 55 28.9554)" fill="#C1B9DF" stroke="#C1B9DF" stroke-width="16.96" mask="url(#path-4-inside-4_4_170)"/>
+</g>
+</g>
+<g id="Group 2">
+<g id="Rectangle 3_2" opacity="0.2">
+<mask id="path-5-inside-5_4_170" fill="white">
+<rect width="41.7972" height="41.7972" rx="3" transform="matrix(0.709288 -0.704919 0.709288 0.704919 0 63.4637)"/>
+</mask>
+<rect width="41.7972" height="41.7972" rx="3" transform="matrix(0.709288 -0.704919 0.709288 0.704919 0 63.4637)" stroke="#C1B9DF" stroke-width="10" mask="url(#path-5-inside-5_4_170)"/>
+</g>
+<g id="Rectangle 5" opacity="0.4">
+<mask id="path-6-inside-6_4_170" fill="white">
+<rect width="23.8841" height="23.8841" rx="3" transform="matrix(0.709288 -0.704919 0.709288 0.704919 12.7055 63.4637)"/>
+</mask>
+<rect width="23.8841" height="23.8841" rx="3" transform="matrix(0.709288 -0.704919 0.709288 0.704919 12.7055 63.4637)" stroke="#C1B9DF" stroke-width="10" mask="url(#path-6-inside-6_4_170)"/>
+</g>
+</g>
+<g id="Group 3">
+<g id="Rectangle 7_2" opacity="0.2">
+<mask id="path-7-inside-7_4_170" fill="white">
+<rect width="23.8841" height="23.8841" rx="3" transform="matrix(0.709288 -0.704919 0.709288 0.704919 92 72.8364)"/>
+</mask>
+<rect width="23.8841" height="23.8841" rx="3" transform="matrix(0.709288 -0.704919 0.709288 0.704919 92 72.8364)" stroke="#C1B9DF" stroke-width="10" mask="url(#path-7-inside-7_4_170)"/>
+</g>
+</g>
+<g id="Rectangle 7_3" opacity="0.2">
+<mask id="path-8-inside-8_4_170" fill="white">
+<rect width="41.7972" height="41.7972" rx="3" transform="matrix(0.709288 -0.704919 0.709288 0.704919 37 29.4637)"/>
+</mask>
+<rect width="41.7972" height="41.7972" rx="3" transform="matrix(0.709288 -0.704919 0.709288 0.704919 37 29.4637)" stroke="#C1B9DF" stroke-width="10" mask="url(#path-8-inside-8_4_170)"/>
+</g>
+</g>
+</svg>
