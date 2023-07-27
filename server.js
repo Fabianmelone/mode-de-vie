@@ -78,6 +78,7 @@ app.get("/login", (req, res) => {
 });
 
 // Start the server
-app.listen(port, () => {
-  console.log(`Server is running on http://localhost:${port}`);
+sequelize.sync({ force: false}).then(() => {    //syncs sequelize to the database. {force: false} means that Sequelize won't make any changes to the tables if they already exist.
+  //if true, it will drop and recreate the tables.
+  app.listen(port, () => console.log(`Server running on port ${port}`));
 });
