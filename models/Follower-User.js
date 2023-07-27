@@ -1,9 +1,11 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
-class User extends Model { }
+class Follower_User extends Model { }
 
-User.init(
+
+//follower-user model to act as a join table to allow many to many relations between users and followers
+Follower_User.init(
     {
         id: {
             type: DataTypes.INTEGER,
@@ -31,9 +33,9 @@ User.init(
         timestamps: false,
         freezeTableName: true,
         underscored: true,
-        modelName: 'follower-user',
+        modelName: 'follower_user',
     }
 
 );
 
-module.exports = User;
+module.exports = Follower_User;
