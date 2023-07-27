@@ -12,7 +12,7 @@ User.init(
             primaryKey: true,
             autoIncrement: true,
         },
-        username: {
+        user_name: {
             type: DataTypes.STRING,
             allowNull: false,
         },
@@ -31,6 +31,9 @@ User.init(
                 len: [8],
             },
         },
+        profile_picture: {
+            type: DataTypes.STRING
+        }, 
         follower_id: {
             type: DataTypes.INTEGER,
             allowNull: false,
