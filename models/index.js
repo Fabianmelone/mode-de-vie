@@ -34,7 +34,7 @@ User.hasMany(User, {
     onDelete: 'CASCADE',
 })
 
-User.belongsTo(User, {
+User.belongsto(User, {
     foreignKey: 'follower_id'
 })
 

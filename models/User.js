@@ -38,6 +38,13 @@ User.init(
                 model: 'user',
                 key: 'id'
             }
+        },
+        following_id: {
+            type: DataTypes.INTEGER,
+            references: {
+                model: 'user',
+                key: 'id'
+            }
         }
     },
     {
