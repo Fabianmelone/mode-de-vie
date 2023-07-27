@@ -34,13 +34,6 @@ User.init(
         profile_picture: {
             type: DataTypes.STRING
         }, 
-        follower_id: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-            references: {
-                model: 'user',
-                key: 'id'
-            }
         }
     },
     {

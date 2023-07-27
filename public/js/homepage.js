@@ -11,3 +11,13 @@ async function ImgToSvg(img, id) {
   if (id) { s.firstChild.id = id; }
   img.replaceWith(s.firstChild)
 }
+
+function textAreaAdjust(e, element) {
+  console.log(element.value.length);
+  if (e.key === "Backspace" && element.value.length === 0) {
+    element.style.height = element.style.minHeight;
+    return;
+  }
+  element.style.height = "1px";
+  element.style.height = 25 + element.scrollHeight + "px";
+}
