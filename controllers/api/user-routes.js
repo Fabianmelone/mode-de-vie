@@ -1,6 +1,4 @@
 const router = require('express').Router();
-
-const { Router } = require('express');
 const { User } = require('../../models/User');
 //still need to add authorization method
 
@@ -33,4 +31,22 @@ router.post('/logout', async (req, res) => {
     } catch (error) {
         res.status(500).json(error);
     }
+});
+
+router.post('/signup', async (req, res) => {
+try {
+    const signupData = await User.create({
+        username: req.body.username,
+        password: req.body.password,
+    });
+
+    req.session.save(()=> {
+        req.session.userID = signupData.id;
+        req.session.loggedIn = true;
+
+        res.status(200).json(signupData);
+    })
+} catch (error) {
+    res.status(400).json(error);
+}
 })
