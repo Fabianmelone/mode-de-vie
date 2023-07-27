@@ -5,10 +5,12 @@ const exphbs = require("express-handlebars");
 const path = require('path');
 const routes = require('./controllers');  //imports the routes from the ./controllers
 
-const sequelize = require('./config/connection'); //imports a instance of sequelize that connection.js sets up and exports, and is connected to the database
+const sequelize = require('./config/connection');   //imports a instance of sequelize that connection.js sets up and exports, and is connected to the database
+const SequelizeStore = require('connect-session-sequelize')(session.Store);     //imports 'connect-session-sequelize' module and calls it with 'session.Store'. It is used to store express session data to sql database, that can save sessions on server restart.
+
+
 
 const hbs = exphbs.create({});  //creates a new instance of express handlebars
-
 
 // Create an instance of Express
 const app = express();
