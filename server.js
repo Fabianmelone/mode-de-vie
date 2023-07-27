@@ -7,7 +7,7 @@ const routes = require('./controllers');  //imports the routes from the ./contro
 
 const sequelize = require('./config/connection'); //imports a instance of sequelize that connection.js sets up and exports, and is connected to the database
 
-
+const hbs = exphbs.create({});  //creates a new instance of express handlebars
 
 
 // Create an instance of Express
@@ -35,12 +35,7 @@ function checkLoggedIn(req, res, next) {
 }
 
 // Set up the Handlebars view engine
-app.engine(
-  "handlebars",
-  exphbs({
-    defaultLayout: "main",
-  })
-);
+app.engine('handlebars', hbs.engine); //configures the engine that express will use. set to handlebars
 app.set("view engine", "handlebars");
 
 // Set up the public directory to serve static files
