@@ -2,6 +2,14 @@
 const express = require("express");
 const exphbs = require("express-handlebars");
 
+const path = require('path');
+const routes = require('./controllers');  //imports the routes from the ./controllers
+
+const sequelize = require('./config/connection'); //imports a instance of sequelize that connection.js sets up and exports, and is connected to the database
+
+
+
+
 // Create an instance of Express
 const app = express();
 const port = 3000; // Set the port you want the server to listen on
@@ -36,7 +44,14 @@ app.engine(
 app.set("view engine", "handlebars");
 
 // Set up the public directory to serve static files
-app.use(express.static("public"));
+app.use(express.static(path.join(__dirname, "public")));
+app.use(express.json());
+app.use(express.urlencoded({extended:true}));
+app.use('/bootstrap', express.static(path.join(__dirname, '/node_modules/bootstrap/dist')));    //middleware to allow bootstrap to be accessible to public
+
+
+
+
 
 // Define the base route, runs login check before rendering
 app.get("/", checkLoggedIn, (req, res) => {
