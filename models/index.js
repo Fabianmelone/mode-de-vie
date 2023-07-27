@@ -32,26 +32,16 @@ Comment.belongsTo(Post, {
 })
 
 
-/* 
-Define a many-to-many relationship between User and User (self referencing)
-Here, 'User' is treated as two separate entities. One is being 'followed' and 
-the other is doing the 'following'. The as: 'Followers' property gives an alias to 
-the relation when we are looking for all the followers of a user.
-The 'through' property tells sequelize to use the FollowerUser model as the join 
-table to make this many-to-many relationship.
-The 'foreignKey' property is the foreign key that the FollowerUser model will 
-use to join with the User model.
-The 'otherKey' property is the foreign key that the FollowerUser model will 
-use to join with the other instance of User model (in this case, followers). 
-*/
-
+//many-to-many relationshi0p between user and user.
+// this 'user' is followed by other users
 User.belongsToMany(User, { 
-    as: 'Followers', 
-    through: Follower_User,
-    foreignKey: 'user_id', 
-    otherKey: 'follower_id' 
+    as: 'Followers', //ives an alias to  the relation when we are looking for all the followers of a user.
+    through: Follower_User, //use the Follower_User model as the join table to make this many-to-many relationship.
+    foreignKey: 'user_id',  //the foreign key that the Follower_User model will  use to join with the User model.
+    otherKey: 'follower_id' //the foreign key that the Follower_User model will use to join with the other instance of User model (in this case, followers). 
 });
 
+// this 'user' is following other users
 User.belongsToMany(User, { 
     as: 'Following', 
     through: Follower_User, 
