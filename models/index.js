@@ -2,6 +2,7 @@ const Comment = require('./Comment');
 const Gallery = require('./Gallery');
 const Post = require('./Post');
 const User = require('./User');
+const Follower_User = require('./Follower-User');
 
 Gallery.hasMany(Post, {
     foreignKey: 'gallery_id',
@@ -29,13 +30,22 @@ Comment.belongsTo(Post, {
     foreignKey: 'post_id',
 })
 
-User.hasMany(User, {
-    foreignKey: 'follower_id',
-    onDelete: 'CASCADE',
-})
 
-User.belongsTo(User, {
-    foreignKey: 'follower_id'
-})
+//many-to-many relationshi0p between user and user.
+// this 'user' is followed by other users
+User.belongsToMany(User, { 
+    as: 'Followers', //uses an alias ('as') to  the relation when we are looking for all the followers of a user. "as" is used to differentiate between the two associations (following and follower)
+    through: Follower_User, //use the Follower_User model as the join table to make this many-to-many relationship.
+    foreignKey: 'user_id',  //the foreign key that the Follower_User model will  use to join with the User model.
+    otherKey: 'follower_id' //the foreign key that the Follower_User model will use to join with the other instance of User model (in this case, followers). 
+});
 
-module.exports = { Comment, Gallery, Post, User };
+// this 'user' is following other users
+User.belongsToMany(User, { 
+    as: 'Following', 
+    through: Follower_User, 
+    foreignKey: 'follower_id', 
+    otherKey: 'user_id' 
+});
+
+module.exports = { Comment, Gallery, Post, User, Follower_User };
