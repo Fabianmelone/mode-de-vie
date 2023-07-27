@@ -2,7 +2,6 @@ const Comment = require('./Comment');
 const Gallery = require('./Gallery');
 const Post = require('./Post');
 const User = require('./User');
-const Follower = require('./Follower');
 const Follower_User = require('./Follower-User');
 
 Gallery.hasMany(Post, {
