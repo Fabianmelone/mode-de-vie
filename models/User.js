@@ -12,7 +12,7 @@ User.init(
             primaryKey: true,
             autoIncrement: true,
         },
-        username: {
+        user_name: {
             type: DataTypes.STRING,
             allowNull: false,
         },
@@ -30,6 +30,10 @@ User.init(
             validate: {
                 len: [8],
             },
+        },
+        profile_picture: {
+            type: DataTypes.STRING
+        }, 
         }
     },
     {

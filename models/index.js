@@ -49,3 +49,4 @@ User.belongsToMany(User, {
 });
 
 module.exports = { Comment, Gallery, Post, User, Follower_User };
+
