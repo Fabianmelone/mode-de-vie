@@ -15,8 +15,10 @@ const signupHandler = async (event) => {
             headers: {'Content-Type': 'application/json'},
         });
 
-        if(response.ok) {
-            
+        if(response.ok) {   //if response from the api was a success, window will render the default route. iof not, it will show an error
+            window.location.replace('/');
+        } else {
+            alert(response.statusText);
         }
     }
 }
