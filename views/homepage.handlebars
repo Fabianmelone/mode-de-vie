@@ -1,11 +1,89 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <link rel="stylesheet" href="./css/global.css">
-    <link rel="stylesheet" href="./css/home.css">
+    <link rel="stylesheet" type="text/css" href="./css/global.css">
+    <link rel="stylesheet" type="text/css" href="./css/homepage.css">
     <title>homepage</title>
   </head>
   <body>
-    <h1>Homepage</h1>
+    <div id="home-container">
+      {{!-- Post --}}
+      <div id="post-container">
+        <img id="post--image" src="./assets/images/pfps/default_pfp_4.png" alt="Post image" />
+      </div>
+
+      {{!-- Comments --}}
+      <header id="comments--header">
+
+      </header>
+      <div id="comments-container">
+        <div id="post--description">
+          <div id="post--author-pfp-container">
+            <img id="post--author-pfp" src="./assets/images/pfps/default_pfp_4.png" alt="User Pfp" />
+          </div>
+          <div id="post--author-content">
+            <h1 class="author-username">JefferyEpstizzy</h1>
+            <p>
+              New profile picture! <br>
+              I looked a little confused in this one. 😅
+            </p>
+          </div>
+        </div>
+        <div id="comments">
+          <div class="comment">
+            <div class="comment--user-pfp-container">
+              <img class="comment--user-pfp" src="./assets/images/pfps/default_pfp_3.png" alt="User Pfp" />
+            </div>
+            <div class="comment--content">
+              <h1 class="comment--user-name">Mike</h1>
+              <p class="comment--content">
+                You: 👁️👄👁️
+              </p>
+            </div>
+          </div>
+
+          <div class="comment">
+            <div class="comment--user-pfp-container">
+              <img class="comment--user-pfp" src="./assets/images/pfps/default_pfp_1.png" alt="User Pfp" />
+            </div>
+            <div class="comment--content">
+              <h1 class="comment--user-name">Admin</h1>
+              <p class="comment--content">
+                You look stupid.
+              </p>
+            </div>
+          </div>
+
+          <div class="comment">
+            <div class="comment--user-pfp-container">
+              <img class="comment--user-pfp" src="./assets/images/pfps/default_pfp_7.png" alt="User Pfp" />
+            </div>
+            <div class="comment--content">
+              <h1 class="comment--user-name">SlimJim</h1>
+              <p class="comment--content">
+                You look awesome. <br>
+                Can't wait to see your other posts.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {{!-- Posts --}}
+      <header id="posts--header">
+        
+      </header>
+      <div id="posts-container">
+        
+      </div>
+
+      {{!-- Rankings --}}
+      <header id="rankings--header">
+
+      </header>
+      <div id="rankings-container">
+        
+      </div>
+    </div>
   </body>
 </html>
