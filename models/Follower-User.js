@@ -23,7 +23,7 @@ Follower_User.init(
         follower_id: {
             type: DataTypes.INTEGER,
             references: {
-              model: 'follwer',
+              model: 'user',
               key: 'id',
             },
           }
