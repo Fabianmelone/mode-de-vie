@@ -1,5 +1,6 @@
-const router = require('express');
+const router = require('express').Router();
 
+const { Router } = require('express');
 const { User } = require('../../models/User');
 //still need to add authorization method
 
@@ -14,6 +15,21 @@ router.post('/login', async (req, res) => {
             res.status(400).json({message: 'username or password incorrect! try again.'})
         }
         
+    } catch (error) {
+        res.status(500).json(error);
+    }
+});
+
+router.post('/logout', async (req, res) => {
+    try {
+        //still need to create a session, and have a loggedIn parameter
+        if(req.session.loggedIn) {  //checks if req.session.loggedIn is true. If so, it will destroy the session.
+            req.session.destroy(()=> {
+                res.status(200).end();  // uses .end() to end the response process successfully with 200 status. 
+            });
+        } else{
+            res.status(404).end(); //ends the response process with a 404 error
+        }
     } catch (error) {
         res.status(500).json(error);
     }
