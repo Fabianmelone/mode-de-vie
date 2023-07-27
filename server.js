@@ -5,16 +5,16 @@ const exphbs = require("express-handlebars");
 const path = require('path');
 const routes = require('./controllers');  //imports the routes from the ./controllers
 
+
+const session = require('express-session');     // imports 'express-session' middleware. It is used for amanaging user sessions. Sessions store specific data to a user
 const sequelize = require('./config/connection');   //imports a instance of sequelize that connection.js sets up and exports, and is connected to the database
 const SequelizeStore = require('connect-session-sequelize')(session.Store);     //imports 'connect-session-sequelize' module and calls it with 'session.Store'. It is used to store express session data to sql database, that can save sessions on server restart.
-
-
-
-const hbs = exphbs.create({});  //creates a new instance of express handlebars
 
 // Create an instance of Express
 const app = express();
 const port = 3000; // Set the port you want the server to listen on
+
+const hbs = exphbs.create({});  //creates a new instance of express handlebars
 
 // Should be controlled by a Auth check function
 // If true, the user will be directed to the homepage route "/"
@@ -63,22 +63,25 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 app.use('/bootstrap', express.static(path.join(__dirname, '/node_modules/bootstrap/dist')));    //middleware to allow bootstrap to be accessible to public
-app.use(routes);
+
 
 
 
 
 
 // Define the base route, runs login check before rendering
-app.get("/", checkLoggedIn, (req, res) => {
-  res.render("homepage");
-});
+// app.get("/", checkLoggedIn, (req, res) => {
+//   res.render("homepage");
+// });
 
-// Define the login route
-app.get("/login", (req, res) => {
-  res.render("login");
-});
+// // Define the login route
+// app.get("/login", (req, res) => {
+//   res.render("login");
+// });
 
+
+
+app.use(routes);
 // Start the server
 sequelize.sync({ force: false}).then(() => {    //syncs sequelize to the database. {force: false} means that Sequelize won't make any changes to the tables if they already exist.
   //if true, it will drop and recreate the tables.

@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { User } = require('../../models/User');
+const  User  = require('../../models/User');
 //still need to add authorization method
 
 router.post('/login', async (req, res) => {
@@ -50,3 +50,6 @@ try {
     res.status(400).json(error);
 }
 })
+
+
+module.exports = router;
