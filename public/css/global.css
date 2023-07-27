@@ -196,6 +196,7 @@ button {
       transition: width 350ms ease, opacity calc($closeSpeed * 2) ease calc($closeSpeed / 2); }
     .sidebar header h1 {
       opacity: 0.9;
+      height: fit-content;
       color: var(--accent);
       font-family: "Montserrat", "Libre Franklin", sans-serif;
       font-size: 1rem;
@@ -203,7 +204,7 @@ button {
       font-weight: 700;
       line-height: normal;
       letter-spacing: 0.08125rem;
-      transform: translateY(0.55rem);
+      transform: translateY(1.35rem);
       overflow: hidden;
       white-space: nowrap;
       transition: width 350ms ease; }
@@ -266,6 +267,7 @@ button {
       fill: var(--accent);
       stroke: none; }
     .sidebar .sidebar--list-item h1 {
+      margin: auto 0;
       opacity: 1;
       font-family: "Libre Franklin", "Montserrat", sans-serif;
       color: var(--accent);

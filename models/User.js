@@ -51,4 +51,15 @@ User.init(
     }
 );
 
+// Find user by username
+User.findByUsername = async function (username) {
+  try {
+    const user = await User.findOne({ where: { username } });
+    return user;
+  } catch (error) {
+    throw new Error('Error finding user by username');
+  }
+};
+
+
 module.exports = User;
