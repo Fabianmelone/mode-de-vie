@@ -50,7 +50,9 @@ const sess = {
   store: new SequelizeStore({
     db: sequelize
   })
-}
+};
+app.use(session(sess));     //adds the configured session as middleware to the express app.
+
 
 // Set up the Handlebars view engine
 app.engine('handlebars', hbs.engine); //configures the engine that express will use. set to handlebars
