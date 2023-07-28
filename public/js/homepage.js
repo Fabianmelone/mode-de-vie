@@ -21,3 +21,20 @@ function textAreaAdjust(e, element) {
   element.style.height = "1px";
   element.style.height = 25 + element.scrollHeight + "px";
 }
+
+// Loads user data
+function loadUserData() {
+  const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
+  
+  // Load username
+  document.querySelectorAll(".username").forEach((element) => {
+    if (element.innerHTML) {
+      element.innerHTML = loggedInUser.username;
+    }
+  });
+}
+
+// Init
+window.onload = () => {
+  loadUserData();
+}
