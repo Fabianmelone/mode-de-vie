@@ -8,5 +8,12 @@ module.exports = {
             return `${roundedLikes}k`;
         }
         return likes.toString();
+    },
+    format_views: (views) => {
+        if (views >= 1000) {
+            const roundedViews = Math.round(views / 100)
+            return `${roundedViews}k`;
+        }
+        return views.toString();
     }
 };
