@@ -49,13 +49,6 @@ Post.init(
                 key: 'id',
             },
         },
-        gallery_id: {
-            type: DataTypes.INTEGER,
-            references: {
-                model: 'gallery',
-                key: 'id'
-            }
-        }
     },
     {
         sequelize,
