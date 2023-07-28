@@ -95,26 +95,6 @@ app.get("/user/:username", checkLoggedIn, async (req, res) => {
   }
 });
 
-app.post("/signup", async (req, res) => {
-  try {
-    const { username, email, password } = req.body;
-
-    // Create a new user in the database
-    await User.create({
-      username,
-      email,
-      password,
-    });
-
-    // Handle the successful signup (e.g., redirect to the login page)
-    res.redirect("/login");
-  } catch (error) {
-    // Handle the error (e.g., render the signup page with an error message)
-    console.error("Error creating a new user:", error);
-    res.render("signup", { errorMessage: "Failed to create a new user" });
-  }
-});
-
 app.use(routes);
 // Start the server
 sequelize.sync({ force: false}).then(() => {    //syncs sequelize to the database. {force: false} means that Sequelize won't make any changes to the tables if they already exist.
