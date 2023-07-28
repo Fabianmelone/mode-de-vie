@@ -32,11 +32,15 @@ router.get('/', async (req, res) => {   //gets all posts
 
 router.get('/most-popular', async (req, res) => {   //filter all posts from most likes
     try {
-
-
         const allPosts = await Post.findAll({
             order: [
                 ['likes', 'DESC']
+            ],
+            include: [
+                {
+                    moodel: User,
+                    attributes: ['username'],
+                }
             ]
         });
     
@@ -44,8 +48,6 @@ router.get('/most-popular', async (req, res) => {   //filter all posts from most
         //maps over all elements of of allPosts and serialeze them
         //serialize to make the data easier to handle/reaD
         console.log(posts);
-
-
         res.json(posts);
 
         // res.render('homepage', {
