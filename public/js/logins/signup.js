@@ -4,13 +4,14 @@ const signupHandler = async (event) => {
     alert('hi')
 
     //assigns the values of the username, password, email(if using) to constants
-    const username = document.querySelector('#username').value.trim();
-    const password = document.querySelector('#password').value.trim();
+    const username = document.querySelector('#name-signup').value.trim();
+    const password = document.querySelector('#password-signup').value.trim();
 
-    const email = document.querySelector('#email').value.trim();
+    const email = document.querySelector('#email-signup').value.trim();
     
     if (username && password && email) {    //if there is a username, password AND email, a post request will be posted to api/users/signup with its body as the username, password, and email
 
+        alert(username);
         const response = await fetch('api/users/signup', {
             method: 'POST',
             body: JSON.stringify({username, password, email}),
@@ -25,4 +26,4 @@ const signupHandler = async (event) => {
         }
     }
 }
-document.querySelector('#signupForm').addEventListener('submit', signupHandler);
+document.querySelector('#signupbtn').addEventListener('click', signupHandler);

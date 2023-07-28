@@ -3,15 +3,15 @@ const loginHandler = async (event) => {
     event.preventDefault();
 
     //collects user and password value from login form
-    const user_name = document.querySelector('#username-login').value.trim();
+    const email = document.querySelector('#email-login').value.trim();
     const password = document.querySelector('#password-login').value.trim();
 
     //if both username and password are entered, a post request will be sent to the api
-    if(user_name && password) {
+    if(email && password) {
         //in the user-routes.js
         const response = await fetch('/api/users/login', {
             method: 'POST',
-            body: JSON.stringify({ user_name, password }),
+            body: JSON.stringify({ email, password }),
             headers: { 'Content-Type': 'application/json' },
           });
         if(response.ok) {
