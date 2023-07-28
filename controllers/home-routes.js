@@ -15,6 +15,14 @@ router.get("/", (req, res) => {
   });
 
 
+router.get('/loginController', async (req, res)=> {
+  try {
+    res.render('./login/loginController')
+  } catch (error) {
+    res.json(error);
+  }
+})
+
 
 
 module.exports = router;
