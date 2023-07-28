@@ -16,6 +16,8 @@ const port = 3000; // Set the port you want the server to listen on
 
 const hbs = exphbs.create({});  //creates a new instance of express handlebars
 
+const { User } = require("./models");
+
 // Should be controlled by a Auth check function
 // If true, the user will be directed to the homepage route "/"
 // If false, the user will be directed to the login route "/login"
@@ -64,22 +66,34 @@ app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 app.use('/bootstrap', express.static(path.join(__dirname, '/node_modules/bootstrap/dist')));    //middleware to allow bootstrap to be accessible to public
 
-
-
-
-
-
 // Define the base route, runs login check before rendering
 app.get("/", checkLoggedIn, (req, res) => {
   res.render("homepage");
 });
 
-// // Define the login route
-// app.get("/login", (req, res) => {
-//   res.render("login");
-// });
+// Define the login route
+app.get("/login", (req, res) => {
+  res.render("login");
+});
 
-
+// Route to user profile
+app.get("/user/:username", checkLoggedIn, async (req, res) => {
+  const username = req.params.username;
+  try {
+    const user = await User.findOne({ where: { username } });
+    if (!user) {
+      return res.status(404).send("User not found");
+    }
+    // Assuming you have a user.handlebars file to render the user profile
+    const userData = {
+      username: user.username,
+    };
+    res.render("user", userData);
+  } catch (error) {
+    console.error("Error fetching user data:", error);
+    res.status(500).send("Internal Server Error");
+  }
+});
 
 app.use(routes);
 // Start the server
