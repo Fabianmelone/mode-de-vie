@@ -104,8 +104,8 @@ router.get('/userposts', withAuth, async (req, res) => {
             ...users,
             loggedIn: req.session.loggedIn
         });
-        // console.log(users);
-        console.log(req.session);
+        console.log(users);
+        // console.log(req.session);
 
 
 

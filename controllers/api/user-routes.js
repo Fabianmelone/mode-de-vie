@@ -12,6 +12,7 @@ router.post("/login", async (req, res) => {
         .json({ message: "User not found. Please check your email." });
     }
 
+    console.log(userData);
     const isPasswordValid = await userData.validPassword(req.body.password);
     if (!isPasswordValid) {
       // If the password is incorrect, send an error response
@@ -24,7 +25,7 @@ router.post("/login", async (req, res) => {
       req.session.userID = userData.id;
       req.session.loggedIn = true;
 
-      console.log(userData);
+      // console.log(userData);
       console.log(req.session.loggedIn);
 
       res.json({ user: userData, message: "You are now logged in!" });
