@@ -21,7 +21,11 @@ router.get('/loginController', async (req, res)=> {
   } catch (error) {
     res.json(error);
   }
-})
+});
+router.get('/login', async (req, res) => {
+  res.render('./login/login');
+});
+
 
 
 
