@@ -3,15 +3,30 @@ const  User  = require('../../models/User');
 //still need to add authorization method
 
 router.post('/login', async (req, res) => {
+    
     try {
-        const userData = await User.findOne({ where: { username: req.body.username } });    //finds a user where its username is the same as the username in the request body.
+        const userData = await User.findOne({ where: { email: req.body.email } });    //finds a user where its username is the same as the username in the request body.
 
-        const passwordData = userData.checkPass(req.body.password); //calls the checkPass function to verify if the password is correct.
+        
+
+        const passwordData = await userData.validPassword(req.body.password); //calls the checkPass function to verify if the password is correct.
         //stores its callbak to the 'passwordData' const
+
+        
 
         if(!userData || !passwordData){
             res.status(400).json({message: 'username or password incorrect! try again.'})
         }
+        req.session.save(() => {
+            req.session.userID = userData.id;
+            req.session.loggedIn = true;
+
+            console.log(userData);
+            console.log(req.session.loggedIn);
+      
+            res.json({ user: userData, message: 'You are now logged in!' });
+          });
+
         
     } catch (error) {
         res.status(500).json(error);
@@ -41,6 +56,8 @@ try {
         email: req.body.email,
     });
 
+
+    console.log(signupData);
     req.session.save(()=> {
         req.session.userID = signupData.id;
         req.session.loggedIn = true;

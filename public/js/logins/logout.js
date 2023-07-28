@@ -1,19 +1,15 @@
 
-const logoutHandler = async (event) => {
-    
+const logout = async () => {
+    alert('hi');
     const response = await fetch('/api/users/logout', {
-        method: 'Post',
-        headers: {'Content-Type': 'application/js'},
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
     });
-
-    //if response from the fetch api is a success, the window will be directed to the default route ('/')
-    if(response.ok) {
-        window.location.replace('/');
+  
+    if (response.ok) {
+      document.location.replace('/');
     } else {
-        alert('failed to logout');
+      alert(response.statusText);
     }
-}
-
-
-// calls the logoutHandler when #logoutBtn is clicked
-document.querySelector('#logoutBtn').addEventListener('click', logoutHandler);
+  };
+  document.querySelector('#logout').addEventListener('click', logout);
