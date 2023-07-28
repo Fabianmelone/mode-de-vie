@@ -15,9 +15,10 @@ const signupHandler = async (event) => {
         });
 
         if(response.ok) {   //if response from the api was a success, window will render the default route. iof not, it will show an error
-            window.location.replace('/');
+            window.location.replace('/login');
         } else {
             alert(response.statusText);
+            console.log('error')
         }
     }
 }

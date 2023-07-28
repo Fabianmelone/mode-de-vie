@@ -45,7 +45,11 @@ try {
         req.session.userID = signupData.id;
         req.session.loggedIn = true;
 
-        res.status(200).json(signupData);
+        
+        res.render('login', {
+            signupData,
+            loggedIn: req.session.loggedIn
+        });
         // res.redirect("/login");
     })
 } catch (error) {
