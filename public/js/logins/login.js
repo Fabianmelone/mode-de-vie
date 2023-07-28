@@ -24,4 +24,4 @@ const loginHandler = async (event) => {
 };
 
 //if the submit button in the login form is clicked, a request will be posted to the api/users/login route
-document.querySelector('.login-form').addEventListener('submit', loginHandler);
+document.querySelector('#loginbtn').addEventListener('click', loginHandler);

@@ -12,7 +12,7 @@ router.post('/login', async (req, res) => {
         const passwordData = await userData.validPassword(req.body.password); //calls the checkPass function to verify if the password is correct.
         //stores its callbak to the 'passwordData' const
 
-        console.log(passwordData);
+        
 
         if(!userData || !passwordData){
             res.status(400).json({message: 'username or password incorrect! try again.'})
@@ -20,6 +20,9 @@ router.post('/login', async (req, res) => {
         req.session.save(() => {
             req.session.userID = userData.id;
             req.session.loggedIn = true;
+
+            console.log(userData);
+            console.log(req.session.loggedIn);
       
             res.json({ user: userData, message: 'You are now logged in!' });
           });
