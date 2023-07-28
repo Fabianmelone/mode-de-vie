@@ -66,54 +66,9 @@ app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 app.use('/bootstrap', express.static(path.join(__dirname, '/node_modules/bootstrap/dist')));    //middleware to allow bootstrap to be accessible to public
 
-// Define the base route, runs login check before rendering
-app.get("/", checkLoggedIn, (req, res) => {
-  res.render("homepage");
-});
 
-// Define the login route
-app.get("/login", (req, res) => {
-  res.render("login");
-});
 
-// Route to user profile
-app.get("/user/:username", checkLoggedIn, async (req, res) => {
-  const username = req.params.username;
-  try {
-    const user = await User.findOne({ where: { username } });
-    if (!user) {
-      return res.status(404).send("User not found");
-    }
-    // Assuming you have a user.handlebars file to render the user profile
-    const userData = {
-      username: user.username,
-    };
-    res.render("user", userData);
-  } catch (error) {
-    console.error("Error fetching user data:", error);
-    res.status(500).send("Internal Server Error");
-  }
-});
 
-app.post("/signup", async (req, res) => {
-  try {
-    const { username, email, password } = req.body;
-
-    // Create a new user in the database
-    await User.create({
-      username,
-      email,
-      password,
-    });
-
-    // Handle the successful signup (e.g., redirect to the login page)
-    res.redirect("/login");
-  } catch (error) {
-    // Handle the error (e.g., render the signup page with an error message)
-    console.error("Error creating a new user:", error);
-    res.render("signup", { errorMessage: "Failed to create a new user" });
-  }
-});
 
 app.use(routes);
 // Start the server

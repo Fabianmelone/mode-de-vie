@@ -38,18 +38,26 @@ try {
     const signupData = await User.create({
         username: req.body.username,
         password: req.body.password,
+        email: req.body.email,
     });
 
     req.session.save(()=> {
         req.session.userID = signupData.id;
         req.session.loggedIn = true;
 
+        
+        console.log(signupData);
         res.status(200).json(signupData);
+        // res.redirect("/login");
     })
 } catch (error) {
-    res.status(400).json(error);
+
+    // Handle the error (e.g., render the signup page with an error message)
+    // console.error("Error creating a new user:", error);
+    res.status(500).json(error);
+    // res.render("signup", { errorMessage: "Failed to create a new user" });
 }
-})
+});
 
 
 module.exports = router;
