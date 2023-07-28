@@ -36,8 +36,9 @@ router.post('/logout', async (req, res) => {
 router.post('/signup', async (req, res) => {
 try {
     const signupData = await User.create({
-        username: req.body.username,
+        user_name: req.body.user_name,
         password: req.body.password,
+        email: req.body.email,
     });
 
     req.session.save(()=> {
