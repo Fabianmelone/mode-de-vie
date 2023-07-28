@@ -40,5 +40,5 @@ User.belongsToMany(User, {
     otherKey: 'user_id' 
 });
 
-module.exports = { Comment, Gallery, Post, User, Follower_User };
+module.exports = { Comment, Post, User, Follower_User };
 
