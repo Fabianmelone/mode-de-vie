@@ -106,13 +106,46 @@ router.get('/userposts', withAuth, async (req, res) => {
         });
         console.log(users);
         // console.log(req.session);
+    } catch (error) {
+        res.status(500).json(error);
+    }
+});
 
+router.get('/randomPost', withAuth, async (req, res) => {
+    try {
+        const randomPost = await Post.findOne({
+            order: sequelize.literal('rand()'),
+            include: [
+                {
+                    model: User,
+                    attributes: ['username'],
+                },
+                // {
+                //     model: Comment,
+                //     include: [
+                //         {
+                //             model: User,
+                //             as: 'user',
+                //             attributes: ['username'],
+                //         },
+                //     ],
+                // },
+            ],
+        });
 
+        if(randomPost) {
+            const post = randomPost.get({ plain: true });
+            res.json(post);
+            console.log(post);
+        } else {
+            res.status(404).json({ message: 'No posts found' });
+        }
 
     } catch (error) {
         res.status(500).json(error);
     }
-})
+});
+
 
 
 
