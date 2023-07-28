@@ -10,7 +10,7 @@ router.get("/", (req, res) => {
   });
   
   // Define the login route
-  router.get("/login", (req, res) => {
+  router.get("/signup", (req, res) => {
     res.render("./login/signup");
   });
 
