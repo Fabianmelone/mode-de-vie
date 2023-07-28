@@ -70,9 +70,9 @@ app.use('/bootstrap', express.static(path.join(__dirname, '/node_modules/bootstr
 
 
 // Define the base route, runs login check before rendering
-// app.get("/", checkLoggedIn, (req, res) => {
-//   res.render("homepage");
-// });
+app.get("/", checkLoggedIn, (req, res) => {
+  res.render("homepage");
+});
 
 // // Define the login route
 // app.get("/login", (req, res) => {
