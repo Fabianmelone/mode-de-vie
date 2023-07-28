@@ -2,6 +2,7 @@ const router = require('express').Router();
 const sequelize = require('../../config/connection');
 const  {Post, User}  = require('../../models');
 const withAuth = require('../../utils/auth');
+const filterLikes = require('../../utils/filterLikes');
 
 
 // router.get('/', async (req, res) => {   //gets all posts
@@ -38,14 +39,8 @@ router.get('/', async (req, res) => {   //filter all posts from most likes
         });
 
         const posts = allPosts.map((post) => {
-            
-
-            
-
-
+            filterLikes(post);
             post.get({ plain: true });
-
-
         });
         
         

@@ -1,5 +1,11 @@
-let array = [35, 9, 78, 22, 61];
 
-let removedElement = array.sort();
-console.log(removedElement);
+const filterLikes = (arr) => {
+    // arr.sort( (a,b) => a - b);
 
+    // return arr;
+
+    console.log(arr)
+
+}
+
+module.exports = filterLikes;
