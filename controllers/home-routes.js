@@ -1,11 +1,12 @@
 const router = require('express').Router();
-const  User  = require('../models/User');
+const withAuth = require('../utils/auth');
+
 
 
 
 
 // Define the base route, runs login check before rendering
-router.get("/", (req, res) => {
+router.get("/",withAuth,  (req, res) => {
     res.render("homepage");
   });
   
