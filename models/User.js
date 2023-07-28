@@ -2,7 +2,11 @@ const { Model, DataTypes } = require('sequelize');
 const bcrypt = require('bcrypt');
 const sequelize = require('../config/connection');
 
-class User extends Model { }
+class User extends Model {
+    validPassword(pass) {
+        return bcrypt.compareSync(pass, this.password);   // Check if the provided password matches the hashed password in the database
+    }
+}
 
 User.init(
     {
@@ -33,8 +37,8 @@ User.init(
         },
         profile_picture: {
             type: DataTypes.STRING,
-        }, 
         },
+    },
     {
         hooks: {
             beforeCreate: async (newUserData) => {
@@ -56,12 +60,12 @@ User.init(
 
 // Find user by username
 User.findByUsername = async function (username) {
-  try {
-    const user = await User.findOne({ where: { username } });
-    return user;
-  } catch (error) {
-    throw new Error("Error finding user by username");
-  }
+    try {
+        const user = await User.findOne({ where: { username } });
+        return user;
+    } catch (error) {
+        throw new Error("Error finding user by username");
+    }
 };
 
 
