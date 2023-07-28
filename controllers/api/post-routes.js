@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const sequelize = require('../../config/connection');
-const { Post, User } = require('../../models');
+const { Post, User, Comment } = require('../../models');
 const withAuth = require('../../utils/auth');
 
 
@@ -11,6 +11,15 @@ router.get('/', async (req, res) => {   //gets all posts
                 {
                     model: User,
                     attributes: ['username'],
+                },
+                {
+                    model: Comment,
+                    include: [{
+                        model: User,
+                        as: 'user',
+                        attributes: ['username']
+                    }]
+
                 }
             ],
         });
@@ -40,13 +49,21 @@ router.get('/most-popular', async (req, res) => {   //filter all posts from most
                 {
                     moodel: User,
                     attributes: ['username'],
+                }, 
+                {
+                    model: Comment,
+                    include: [{
+                        model: User,
+                        as: 'user',
+                        attributes: ['username']
+                    }]
+
                 }
             ]
         });
     
         const posts = allPosts.map(post => post.get({ plain: true }));
-        //maps over all elements of of allPosts and serialeze them
-        //serialize to make the data easier to handle/reaD
+
         console.log(posts);
         res.json(posts);
 
