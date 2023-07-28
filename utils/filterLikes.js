@@ -1,11 +1,12 @@
 
 const filterLikes = (arr) => {
-    // arr.sort( (a,b) => a - b);
 
-    // return arr;
 
-    console.log(arr)
+    const arrLikes = arr.map( (post) => post.likes);
+    
 
+    arrLikes.sort( (a,b) => b - a);
+    console.log(arrLikes);
 }
 
 module.exports = filterLikes;

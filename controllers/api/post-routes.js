@@ -1,8 +1,8 @@
 const router = require('express').Router();
 const sequelize = require('../../config/connection');
-const  {Post, User}  = require('../../models');
+const { Post, User } = require('../../models');
 const withAuth = require('../../utils/auth');
-const filterLikes = require('../../utils/filterLikes');
+const filterLikes = require('../../utils/filterLikes')
 
 
 // router.get('/', async (req, res) => {   //gets all posts
@@ -34,19 +34,24 @@ const filterLikes = require('../../utils/filterLikes');
 router.get('/', async (req, res) => {   //filter all posts from most likes
     try {
 
-        const topLikes = await Post.max('likes');
-        const allPosts = await Post.findAll({
-        });
 
-        const posts = allPosts.map((post) => {
-            filterLikes(post);
-            post.get({ plain: true });
-        });
+        const allPosts = await Post.findAll({});
+
+        const posts = allPosts.map(post => post.get({ plain: true }));
         
+        filterLikes(posts);
         
+
+
+
+
+
+
         //maps over all elements of of allPosts and serialeze them
         //serialize to make the data easier to handle/reaD
-        // console.log(posts);
+        // console.log(topLikes);
+
+
         res.json(posts);
 
         // res.render('homepage', {
