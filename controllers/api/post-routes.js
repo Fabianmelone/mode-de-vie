@@ -12,15 +12,16 @@ router.get('/', async (req, res) => {   //gets all posts
                     model: User,
                     attributes: ['username'],
                 },
-                {
-                    model: Comment,
-                    include: [{
-                        model: User,
-                        as: 'user',
-                        attributes: ['username']
-                    }]
-
-                }
+                // {
+                //     model: Comment,
+                //     include: [
+                //         {
+                //             model: User,
+                //             as: 'user',
+                //             attributes: ['username'],
+                //         },
+                //     ],
+                // },
             ],
         });
         const posts = allPosts.map((post) => post.get({ plain: true })); //maps over all elements of of allPosts and serialeze them
@@ -39,31 +40,34 @@ router.get('/', async (req, res) => {   //gets all posts
 });
 
 
-router.get('/most-popular', async (req, res) => {   //filter all posts from most likes
+router.get('/popular', async (req, res) => {   //filter all posts from most likes
     try {
+
+
         const allPosts = await Post.findAll({
             order: [
                 ['likes', 'DESC']
             ],
             include: [
                 {
-                    moodel: User,
+                    model: User,
                     attributes: ['username'],
-                }, 
-                {
-                    model: Comment,
-                    include: [{
-                        model: User,
-                        as: 'user',
-                        attributes: ['username']
-                    }]
+                },
+                // {
+                //     model: Comment,
+                //     include: [
+                //         {
+                //             model: User,
+                //             as: 'user',
+                //             attributes: ['username'],
+                //         },
+                //     ],
+                // },
+            ],
 
-                }
-            ]
         });
-    
-        const posts = allPosts.map(post => post.get({ plain: true }));
 
+        const posts = allPosts.map(post => post.get({ plain: true }));
         console.log(posts);
         res.json(posts);
 
