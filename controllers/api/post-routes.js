@@ -5,7 +5,7 @@ const withAuth = require('../../utils/auth');
 
 
 // /api/post/
-router.get('/', withAuth, async (req, res) => {   //gets all posts
+router.get('/allposts', withAuth, async (req, res) => {   //gets all posts
     try {
         const allPosts = await Post.findAll({
             include: [
@@ -111,7 +111,7 @@ router.get('/userposts', withAuth, async (req, res) => {
     }
 });
 
-router.get('/randomPost', withAuth, async (req, res) => {
+router.get('/', withAuth, async (req, res) => {
     try {
         const randomPost = await Post.findOne({
             order: sequelize.literal('rand()'),
@@ -135,7 +135,10 @@ router.get('/randomPost', withAuth, async (req, res) => {
 
         if(randomPost) {
             const post = randomPost.get({ plain: true });
-            res.json(post);
+            res.render('homepage', {
+                ...post,
+                loggedIn: req.session.loggedIn
+            })
             console.log(post);
         } else {
             res.status(404).json({ message: 'No posts found' });
