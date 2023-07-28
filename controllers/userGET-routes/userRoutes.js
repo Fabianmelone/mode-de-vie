@@ -1,13 +1,14 @@
 
 const router = require('express').Router();
-const  User  = require('../../models/User');
+const  {User, Post}  = require('../../models');
 
 
 
 // add a verification helper method
 
 // Route to user profile
-router.get("/user/:username", async (req, res) => {
+router.get("/:username", async (req, res) => {
+
     const username = req.params.username;
     try {
       const user = await User.findOne({ where: { username } });
@@ -18,11 +19,15 @@ router.get("/user/:username", async (req, res) => {
       const userData = {
         username: user.username,
       };
+      console.log(userData);
       res.render("user", userData);
     } catch (error) {
       console.error("Error fetching user data:", error);
       res.status(500).send("Internal Server Error");
     }
   });
+
+
+
   
 module.exports = router;
