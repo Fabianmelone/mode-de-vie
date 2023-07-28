@@ -46,15 +46,16 @@ try {
         req.session.loggedIn = true;
 
         res.status(200).json(signupData);
-        res.redirect("/login");
+        // res.redirect("/login");
     })
 } catch (error) {
 
     // Handle the error (e.g., render the signup page with an error message)
-    console.error("Error creating a new user:", error);
-    res.render("signup", { errorMessage: "Failed to create a new user" });
+    // console.error("Error creating a new user:", error);
+    res.status(500).json(error);
+    // res.render("signup", { errorMessage: "Failed to create a new user" });
 }
-})
+});
 
 
 module.exports = router;
