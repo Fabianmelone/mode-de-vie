@@ -18,6 +18,7 @@ router.get("/user/:username", async (req, res) => {
       const userData = {
         username: user.username,
       };
+      console.log(userData);
       res.render("user", userData);
     } catch (error) {
       console.error("Error fetching user data:", error);
