@@ -12,7 +12,7 @@ User.init(
             primaryKey: true,
             autoIncrement: true,
         },
-        user_name: {
+        username: {
             type: DataTypes.STRING,
             allowNull: false,
         },
@@ -60,7 +60,7 @@ User.findByUsername = async function (username) {
     const user = await User.findOne({ where: { username } });
     return user;
   } catch (error) {
-    throw new Error('Error finding user by username');
+    throw new Error("Error finding user by username");
   }
 };
 
