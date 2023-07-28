@@ -77,29 +77,23 @@ app.get("/login", (req, res) => {
 });
 
 // Route to user profile
-app.get("/user/:username", async (req, res) => {
+app.get("/user/:username", checkLoggedIn, async (req, res) => {
+  const username = req.params.username;
   try {
-    const username = req.params.username;
-
-    // Query the database to find the user by the provided username
     const user = await User.findOne({ where: { username } });
-
     if (!user) {
-      // If the user with the provided username doesn't exist, handle the error appropriately
       return res.status(404).send("User not found");
     }
-
+    // Assuming you have a user.handlebars file to render the user profile
     const userData = {
-      username: user.username
+      username: user.username,
     };
-
     res.render("user", userData);
   } catch (error) {
     console.error("Error fetching user data:", error);
     res.status(500).send("Internal Server Error");
   }
 });
-
 
 app.use(routes);
 // Start the server
