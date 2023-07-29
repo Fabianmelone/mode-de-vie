@@ -128,12 +128,12 @@
         <div class="featured-post">
           <img class="feature-post--image" src="./assets/images/pfps/default_pfp_4.png" alt="Featured post image">
         </div>
-        <div class="featured-post empty"></div>
-        <div class="featured-post empty"></div>
-        <div class="featured-post empty"></div>
-        <div class="featured-post empty"></div>
-        <div class="featured-post empty"></div>
-        <div class="featured-post empty"></div>
+        {{#each filteredTopPosts as |topPost|}}
+        <div class="featured-post empty">
+          <img class="feature-post--image" src="./assets/images/posts/{{topPost.image_url}}" alt="Featured post image">
+        
+        </div>
+        {{/each}}
       </div>
 
       {{!-- Rankings --}}
