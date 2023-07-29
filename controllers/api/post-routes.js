@@ -12,17 +12,9 @@ router.put('/like', async (req, res) => {
 
         const updatedPost = updatedData.get({ plain: true });
 
-
-
-        // 53001
-
         res.json({ likes: updatedPost.likes });
 
-
-
-
-
-        console.log(updatedPost);
+        console.log(req.body.isLiked);
 
     } catch (error) {
         res.status(500).json(error);
