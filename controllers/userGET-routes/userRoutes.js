@@ -8,6 +8,7 @@ const  {User, Post}  = require('../../models');
 
 // Route to user profile
 router.get("/:username", async (req, res) => {
+  console.log(req.session);
 
     const username = req.params.username;
     try {
@@ -19,7 +20,7 @@ router.get("/:username", async (req, res) => {
       const userData = {
         username: user.username,
       };
-      console.log(userData);
+      // console.log(userData);
       res.render("user", userData);
     } catch (error) {
       console.error("Error fetching user data:", error);
