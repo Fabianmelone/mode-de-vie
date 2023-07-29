@@ -1,3 +1,4 @@
-document.querySelector('#profileBtn').addEventListener( ()=>{
+document.querySelector('#profileBtn').addEventListener('click', ()=>{
     window.location.replace('/user/profile')
 });
+

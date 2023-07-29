@@ -10,6 +10,7 @@ const { User, Post } = require('../../models');
 router.get("/profile", async (req, res) => {
 
   const username = req.session.username;
+  console.log(req.session);
   try {
     const user = await User.findOne({
       where: { username: username },
