@@ -38,6 +38,16 @@ User.init(
         profile_picture: {
             type: DataTypes.STRING,
         },
+        followers: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            defaultValue: 0,
+        },
+        following: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            defaultValue: 0,
+        }
     },
     {
         hooks: {

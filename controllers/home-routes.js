@@ -57,7 +57,7 @@ router.get("/", withAuth, async (req, res) => {
     // cannot get top users because we don't have the follow implementation yet
     const allTopUsers = await User.findAll();
     const topUsers = allTopUsers.map(user => user.get({ plain: true }));
-    console.log(topUsers);
+    // console.log(topUsers);
     
 
 
