@@ -38,7 +38,6 @@ function loadUserData() {
 // not yet done!! we need to click once to add a like, and click again to not like
 document.querySelector('#like').addEventListener('click', async (event) => {
 
-
   const likesNum = parseInt(event.target.getAttribute('data-like'));
   const postId = event.target.getAttribute('data-id');
 
@@ -72,9 +71,40 @@ document.querySelector('#like').addEventListener('click', async (event) => {
   } else {
     alert(response.statusText);
   }
-
-
 })
+
+
+document.querySelector('#save').addEventListener('click', async (event) => {
+
+  var isSaved;
+
+  if (event.target.getAttribute('data-saved') === false) {
+    isSaved = false;
+    event.target.setAttribute('data-saved', true);
+  } else if (event.target.getAttribute('data-saved') === true) {
+    isSaved = true;
+    event.target.setAttribute('data-saved', false);
+  }
+
+
+  const response = await fetch('/api/posts/save', {
+    method: 'POST',
+    body: JSON.stringify({ isSaved }),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+
+  if (response.ok) {
+    // render css to show if saved or not
+  } else {
+    alert(response.statusText);
+  }
+})
+
+
+
+
 
 
 // Init
