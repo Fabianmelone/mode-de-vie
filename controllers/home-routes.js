@@ -54,7 +54,11 @@ router.get("/", withAuth, async (req, res) => {
 
 
 
-
+    // cannot get top users because we don't have the follow implementation yet
+    const allTopUsers = await User.findAll();
+    const topUsers = allTopUsers.map(user => user.get({ plain: true }));
+    console.log(topUsers);
+    
 
 
 
@@ -75,7 +79,7 @@ router.get("/", withAuth, async (req, res) => {
       for( let a = 0; a < 8; a++) {
         filteredTopPosts[a] = topPosts[a];  //assigns the values of topPost's  a'th index to the filteredTopPosts array. This array will store only the top 7 posts by view counts.
       }
-      console.log(topPosts);
+      // console.log(topPosts);
 
       res.render('homepage', {
         ...randPost,
