@@ -3,84 +3,113 @@
         "username": "Admin",
         "email": "admin.adm235@gmail.com",
         "password": "admin1234",
-        "profile_picture": null
+        "profile_picture": null,
+        "followers": 10,
+        "following": 2
     },
     {
         "username": "MarioOF",
         "email": "marioOwb254@gmail.com",
         "password": "mario1234",
-        "profile_picture": null
+        "profile_picture": null,
+        "followers": 25,
+        "following": 13
     },
     {
         "username": "AngryGrandpa",
         "email": "angrygrandpa3423@gmail.com",
         "password": "angrygrandpa1234",
-        "profile_picture": null
+        "profile_picture": null,
+        "followers": 30,
+        "following": 5
     },
     {
         "username": "halfwayhipser2",
         "email": "halwayhipser294@gmail.com",
         "password": "halwayhipser1234",
-        "profile_picture": null
+        "profile_picture": null,
+        "followers": 15,
+        "following": 10
     },
     {
         "username": "Meghan",
         "email": "meghan233423@gmail.com",
         "password": "meghan1234",
-        "profile_picture": null
-    }, 
+        "profile_picture": null,
+        "followers": 35,
+        "following": 12
+    },
     {
         "username": "Shrek2DvD",
         "email": "Shrek2DvD394@gmail.com",
         "password": "shrek21234",
-        "profile_picture": null
-    }, 
+        "profile_picture": null,
+        "followers": 40,
+        "following": 8
+    },
     {
         "username": "picklejuicer",
         "email": "picklejuicer048@gmail.com",
         "password": "picklejuicer1234",
-        "profile_picture": null
-    }, 
+        "profile_picture": null,
+        "followers": 20,
+        "following": 9
+    },
     {
         "username": "skeeterMcPoo",
         "email": "skeetermcpoo4039@gmail.com",
         "password": "skeetermcpoo1234",
-        "profile_picture": null
-    }, 
+        "profile_picture": null,
+        "followers": 23,
+        "following": 11
+    },
     {
         "username": "ChromieHomie",
         "email": "chromiehomie03942@gmail.com",
         "password": "chromiehomie1234",
-        "profile_picture": null
-    }, 
+        "profile_picture": null,
+        "followers": 45,
+        "following": 7
+    },
     {
         "username": "Amanda",
         "email": "amanda4875@gmail.com",
         "password": "amanda1234",
-        "profile_picture": null
-    }, 
+        "profile_picture": null,
+        "followers": 28,
+        "following": 14
+    },
     {
         "username": "Tyrone",
         "email": "tyrone2943@gmail.com",
         "password": "tyrone1234",
-        "profile_picture": null
+        "profile_picture": null,
+        "followers": 32,
+        "following": 6
     },
     {
         "username": "RaccAtacc",
         "email": "raccatacc3049@gmail.com",
         "password": "angrygrandpa1234",
-        "profile_picture": null
-    }, 
+        "profile_picture": null,
+        "followers": 22,
+        "following": 17
+    },
     {
         "username": "ismellcolors",
         "email": "ismellcolors20398@gmail.com",
         "password": "ismellcolors1234",
-        "profile_picture": null
-    }, 
+        "profile_picture": null,
+        "followers": 27,
+        "following": 19
+    },
     {
         "username": "TwinkieEater",
         "email": "twinkieeater0394@gmail.com",
         "password": "twinkieeater1234",
-        "profile_picture": null
+        "profile_picture": null,
+        "followers": 40,
+        "following": 15
     }
 ]
+
