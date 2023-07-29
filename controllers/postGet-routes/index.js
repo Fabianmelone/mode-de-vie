@@ -4,6 +4,7 @@ const { Post, User, Comment } = require('../../models');
 const withAuth = require('../../utils/auth');
 
 
+
 // /api/post/
 router.get('/allposts', withAuth, async (req, res) => {   //gets all posts
     try {
