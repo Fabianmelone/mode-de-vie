@@ -34,6 +34,32 @@ function loadUserData() {
   });
 }
 
+
+document.querySelector('#like').addEventListener('click', async (event)=> {
+  const likesNum = parseInt(event.target.getAttribute('data-like'));
+  const postId = event.target.getAttribute('data-id');
+  
+
+  const response = await fetch('/api/posts/like', {
+    method: 'PUT',  // Change to 'PUT'
+    body: JSON.stringify({likesNum, postId}),  // Include postId in the request body
+    headers: {'Content-Type': 'application/json'},
+  })
+
+  if(response.ok) {
+        // Get the new number of likes from the response
+        const data = await response.json();
+        const newLikes = data.likes;
+
+        // Update the number of likes in the HTML
+        event.target.setAttribute('data-like', newLikes);
+        event.target.textContent = newLikes;
+  } else {
+    alert(response.statusText);
+  }
+})
+
+
 // Init
 window.onload = () => {
   loadUserData();
