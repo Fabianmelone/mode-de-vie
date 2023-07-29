@@ -61,16 +61,6 @@ router.get("/", withAuth, async (req, res) => {
     
 
 
-
-
-
-
-
-
-
-
-
-
     if (randomPost && alltopPosts) {
       const randPost = randomPost.get({ plain: true });
       const topPosts = alltopPosts.map(post => post.get({ plain: true }));
@@ -86,7 +76,7 @@ router.get("/", withAuth, async (req, res) => {
         filteredTopPosts,
         loggedIn: req.session.loggedIn
       })
-      // console.log(post);
+      console.log(randPost);
     } else {
       res.status(404).json({ message: 'No posts found' });
     }
