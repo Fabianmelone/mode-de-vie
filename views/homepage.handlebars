@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <link rel="stylesheet" type="text/css" href="./css/global.css">
-    <link rel="stylesheet" type="text/css" href="./css/homepage.css">
+    <link rel="stylesheet" type="text/css" href="/css/global.css">
+    <link rel="stylesheet" type="text/css" href="/css/homepage.css">
     <title>homepage</title>
   </head>
   <body>
     <div id="home-container">
       {{!-- Post --}}
       <div id="post-container">
-        <img id="post--image" src="./assets/images/pfps/default_pfp_4.png" alt="Post image" />
+        <img id="post--image" src="./assets/images/posts/{{image_url}}" alt="Post image" />
       </div>
 
       {{!-- Comments --}}
@@ -19,19 +19,19 @@
           <div class="icon-container">
             <img src="./assets/icons/heart.svg" onload="ImgToSvg(this)" alt="Likes counter icon">
           </div>
-          <h1 id="likes-counter">103.4K</h1>
+          <h1 id="likes-counter">{{likes}}</h1>
         </div>
         <div id="views-counter-container">
           <div class="icon-container">
             <img src="./assets/icons/eye.svg" onload="ImgToSvg(this)" alt="Likes counter icon">
           </div>
-          <h1 id="views-counter">223.1K</h1>
+          <h1 id="views-counter">{{views}}</h1>
         </div>
         <div id="saves-counter-container">
           <div class="icon-container">
             <img src="./assets/icons/bookmark.svg" onload="ImgToSvg(this)" alt="Likes counter icon">
           </div>
-          <h1 id="saves-counter">823</h1>
+          <h1 id="saves-counter">{{saves}}</h1>
         </div>
       </header>
 
@@ -48,10 +48,9 @@
             <img id="post--author-pfp" src="./assets/images/pfps/default_pfp_4.png" alt="User Pfp" />
           </div>
           <div id="post--author-content">
-            <h1 class="author-username">JefferyEpstizzy</h1>
+            <h1 class="author-username">{{user.username}}</h1>
             <p>
-              New profile picture! <br>
-              I looked a little confused in this one. 😅
+              {{description}}
             </p>
           </div>
         </div>
