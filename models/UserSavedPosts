@@ -1,0 +1,32 @@
+const { Model, DataTypes } = require('sequelize');
+const sequelize = require('../config/connection');
+
+class UserSavedPosts extends Model { }
+
+UserSavedPosts.init({
+    user_id: {
+        type: DataTypes.INTEGER,
+        references: {
+            model: 'user',
+            key: 'id',
+        },
+    },
+    PostId: {
+        type: DataTypes.INTEGER,
+        references: {
+            model: 'post',
+            key: 'id'
+        }
+    }
+},
+    {
+        sequelize,
+        timestamps: false,
+        freezeTableName: true,
+        underscored: true,
+        modelName: 'UserSavedPosts',
+    });
+
+
+
+module.exports = UserSavedPosts;

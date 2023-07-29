@@ -86,7 +86,6 @@ document.querySelector('#save').addEventListener('click', async (event) => {
     event.target.setAttribute('data-saved', false);
   }
 
-
   const response = await fetch('/api/posts/save', {
     method: 'POST',
     body: JSON.stringify({ isSaved }),
