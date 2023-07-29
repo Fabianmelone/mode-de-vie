@@ -25,7 +25,7 @@ function textAreaAdjust(e, element) {
 // Loads user data
 function loadUserData() {
   const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
-  
+
   // Load username
   document.querySelectorAll(".username").forEach((element) => {
     if (element.innerHTML) {
@@ -33,6 +33,49 @@ function loadUserData() {
     }
   });
 }
+
+
+// not yet done!! we need to click once to add a like, and click again to not like
+document.querySelector('#like').addEventListener('click', async (event) => {
+
+
+  const likesNum = parseInt(event.target.getAttribute('data-like'));
+  const postId = event.target.getAttribute('data-id');
+
+  const likesCounter = document.querySelector(`#likes-counter`);
+
+  var isLiked;
+
+  // toggles if button has been clicked or not
+  if (event.target.getAttribute('data-click') === "not-liked") {
+    isLiked = false;
+    event.target.setAttribute('data-click', "liked");
+    } else if (event.target.getAttribute('data-click') === "liked") {
+    isLiked = true;
+    event.target.setAttribute('data-click', "not-liked");
+    }
+
+  const response = await fetch('/api/posts/like', {
+    method: 'PUT',  // Change to 'PUT'
+    body: JSON.stringify({ likesNum, postId, isLiked }),  // Include postId in the request body
+    headers: { 'Content-Type': 'application/json' },
+  })
+
+  if (response.ok) {
+    // Get the new number of likes from the response
+    const data = await response.json();
+    const newLikes = data.likes;
+
+    // Update the number of likes in the HTML
+    event.target.setAttribute('data-like', newLikes);
+    likesCounter.textContent = newLikes;
+  } else {
+    alert(response.statusText);
+  }
+
+
+})
+
 
 // Init
 window.onload = () => {
