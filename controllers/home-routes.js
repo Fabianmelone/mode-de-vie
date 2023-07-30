@@ -53,14 +53,11 @@ router.get("/", withAuth, async (req, res) => {
     });
 
 
-
     // cannot get top users because we don't have the follow implementation yet
     const allTopUsers = await User.findAll();
     const topUsers = allTopUsers.map(user => user.get({ plain: true }));
     // console.log(topUsers);
     
-
-
     if (randomPost && alltopPosts) {
       const randPost = randomPost.get({ plain: true });
       const topPosts = alltopPosts.map(post => post.get({ plain: true }));
@@ -78,7 +75,9 @@ router.get("/", withAuth, async (req, res) => {
       })
       // console.log(randPost);
     } else {
-      res.status(404).json({ message: 'No posts found' });
+      // For testing error has been disabled
+      res.render("homepage")
+      // res.status(404).json({ message: 'No posts found' });
     }
 
   } catch (error) {
@@ -108,7 +107,8 @@ router.get("/rankings", withAuth, async (req, res) => {
 })
 
 // Define the local users page route
-router.get("/user", withAuth, async (req, res) => {
+router.get("/user", withAuth, async (req, res) => {  
+  // Get user data
   res.render("localuser");
 });
 

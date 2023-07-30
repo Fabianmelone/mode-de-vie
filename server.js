@@ -14,7 +14,7 @@ const SequelizeStore = require('connect-session-sequelize')(session.Store);     
 const app = express();
 const port = 3000; // Set the port you want the server to listen on
 
-const hbs = exphbs.create({});  //creates a new instance of express handlebars
+const withAuth = require("./utils/auth");
 
 const { User } = require("./models");
 
@@ -71,34 +71,6 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(express.static(path.join(__dirname, "public")));
 app.use('/bootstrap', express.static(path.join(__dirname, '/node_modules/bootstrap/dist')));    //middleware to allow bootstrap to be accessible to public
-
-// Define the base route, runs login check before rendering
-app.get("/", checkLoggedIn, (req, res) => {
-  res.render("homepage");
-});
-
-app.get("/user/:username", checkLoggedIn, async (req, res) => {
-  try {
-    const user = await User.findByUsername(req.params.username);
-
-    if (!user) {
-      return res.status(404).send("User not found");
-    }
-
-    const userData = {
-      id: user.id,
-      username: user.username,
-      email: user.email,
-    };
-
-    // Render the user profile template and pass the user data as context
-    res.render("userprofile", { user: userData, layout: "main" });
-  } catch (error) {
-    console.error("Error fetching user data:", error);
-    res.status(500).send("Internal Server Error");
-  }
-});
-
 
 app.use(routes);
 
