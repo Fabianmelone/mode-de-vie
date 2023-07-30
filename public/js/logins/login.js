@@ -1,3 +1,6 @@
+const storeUserData = (data) => {
+  localStorage.setItem("loggedInUser", JSON.stringify(data));
+}
 
 const loginHandler = async (event) => {
     event.preventDefault();
@@ -10,16 +13,23 @@ const loginHandler = async (event) => {
     if(email && password) {
         //in the user-routes.js
         const response = await fetch('/api/users/login', {
-            method: 'POST',
-            body: JSON.stringify({ email, password }),
-            headers: { 'Content-Type': 'application/json' },
-          });
+          method: 'POST',
+          body: JSON.stringify({ email, password }),
+          headers: { 'Content-Type': 'application/json' },
+        });
+    
         if(response.ok) {
-            // if resonse was successful, page will redirect to the homepage
-            document.location.replace('/');     //may change the route later.
+          const data = await response.json();
+          const user = data.user;
+
+          // Store the user data in local storage
+          storeUserData(user);
+          
+          // if resonse was successful, page will redirect to the homepage
+          document.location.replace("/"); //may change the route later.
         } else {
-            alert(response.statusText);
-        }
+          alert(response.statusText);
+      }
     }
 };
 
