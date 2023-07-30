@@ -16,8 +16,6 @@ const port = 3000; // Set the port you want the server to listen on
 
 const hbs = exphbs.create({});  //creates a new instance of express handlebars
 
-<<<<<<< HEAD
-=======
 const { User } = require("./models");
 
 // Should be controlled by a Auth check function
@@ -40,7 +38,6 @@ function checkLoggedIn(req, res, next) {
   }
 };
 
->>>>>>> 50e12ed6041d4e9abbc7af065623f7cbc52c2b74
 const sess = {
   secret: 'Super secret secret',
   cookie: {   //cookie setting;
@@ -75,8 +72,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
 app.use('/bootstrap', express.static(path.join(__dirname, '/node_modules/bootstrap/dist')));    //middleware to allow bootstrap to be accessible to public
 
-<<<<<<< HEAD
-=======
 // Define the base route, runs login check before rendering
 app.get("/", checkLoggedIn, (req, res) => {
   res.render("homepage");
@@ -110,7 +105,6 @@ app.get("/user/:username", checkLoggedIn, async (req, res) => {
 });
 
 
->>>>>>> 50e12ed6041d4e9abbc7af065623f7cbc52c2b74
 app.use(routes);
 
 // Start the server
