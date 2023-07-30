@@ -3,6 +3,7 @@ const { Post, User, UserSavedPosts } = require("../../models");
 
 router.put('/like', async (req, res) => {
     try {
+
         var likesNum;
         if (req.body.isLiked === false) {
             likesNum = req.body.likesNum + 1;   //if false, will add a like. if not, it will subtract a like
@@ -29,22 +30,36 @@ router.put('/like', async (req, res) => {
 
 router.post('/save', async (req, res) => {
     try {
+
+
         const userId = req.session.userID;
         const postId = req.body.postId;
-
+        var isSaved = req.body.isSaved;
+        
         const userData = await User.findByPk(userId);
         const postData = await Post.findByPk(postId);
+        console.log(isSaved);
+        try {
+            if (isSaved === true) {
+                console.log(true);
+                await userData.removeSavedPosts(postData); // Remove post if it's already saved
+            } else {
+                console.log(false);
+                await userData.addSavedPosts(postData); // Save post if it's not already saved
+            }
+        
+            var savedPosts = await userData.getSavedPosts({});
+            // console.log(savedPosts);
+        
+            const savedPostsPlain = savedPosts.map(post => post.get({ plain: true }));
+        
+            console.log(savedPostsPlain);
+            res.json(savedPostsPlain);
+        } catch (error) {
+            res.status(500).json(error);
+        }
+        
 
-
-        await userData.addSavedPosts(postData);     // addSavedPosts to add to the user's saved posts.
-        // "add" and "get" are sequelize methods: addPosts, and getPosts.
-        // in our models/index.js, we set aliases for the belongsToMany methods. Setting alias' makes it easier to differentiate. we set it as "SavedPosts", so we can use "addSavedPosts()" instead of "addPosts()"
-
-        const savedPosts = await userData.getSavedPosts();
-        const savedPostsPlain = savedPosts.map(post => post.get({ plain: true }));
-
-        console.log(savedPostsPlain);
-        res.json(savedPostsPlain);
 
 
     } catch (error) {
