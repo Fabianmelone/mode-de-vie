@@ -2,7 +2,7 @@ const Comment = require('./Comment');
 const Post = require('./Post');
 const User = require('./User');
 const Follower_User = require('./Follower-User');
-const UserSavedPosts = require('./');
+const UserSavedPosts = require('./UserSavedPosts')
 
 
 User.hasMany(Post, {
@@ -43,8 +43,18 @@ User.belongsToMany(User, {
 });
 
 
-User.belongsToMany(Post, { through: UserSavedPosts });
-Post.belongsToMany(User, { through: UserSavedPosts });
+User.belongsToMany(Post, { 
+    as: 'SavedPosts', // Alias for saved posts
+    through: UserSavedPosts,
+    foreignKey: 'user_id',
+    otherKey: 'post_id'
+});
+Post.belongsToMany(User, { 
+    as: 'SavedByUsers', // Alias for users who saved a post
+    through: UserSavedPosts,
+    foreignKey: 'post_id',
+    otherKey: 'user_id'
+});
 
 
 module.exports = { Comment, Post, User, Follower_User, UserSavedPosts };

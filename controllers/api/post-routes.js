@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { Post, User } = require("../../models");
+const { Post, User, UserSavedPosts } = require("../../models");
 
 router.put('/like', async (req, res) => {
     try {
@@ -17,7 +17,7 @@ router.put('/like', async (req, res) => {
 
         res.json({ likes: updatedPost.likes });
 
-        console.log(req.body.isLiked);
+        // console.log(req.body.isLiked);
 
     } catch (error) {
         res.status(500).json(error);
@@ -26,32 +26,33 @@ router.put('/like', async (req, res) => {
 
 
 
+
 router.post('/save', async (req, res) => {
     try {
+        console.log(req.session);
+
+        const userId = req.session.userID;
+        const postId = req.body.postId;
+
+        const userData = await User.findByPk(userId);
+        const postData = await Post.findByPk(postId);
+
+        if (userData && postData) {
+            await userData.addPost(postData);
+
+            const savedPosts = await userData.getPosts();
+            const savedPostsPlain = savedPosts.map(post => post.get({ plain: true }));
+
+           console.log(savedPostsPlain);
+            res.json({ message: 'Post saved successfully' });
+        } else {
+            res.status(404).json({ message: 'User or Post not found' });
+        }
 
     } catch (error) {
+        console.log(error); // log the error
         res.status(500).json(error);
     }
-})
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+});
 
 module.exports = router;

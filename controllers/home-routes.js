@@ -76,7 +76,7 @@ router.get("/", withAuth, async (req, res) => {
         filteredTopPosts,
         loggedIn: req.session.loggedIn
       })
-      console.log(randPost);
+      // console.log(randPost);
     } else {
       res.status(404).json({ message: 'No posts found' });
     }
