@@ -107,7 +107,14 @@ router.get('/login', async (req, res) => {
   res.render('./login/login');
 });
 
+// Define the local users page route
+router.get("/user", withAuth, async (req, res) => {
+  res.render("localuser");
+});
 
-
+// Define a users page route
+router.get("/user/:username", withAuth, async (req, res) => {
+  res.render("user");
+});
 
 module.exports = router;

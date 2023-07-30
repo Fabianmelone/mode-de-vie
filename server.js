@@ -18,6 +18,26 @@ const hbs = exphbs.create({});  //creates a new instance of express handlebars
 
 const { User } = require("./models");
 
+// Should be controlled by a Auth check function
+// If true, the user will be directed to the homepage route "/"
+// If false, the user will be directed to the login route "/login"
+const isAuthenticated = true;
+
+// Middleware function to check if the user is logged in
+function checkLoggedIn(req, res, next) {
+  // Create local variables to hide static layout elements on the login page. (navbar, sidebar, etc.)
+  res.locals.showNavbar = isAuthenticated;
+  res.locals.showSidebar = isAuthenticated;
+
+  if (isAuthenticated) {
+    // User is logged in, proceed to the next middleware or route handler
+    next();
+  } else {
+    // User is not logged in, redirect to the login page
+    res.redirect("/login");
+  }
+};
+
 const sess = {
   secret: 'Super secret secret',
   cookie: {   //cookie setting;
@@ -36,16 +56,57 @@ app.use(session(sess));     //adds the configured session as middleware to the e
 
 
 // Set up the Handlebars view engine
-app.engine('handlebars', hbs.engine); //configures the engine that express will use. set to handlebars
+app.engine(
+  "handlebars",
+  exphbs({
+    defaultLayout: "main",
+    extname: ".handlebars", // You can use ".hbs" as the extension if preferred
+  })
+);
 app.set("view engine", "handlebars");
 
 // Set up the public directory to serve static files
-app.use(express.static(path.join(__dirname, "public")));
 app.use(express.json());
-app.use(express.urlencoded({extended:true}));
+app.use(express.urlencoded({ extended: true }));
+
+app.use(express.static(path.join(__dirname, "public")));
 app.use('/bootstrap', express.static(path.join(__dirname, '/node_modules/bootstrap/dist')));    //middleware to allow bootstrap to be accessible to public
 
+// Define the base route, runs login check before rendering
+app.get("/", checkLoggedIn, (req, res) => {
+  res.render("homepage");
+});
+
+// Define the login route
+app.get("/login", (req, res) => {
+  res.render("login");
+});
+
+app.get("/user/:username", checkLoggedIn, async (req, res) => {
+  try {
+    const user = await User.findByUsername(req.params.username);
+
+    if (!user) {
+      return res.status(404).send("User not found");
+    }
+
+    const userData = {
+      id: user.id,
+      username: user.username,
+      email: user.email,
+    };
+
+    // Render the user profile template and pass the user data as context
+    res.render("userprofile", { user: userData, layout: "main" });
+  } catch (error) {
+    console.error("Error fetching user data:", error);
+    res.status(500).send("Internal Server Error");
+  }
+});
+
+
 app.use(routes);
+
 // Start the server
 sequelize.sync({ force: false}).then(() => {    //syncs sequelize to the database. {force: false} means that Sequelize won't make any changes to the tables if they already exist.
   //if true, it will drop and recreate the tables.

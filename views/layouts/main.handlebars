@@ -1,112 +1,95 @@
 <html lang="en">
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Main</title>
-  <link rel="stylesheet" href="/css/global.css" />
-  <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
-  <link rel="stylesheet" type="text/css" href="/css/global.css" />
-  <script src="/js/homepage.js"></script>
-</head>
-
-<body id="layout">
-{{!-- added this logout button only for testing the logout function.
-yoou can delete this and place it wherever you want. just make sure it properly links to the js
-
-use the link below:
- <script src="/js/logins/logout.js"></script>
- --}}
-  {{#if showNavbar}}
-  {{! Navbar }}
-  <nav id="navbar">
-    {{! Navbar content }}
-    <div id="searchbar-container">
-      <input type="text" name="searchbar" id="searchbar" placeholder="Search User, Post, Tag ...">
-      <div id="searchbar-icon">
-        <img src="/assets/icons/magnifying_glass.svg" onload="ImgToSvg(this)" alt="Searchbar Icon">
-      </div>
-      <hr>
-    </div>
-    <button class="btn btn-outline-danger" id="logout" type="button">logout</button>
-  </nav>
-  {{/if}}
-  {{#if showSidebar }}
-  {{!-- Sidebar --}}
-  <aside class="sidebar">
-    {{!-- Header --}}
-    <header>
-      <div id="header-logo">
-        <img src="/assets/images/sidebar_logo.png" alt="Website logo">
-        <h1>Mode de Vie</h1>
-      </div>
-      <div id="collapse-icon" onclick="toggleSidebar()">
-        <div></div>
-        <div></div>
-        <div></div>
-      </div>
-    </header>
-    {{!-- Sidebar content --}}
-    {{!-- Profile --}}
-    <div class="sidebar--list-item profile" id="profileBtn">
-      <div class="list-item--icon profile">
-        <div id="sidebar--profile-photo">
-          <img src="/assets/icons/user_profile.svg" onload="ImgToSvg(this)" alt="Home button icon" />
-          <img src="/assets/images/pfps/default_pfp_1.png" id="user_pfp" alt="User profile picture">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Main</title>
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">   
+    <link rel="stylesheet" type="text/css" href="/css/global.css" />
+    <script src="/js/homepage.js"></script>
+  </head>
+  <body id="layout">
+    {{#if showNavbar}}
+      {{! Navbar }}
+      <nav id="navbar">
+        {{! Navbar content }}
+        <div id="searchbar-container">
+          <input type="text" name="searchbar" id="searchbar" placeholder="Search User, Post, Tag ...">
+          <div id="searchbar-icon">
+            <img src="/assets/icons/magnifying_glass.svg" onload="ImgToSvg(this)" alt="Searchbar Icon">
+          </div>
+          <hr>
         </div>
-      </div>
-      <h1 class="username">Admin</h1>
-    </div>
-    {{!-- Home --}}
-    <div class="sidebar--list-item" id="dashboardBtn">
-      <div class="list-item--icon home">
-        <img src="/assets/icons/home.svg" onload="ImgToSvg(this)" alt="Home button icon" />
-      </div>
-      <h1>Dashboard</h1>
-    </div>
-    {{!-- Ranking --}}
-    <div class="sidebar--list-item" id="rankingBtn">
-      <div class="list-item--icon ranking">
-        <img src="/assets/icons/ranking.svg" onload="ImgToSvg(this)" alt="Home button icon" />
-      </div>
-      <h1>Ranking</h1>
-    </div>
-    {{!-- Messages --}}
-    <div class="sidebar--list-item" id="messageBtn">
-      <div class="list-item--icon private-messages">
-        <img src="/assets/icons/private_messages.svg" onload="ImgToSvg(this)" alt="Home button icon" />
-      </div>
-      <h1>Messages</h1>
-    </div>
-    <hr id="mid-splitter" />
-    {{!-- Following --}}
-    <div class="sidebar--list-item" id="followingbtn">
-      <div class="list-item--icon following">
-        <img src="/assets/icons/following.svg" onload="ImgToSvg(this)" alt="Home button icon" />
-      </div>
-      <h1>Following</h1>
-    </div>
-    {{!-- Saved --}}
-    <div class="sidebar--list-item" id="savedBtn">
-      <div class="list-item--icon saved">
-        <img src="/assets/icons/saved.svg" onload="ImgToSvg(this)" alt="Home button icon" />
-      </div>
-      <h1>Saved</h1>
-    </div>
-  </aside>
-  {{/if}}
-  {{! Content area, where page content is rendered }}
-  <main id="page-body">
-    {{{body}}}
-  </main>
-
-
-
-
-  <script src="/js/logins/logout.js"></script>
-  <script src="js/navbar.js"></script>
-
-
-</body>
-
+      </nav>
+    {{/if}}
+    {{#if showSidebar }}
+      {{!-- Sidebar --}}
+      <aside class="sidebar">
+        {{!-- Header --}}
+        <header>
+          <div id="header-logo">
+            <img src="/assets/images/sidebar_logo.png" alt="Website logo">
+            <h1>App Name</h1>    
+          </div>        
+          <div id="collapse-icon" onclick="toggleSidebar()">
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+        </header>
+        {{!-- Sidebar content --}}
+        {{!-- Profile --}}
+        <div onclick="document.location = '/user'" class="sidebar--list-item profile">
+          <div class="list-item--icon profile">
+            <div id="sidebar--profile-photo">
+              <img src="/assets/icons/user_profile.svg" onload="ImgToSvg(this)" alt="Home button icon" />
+              <img src="/assets/images/pfps/default_pfp_1.png" class="user_pfp" alt="User profile picture">
+            </div>
+          </div>
+          <h1>Admin</h1>
+        </div>
+        {{!-- Home --}}
+        <div onclick="document.location = '/'" class="sidebar--list-item">
+          <div class="list-item--icon home">
+            <img src="/assets/icons/home.svg" onload="ImgToSvg(this)" alt="Home button icon" />
+          </div>
+          <h1>Dashboard</h1>
+        </div>
+        {{!-- Ranking --}}
+        <div class="sidebar--list-item">
+          <div class="list-item--icon ranking">
+            <img src="/assets/icons/ranking.svg" onload="ImgToSvg(this)" alt="Home button icon" />
+          </div>
+          <h1>Ranking</h1>
+        </div>
+        {{!-- Messages --}}
+        <div class="sidebar--list-item">
+          <div class="list-item--icon private-messages">
+            <img src="/assets/icons/private_messages.svg" onload="ImgToSvg(this)" alt="Home button icon" />
+          </div>
+          <h1>Messages</h1>
+        </div>
+        <hr id="mid-splitter" />
+        {{!-- Following --}}
+        <div class="sidebar--list-item">
+          <div class="list-item--icon following">
+            <img src="/assets/icons/following.svg" onload="ImgToSvg(this)" alt="Home button icon" />
+          </div>
+          <h1>Following</h1>
+        </div>
+        {{!-- Saved --}}
+        <div class="sidebar--list-item">
+          <div class="list-item--icon saved">
+            <img src="/assets/icons/saved.svg" onload="ImgToSvg(this)" alt="Home button icon" />
+          </div>
+          <h1>Saved</h1>
+        </div>
+      </aside>
+    {{/if}}
+    {{! Content area, where page content is rendered }}
+    <main id="page-body">
+      {{{body}}}
+    </main>
+    <script src="/js/logout.js"></script>
+  </body>
 </html>
