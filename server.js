@@ -16,8 +16,6 @@ const port = 3000; // Set the port you want the server to listen on
 
 const hbs = exphbs.create({});  //creates a new instance of express handlebars
 
-const { User } = require("./models");
-
 const sess = {
   secret: 'Super secret secret',
   cookie: {   //cookie setting;
@@ -45,11 +43,8 @@ app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 app.use('/bootstrap', express.static(path.join(__dirname, '/node_modules/bootstrap/dist')));    //middleware to allow bootstrap to be accessible to public
 
-
-
-
-
 app.use(routes);
+
 // Start the server
 sequelize.sync({ force: false}).then(() => {    //syncs sequelize to the database. {force: false} means that Sequelize won't make any changes to the tables if they already exist.
   //if true, it will drop and recreate the tables.
