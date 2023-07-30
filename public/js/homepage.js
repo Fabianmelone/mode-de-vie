@@ -75,20 +75,22 @@ document.querySelector('#like').addEventListener('click', async (event) => {
 
 
 document.querySelector('#save').addEventListener('click', async (event) => {
-
+  
+  
+  const postId = event.target.getAttribute('data-id');
   var isSaved;
 
-  if (event.target.getAttribute('data-saved') === false) {
+  if (event.target.getAttribute('data-saved') === 'false') {
     isSaved = false;
     event.target.setAttribute('data-saved', true);
-  } else if (event.target.getAttribute('data-saved') === true) {
+  } else if (event.target.getAttribute('data-saved') === 'true') {
     isSaved = true;
     event.target.setAttribute('data-saved', false);
   }
 
   const response = await fetch('/api/posts/save', {
     method: 'POST',
-    body: JSON.stringify({ isSaved }),
+    body: JSON.stringify({ isSaved, postId }),
     headers: {
       'Content-Type': 'application/json',
     },
