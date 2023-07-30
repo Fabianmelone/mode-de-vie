@@ -49,13 +49,6 @@ User.belongsToMany(Post, {
     foreignKey: 'user_id',
     otherKey: 'post_id'
 });
-Post.belongsToMany(User, { 
-    as: 'SavedByUsers', // Alias for users who saved a post
-    through: UserSavedPosts,
-    foreignKey: 'post_id',
-    otherKey: 'user_id'
-});
-
 
 module.exports = { Comment, Post, User, Follower_User, UserSavedPosts };
 
