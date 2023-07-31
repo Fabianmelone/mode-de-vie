@@ -106,6 +106,9 @@ router.get("/rankings", withAuth, async (req, res) => {
   res.render("rankings");
 })
 
+router.get("/followpage", withAuth, async (req, res) => {
+  res.render("followpage");
+})
 // Define the local users page route
 router.get("/user", withAuth, async (req, res) => {  
   // Get user data

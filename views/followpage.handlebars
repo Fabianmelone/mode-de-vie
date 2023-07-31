@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/global.css">
+    <link rel="stylesheet" href="/css/followpage.css">
+    <title>Following</title>
+  </head>
+  <body>
+    <section class="following--section" id="following">
+      <div>
+        <h1>People that you Follow:</h1>
+        <hr>
+        {{#if follower_users.length}}
+        {{#each userPostsWithLikes as |userPosts|}}
+        <div class="following--user-container">
+          <div class="following--user">
+            <P>Username: {{userPosts.user.username}}</P>
+            <img src="{{userPosts.user.profile_picture}}" alt="{{userPosts.user.username}}'s Profile picture">
+            <p>Top 3 Posts:</p>
+            <div class="top-posts">
+              {{#each userPosts.posts}}
+              <img src="{{this.image_url}}" alt="Post Picture">
+              {{/each}}
+            </div>
+          </div>
+        </div>
+        {{/each}}
+        {{else}}
+        <p>You are not following anybody yet.</p>
+        {{/if}}
+      </div>
+    </section>
+  </body>
+</html>
