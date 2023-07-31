@@ -26,13 +26,17 @@ body { overflow-y: scroll; }
     max-width: 40%;
 
     #user--pfp-name {
-      width: fit-content;
+      width: 100%;
       display: flex;
       flex-direction: row;
       align-items: center;
       gap: 0 1rem;
-      
+
       #user--name-container {
+        width: 100%;
+
+        position: relative;
+
         h1 {
           display: flex;
           flex-direction: column;
@@ -64,6 +68,9 @@ body { overflow-y: scroll; }
           font-size: 0.9rem;
           letter-spacing: 0.15rem;
 
+          position: absolute;
+          top: 0; right: 0;
+
           svg {
             width: 1.5rem;
             height: 1.5rem;
@@ -74,7 +81,9 @@ body { overflow-y: scroll; }
 
       #user--pfp-container {
         width: 6.25rem;
+        min-width: 6.25rem;
         height: 6.25rem;
+        min-height: 6.25rem;
           
         background-color: var(--primary);
         border: solid var(--accent) 0.125rem;
@@ -205,9 +214,7 @@ body { overflow-y: scroll; }
       flex: 0 0 24rem;
       aspect-ratio: 1;
       
-      background-color: var(--background-color);
       border-radius: 1rem;
-      filter: brightness(0.9);
       
       position: relative;
       overflow: hidden;

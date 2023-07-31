@@ -2,27 +2,58 @@
 const router = require('express').Router();
 const { User, Post, Follower_User } = require('../../models');
 
-// add a verification helper method
+const withAuth = require("../../utils/auth");
 
 // Route to user profile
-router.get("/profile", async (req, res) => {
-
-  const username = req.session.username;
-  console.log(req.session);
+router.get("/:username", withAuth, async (req, res) => {
   try {
-    const user = await User.findOne({
-      where: { username: username },
-      include: [{
-        model: Post,
-      }]
-    });
+    // Get the username from the request params
+    const username = req.params.username;
+
+    // Find the user by their username
+    const user = await User.findByUsername(username);
+
     if (!user) {
-      return res.status(404).send("User not found");
+      // Redirect the user to the homepage if the user doesn't exist
+      return res.redirect("/");
     }
-    // Assuming you have a user.handlebars file to render the user profile
-    const userData = await user.get({ plain: true });
-    console.log(userData);
-    res.render("user", userData);
+
+    // Find all posts belonging to the user
+    const userPosts = await Post.findAll({ where: { user_id: user.id } });
+
+    // Render the profile page and pass the user's information and posts to it
+    res.render("user", {
+      user: user.get({ plain: true }),
+      posts: userPosts.map((post) => post.get({ plain: true })),
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+});
+
+// Route to local user profile
+router.get("/", withAuth, async (req, res) => {
+  try {
+    // Get the username from the session request
+    const username = req.session.username;
+
+    // Find the user by their username
+    const user = await User.findByUsername(username);
+
+    if (!user) {
+      // Redirect the user to the homepage if the user doesn't exist
+      return res.redirect("/");
+    }
+
+    // Find all posts belonging to the user
+    const userPosts = await Post.findAll({ where: { user_id: user.id } });
+
+    // Render the profile page and pass the user's information and posts to it
+    res.render("localuser", {
+      user: user.get({ plain: true }),
+      posts: userPosts.map((post) => post.get({ plain: true })),
+    });
   } catch (error) {
     console.error("Error fetching user data:", error);
     res.status(500).send("Internal Server Error");

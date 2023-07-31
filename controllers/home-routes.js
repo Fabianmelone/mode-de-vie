@@ -88,7 +88,6 @@ router.get("/signup", (req, res) => {
   res.render("./login/signup");
 });
 
-
 router.get('/loginController', async (req, res) => {
   try {
     res.render('./login/loginController')
@@ -138,39 +137,5 @@ router.get("/rankings", withAuth, async (req, res) => {
 router.get("/followingpage", withAuth, async (req, res) => {
   res.render("followingpage");
 })
-// Define the local users page route
-router.get("/user", withAuth, async (req, res) => {  
-  // Get user data
-  res.render("localuser");
-});
-
-// Define a users page route
-router.get("/user/:username", withAuth, async (req, res) => {
-  try {
-    // Get the username from the request params
-    const username = req.params.username;
-
-    // Find the user by their username
-    const user = await User.findByUsername(username);
-
-    if (!user) {
-      // Redirect the user to the homepage if the user doesn't exist
-      return res.redirect("/");
-    }
-
-    // Find all posts belonging to the user
-    const userPosts = await Post.findAll({ where: { user_id: user.id } });
-
-    // Render the profile page and pass the user's information and posts to it
-    res.render("user", {
-      user: user.get({ plain: true }),
-      posts: userPosts.map((post) => post.get({ plain: true })),
-    });
-    console.log("User Posts: ", userPosts);
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: "Internal server error" });
-  }
-});
 
 module.exports = router;
