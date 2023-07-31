@@ -25,22 +25,22 @@
           />
         </div>
         <div id="user--name-container">
-          <h1 class="username">Username</h1>
+          <h1>{{ user.username }}</h1>
           <h2>@user.handle</h2>
-          <button>
+          <button id="user--edit-button">
             <img src="/assets/icons/edit.svg" onload="ImgToSvg(this)" alt="Edit button icon">
-            Edit Profile
+            Edit
           </button>
         </div>
       </div>
       
       <div id="user--counters-container">
         <div class="user--counter">
-          <h1 class="following-counter">10k</h1>
+          <h1>{{ user.following }}</h1>
           <h2>Following</h2>
         </div>
         <div class="user--counter">
-          <h1 class="follwers-counter">10k</h1>
+          <h1>{{ user.following }}</h1>
           <h2>Followers</h2>
         </div>
         <div class="user--counter">
@@ -52,8 +52,7 @@
       <div id="user--bio-container">
         <div class="user-bio">
           <p>
-            This is a simple user-driven social media <br/>
-            app to share posts containing images
+            {{ user.bio }}
           </p>
         </div>
       </div>
