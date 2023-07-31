@@ -1,6 +1,6 @@
 
 const router = require('express').Router();
-const { User, Post } = require('../../models');
+const { User, Post, Follower_User } = require('../../models');
 
 
 
@@ -31,6 +31,37 @@ router.get("/profile", async (req, res) => {
   }
 });
 
+router.get("/followingPage", async (req, res) => {
+  try {
+    const currentUser = req.user;
+
+    const follower_users = await Follower_User.findAll({
+      where: { follower_id: currentUser.id },
+      include: {
+        model: User,
+        as: user,
+        attributes: ['id', 'username', 'profile_picture'],
+      },
+    });
+
+    const userPostsWithLikes = await Promise.all(
+      follower_users.map(async (followerUser) => {
+        const posts = await Post.findAll({
+          where: { user_id: followerUser.user.id },
+          order: [['likes', 'DESC']],
+          limit: 3,
+          attributes: ['image_url'],
+        });
+        return { user: followerUser.user, posts};
+      })
+    );
+
+    res.render('followingPage', { userPostsWithLikes });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ err: 'Something went wrong.' });
+  }
+});
 
 
 
