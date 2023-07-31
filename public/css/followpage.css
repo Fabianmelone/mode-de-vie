@@ -1,1 +1,28 @@
-/*# sourceMappingURL=followpage.css.map */
+.following--section {
+  width: 85vw;
+  height: -moz-fit-content;
+  height: fit-content;
+  padding: 0 0 0 3rem;
+}
+.following--section h1 {
+  color: var(--primary);
+  font-weight: 600;
+  margin: 0 2rem;
+}
+.following--section hr {
+  margin: 1rem 0 0 2rem;
+  height: 4px;
+  width: 30%;
+  border: none;
+  border-radius: 0.5rem;
+  background-color: var(--accent);
+}
+.following--section .following--user-container {
+  width: 85vw;
+  height: -moz-fit-content;
+  height: fit-content;
+  padding: 0 0 0 3rem;
+}
+.following--section .following--user-container .following-user {
+  color: var(--primary);
+}/*# sourceMappingURL=followpage.css.map */
