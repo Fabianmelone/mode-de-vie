@@ -18,11 +18,22 @@
             onload="ImgToSvg(this)"
             alt="Home button icon"
           />
-          <img
-            src="/assets/images/pfps/default_pfp_1.png"
-            class="user-pfp"
-            alt="User profile picture"
-          />
+          {{#unless user.profile_picture}}
+            <img
+              src="/assets/images/pfps/default_pfp_1.png"
+              class="user-pfp"
+              alt="User profile picture"
+            />
+          {{else}}
+            {{#if (regexMatch "http" image_url)}}
+              {{!-- External URL image --}}
+              <img src="{{ user.profile_picture }}" alt="">
+            {{else}}
+              {{!-- Local image file in posts folder --}}
+              <img src="/assets/images/posts/{{ image_url }}" alt="">
+            {{/if}}
+          {{/unless}}
+
         </div>
         <div id="user--name-container">
           <h1>{{ user.username }}</h1>
@@ -70,10 +81,13 @@
     <div class="post-container selected">
       {{#each posts}}
       <div class="user-post">
-        {{!-- Local image in the posts folder --}}
-        <img src="/assets/images/posts/{{ image_url }}" alt="">
-        {{!-- If post image is a URL --}}
-        <img src="{{ image_url }}" alt="">
+        {{#if (regexMatch "http" image_url)}}
+          {{!-- External URL image --}}
+          <img src="{{ image_url }}" alt="">
+        {{else}}
+          {{!-- Local image file in posts folder --}}
+          <img src="/assets/images/posts/{{ image_url }}" alt="">
+        {{/if}}
       </div>
       {{/each}}
     </div>

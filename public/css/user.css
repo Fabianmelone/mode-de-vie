@@ -65,7 +65,7 @@ body {
 }
 #user--profile-header #user--info-container #user--pfp-name #user--pfp-container {
   width: 6.25rem;
-  aspect-ratio: fixed;
+  height: 6.25rem;
   background-color: var(--primary);
   border: solid var(--accent) 0.125rem;
   border-radius: 100%;
