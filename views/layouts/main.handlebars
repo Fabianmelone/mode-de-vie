@@ -24,12 +24,13 @@
     {{/if}}
     {{#if showSidebar }}
       {{!-- Sidebar --}}
+      <div class="sidebar-spacer"></div>
       <aside class="sidebar">
         {{!-- Header --}}
         <header>
           <div id="header-logo">
             <img src="/assets/images/sidebar_logo.png" alt="Website logo">
-            <h1>Mode De Vie</h1>    
+            <h1>Mode de vie</h1>    
           </div>        
           <div id="collapse-icon" onclick="toggleSidebar()">
             <div></div>
@@ -77,7 +78,10 @@
           </div>
           <h1>Saved</h1>
         </div>
-        <button id="logout" onclick="logout()">Logout</button>
+        <button id="logout">
+          <span>Logout</span>
+          <img src="/assets/icons/logout.svg" onload="ImgToSvg(this)" alt="Logout icon">
+        </button>
       </aside>
     {{/if}}
     {{! Content area, where page content is rendered }}

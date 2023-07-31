@@ -3,7 +3,7 @@ const withAuth = (req, res, next) => {
   res.locals.showSidebar = req.session.loggedIn;
 
   if (!req.session.loggedIn) {
-    res.redirect('/loginController');
+    res.redirect('/login');
   } else { next(); }
 };
 

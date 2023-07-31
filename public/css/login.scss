@@ -1,3 +1,120 @@
-body {
-  background-color: var(--primary);
+@mixin FC {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#page-body {
+  background-color: var(--primary) !important;
+
+  position: relative;
+
+  background-image: url("/assets/images/wave_background.svg");
+  background-position-y: bottom;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  @include FC;
+
+  #form-container, #form-container-signup {
+    width: 37.5625rem;
+    height: 37.6875rem;
+    padding: 2.5rem 4.6875rem 2.1875rem 4.6875rem;
+    
+    background-color: var(--background-color);
+    border-radius: 1rem;
+
+    @include FC;
+    flex-direction: column;
+    gap: 1.9rem 0;
+
+    #form-header {
+      h1 {
+        color: var(--primary);
+        text-align: center;
+        font-size: 1.5rem;
+        font-style: normal;
+        font-weight: 800;
+        line-height: normal;
+        letter-spacing: 0.36rem;
+        text-transform: uppercase;
+        white-space: nowrap;
+      }
+
+      hr {
+        width: 70%;
+        height: 0.3rem;
+        margin: 1rem auto 0.5rem auto;
+        background-color: var(--accent);
+        border: none;
+        border-radius: 0.5rem;
+      }
+    }
+
+    .form {
+      display: flex;
+      width: 100%;
+      height: 100%;
+
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      gap: 3.2rem 0;
+
+      #input-container {
+        @include FC;
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+        gap: 1.25rem 0;
+        
+        input {
+          height: 3.75rem;
+          padding: 0rem 10.0625rem 0rem 1.25rem;
+          align-items: center;
+
+          background-color: var(--input-background);
+          border: none;
+          border-radius: 0.5rem;
+
+          &::placeholder {
+            color: var(--inactive-text, #BEBEBE);
+            font-family: "Libre Franklin";
+            font-size: 1rem;
+            font-style: normal;
+            font-weight: 500;
+            line-height: normal;
+            letter-spacing: 0.12rem;
+          }
+        }
+
+        .checkbox-container {
+          margin-top: 0.6rem;
+          font-weight: 500;
+        }
+      }
+
+      #button-container {
+        @include FC;
+        flex-direction: column;
+        width: 100%;
+        
+        gap: 1rem 0;
+        button {
+          @include FC;
+          width: 100% !important;
+          height: 4.4rem;
+          margin: 0;
+          text-transform: uppercase;
+          border: none;
+        }
+
+        .btn-cta {
+          height: 2.8rem;
+        }
+
+        a { margin-top: 0.5rem; color: var(--primary); }
+      }
+    }
+  }
 }

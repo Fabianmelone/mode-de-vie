@@ -1,32 +1,29 @@
 
-
-<div class="container container-fluid mt-5 ">
-    <div class="row justify-content-center ">
-        <div class="col-md-7 col-lg-4 p-4 border border-primary rounded lightBlue">
-            <h2>Sign Up</h2>
-            <form class="form signup-form">
-                <div class="form-group">
-                    <label for="name-signup">Username:</label>
-                    <input class="form-control" type="text" id="name-signup" />
-                    <!-- Updated the class name to form-control -->
-                </div>
-
-                <div class="form-group">
-                    <label for="email-signup">email:</label>
-                    <input class="form-control" type="text" id="email-signup" />
-                    <!-- Updated the class name to form-control -->
-                </div>
-
-                <div class="form-group">
-                    <label for="password-signup">password:</label>
-                    <input class="form-control" type="password" id="password-signup" />
-                    <!-- Updated the class name to form-control -->
-                </div>
-                <div class="form-group">
-                    <button class="btn btn-primary" id="signupbtn" type="submit">signup</button>
-                </div>
-            </form>
-        </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/login.css">
+  <title>Document</title>
+</head>
+<body>
+  <div id="form-container">
+    <div id="form-header">
+      <h1>Sign up</h1>
+      <hr>
     </div>
-</div>
+    <div class="form login-form">
+      <div id="input-container">
+        <input class="form-control" type="text" id="name-signup" placeholder="johndoe4762" />
+        <input class="form-control" type="text" id="email-signup" placeholder="johndoe@gmail.com" />
+        <input class="form-control" type="password" id="password-signup" placeholder="***********" />
+      </div>
+      <div id="button-container">
+        <button class="btn" id="signupbtn">Signup</button>
+      </div>
+    </div>
+  </div>  
+</body>
+</html>
 <script src="/js/logins/signup.js"></script>
