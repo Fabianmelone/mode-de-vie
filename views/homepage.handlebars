@@ -69,22 +69,28 @@
 
 
 
-     
+     {{!-- render comments --}}
       <div id="comments">
         <div class="comment">
+          {{!-- if comments written, render here --}}
            {{#if comments.length}}
+           {{!-- render each existing comment --}}
            {{#each comments as |comment|}}
           <div class="comment--user-pfp-container">
+            {{!-- render profile picture --}}
             <img class="comment--user-pfp" src="{{user.profile_picture}}" alt="{{user.username}} Pfp" />
           </div>
           <div class="comment--content">
+            {{!-- render username --}}
             <h1 class="comment--user-name">{{user.username}}</h1>
             <p class="comment--content">
+              {{!-- render comment content --}}
               {{comment.message}}
             </p>
           </div>
           {{/each}}
           {{else}} 
+          {{!-- if no comment written display this message --}}
           <p>Be the first one to comment on this post!</p>
         </div>
          {{/if}}
