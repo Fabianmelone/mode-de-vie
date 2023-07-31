@@ -77,11 +77,6 @@ app.get("/", checkLoggedIn, (req, res) => {
   res.render("homepage");
 });
 
-// Define the login route
-app.get("/login", (req, res) => {
-  res.render("login");
-});
-
 app.get("/user/:username", checkLoggedIn, async (req, res) => {
   try {
     const user = await User.findByUsername(req.params.username);
