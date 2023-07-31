@@ -86,10 +86,6 @@ router.get("/", withAuth, async (req, res) => {
   }
 });
 
-
-
-
-
 // Define the login route
 router.get("/signup", (req, res) => {
   res.render("./login/signup");
@@ -106,6 +102,10 @@ router.get('/loginController', async (req, res) => {
 router.get('/login', async (req, res) => {
   res.render('./login/login');
 });
+
+router.get("/rankings", withAuth, async (req, res) => {
+  res.render("rankings");
+})
 
 // Define the local users page route
 router.get("/user", withAuth, async (req, res) => {

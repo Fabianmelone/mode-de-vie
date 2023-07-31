@@ -1,0 +1,45 @@
+#page-body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 2.5rem 0;
+  gap: 4rem 0;
+}
+#page-body .rankings--section {
+  width: 85vw;
+  height: -moz-fit-content;
+  height: fit-content;
+  padding: 0 0 0 3rem;
+}
+#page-body .rankings--section h1 {
+  color: var(--primary);
+  font-weight: 600;
+  margin: 0 2rem;
+}
+#page-body .rankings--section hr {
+  margin: 1rem 0 0 2rem;
+  height: 4px;
+  width: 30%;
+  border: none;
+  border-radius: 0.5rem;
+  background-color: var(--accent);
+}
+#page-body .rankings--section .rankings--post-container {
+  width: 100%;
+  height: -moz-fit-content;
+  height: fit-content;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2rem;
+  overflow-x: auto;
+  gap: 0 1rem;
+}
+#page-body .rankings--section .rankings--post-container .rankings--post {
+  flex: 0 0 10rem;
+  aspect-ratio: 1;
+  background-color: var(--background-color);
+  border-radius: 1rem;
+  filter: brightness(0.9);
+}/*# sourceMappingURL=rankings.css.map */
