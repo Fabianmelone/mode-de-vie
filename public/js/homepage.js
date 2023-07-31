@@ -1,6 +1,8 @@
 function toggleSidebar() {
+  const spacer = document.querySelector(".sidebar-spacer");
   const sidebar = document.querySelector(".sidebar");
-  console.log(sidebar);
+
+  spacer.classList.toggle("closed");
   sidebar.classList.toggle("closed");
 }
 

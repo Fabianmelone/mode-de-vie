@@ -200,15 +200,27 @@ button:hover, .btn:hover {
   color: var(--secondary);
 }
 
+.sidebar-spacer {
+  width: 16.9rem;
+  height: 100%;
+  padding: 1.6rem 1rem;
+  grid-row: 1/span 2;
+  grid-column: 1;
+  transition: width 350ms ease;
+}
+.sidebar-spacer.closed {
+  width: 4.69rem;
+  transition: width 350ms ease;
+}
+
 .sidebar {
   width: 16.9rem;
   height: 100%;
   padding: 1.6rem 1rem;
   background-color: var(--secondary);
   border-radius: 0rem 1rem 0.5rem 0rem;
-  position: relative;
-  grid-row: 1/span 2;
-  grid-column: 1;
+
+  position: fixed;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -240,12 +252,12 @@ button:hover, .btn:hover {
   height: fit-content;
   color: var(--accent);
   font-family: "Montserrat", "Libre Franklin", sans-serif;
-  font-size: 1rem;
+  font-size: 0.9rem;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
   letter-spacing: 0.08125rem;
-  transform: translateY(1.35rem);
+  transform: translateY(1.45rem);
   overflow: hidden;
   white-space: nowrap;
   transition: width 350ms ease;
@@ -412,6 +424,22 @@ button:hover, .btn:hover {
   width: 100%;
   height: 100%;
 }
+.sidebar #logout {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 14.75rem;
+  border: none;
+  height: 3rem;
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+  overflow: hidden;
+  transition: width 350ms ease;
+}
+.sidebar #logout svg {
+  display: none;
+}
 .sidebar:hover {
   cursor: pointer;
 }
@@ -471,6 +499,24 @@ button:hover, .btn:hover {
 .sidebar.closed .sidebar--list-item.profile {
   background-color: var(--secondary);
   transition: width 350ms ease, background-color 233.3333333333ms ease;
+}
+
+.sidebar.closed #logout {
+  width: 3.25rem;
+  height: 3.25rem;
+  bottom: 0.75rem;
+  left: 0.75rem;
+}
+.sidebar.closed #logout span {
+  display: none;
+}
+.sidebar.closed #logout svg {
+  display: block;
+  transform: translateX(1.5px);
+}
+.sidebar.closed #logout svg path {
+  stroke: var(--accent);
+  stroke-width: 3px;
 }
 
 #page-body {
