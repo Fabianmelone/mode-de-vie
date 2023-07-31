@@ -5,11 +5,13 @@ function toggleSidebar() {
 }
 
 async function ImgToSvg(img, id) {
-  const s = document.createElement('div');
+  const s = document.createElement("div");
   s.innerHTML = await (await fetch(img.src)).text();
   s.firstChild.classList = img.classList;
-  if (id) { s.firstChild.id = id; }
-  img.replaceWith(s.firstChild)
+  if (id) {
+    s.firstChild.id = id;
+  }
+  img.replaceWith(s.firstChild);
 }
 
 function textAreaAdjust(e, element) {
@@ -24,19 +26,36 @@ function textAreaAdjust(e, element) {
 
 // Loads user data
 function loadUserData() {
-  const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
+  const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
 
-  // Load username
+  console.log(loggedInUser);
+
+  // Load Username
   document.querySelectorAll(".username").forEach((element) => {
-    if (element.innerHTML) {
-      element.innerHTML = loggedInUser.username;
+    if (element.textContent) {
+      element.textContent = loggedInUser.username;
+    }
+  });
+
+  // Load Following
+  document.querySelectorAll(".following-counter").forEach((element) => {
+    if (element.textContent) {
+      element.textContent = loggedInUser.following;
+    }
+  });
+
+  // Load Followers
+  document.querySelectorAll(".followers-counter").forEach((element) => {
+    if (element.textContent) {
+      element.textContent = loggedInUser.followers;
     }
   });
 }
 
-
+/** Commented out, was stopping user data from loading.
 // not yet done!! we need to click once to add a like, and click again to not like
 document.querySelector('#like').addEventListener('click', async (event) => {
+
   const likesNum = parseInt(event.target.getAttribute('data-like'));
   const postId = event.target.getAttribute('data-id');
 
@@ -107,10 +126,7 @@ document.querySelector('#save').addEventListener('click', async (event) => {
 })
 
 
-
-
-
 // Init
 window.onload = () => {
   loadUserData();
-}
+};

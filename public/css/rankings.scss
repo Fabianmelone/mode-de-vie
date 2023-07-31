@@ -1,0 +1,54 @@
+@mixin FC {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#page-body {
+  @include FC;
+  flex-direction: column;
+  padding: 2.5rem 0;
+  gap: 4rem 0;
+
+  .rankings--section {
+    width: 85vw;
+    height: fit-content;
+    padding: 0 0 0 3rem;
+
+    h1 {
+      color: var(--primary);
+      font-weight: 600;
+      margin: 0 2rem;
+    }
+
+    hr {
+      margin: 1rem 0 0 2rem;
+      height: 4px;
+      width: 30%;
+      border: none;
+      border-radius: 0.5rem;
+      background-color: var(--accent);
+    }
+
+    .rankings--post-container {
+      width: 100%;
+      height: fit-content;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 2rem;
+
+      overflow-x: auto;
+      gap: 0 1rem;
+
+      .rankings--post {
+        flex: 0 0 10rem;
+        aspect-ratio: 1;
+        
+        background-color: var(--background-color);
+        border-radius: 1rem;
+        filter: brightness(0.9);
+      }
+    }
+  }
+}

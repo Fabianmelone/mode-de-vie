@@ -28,9 +28,8 @@
           <h1 class="username">Username</h1>
           <h2>@user.handle</h2>
           <button>
-            Follow
-            {{!-- IF FOLLOWING --}}
-            {{!-- Unfollow --}}
+            <img src="/assets/icons/edit.svg" onload="ImgToSvg(this)" alt="Edit button icon">
+            Edit Profile
           </button>
         </div>
       </div>
@@ -41,7 +40,7 @@
           <h2>Following</h2>
         </div>
         <div class="user--counter">
-          <h1 class="followers-counter">10k</h1>
+          <h1 class="follwers-counter">10k</h1>
           <h2>Followers</h2>
         </div>
         <div class="user--counter">
@@ -62,6 +61,14 @@
     <div id="profile-toolbar">
       <div class="toolbar-option selected">
         <button onclick="document.location='/'">Posts</button>
+        <hr />
+      </div>
+      <div class="toolbar-option">
+        <button>Following</button>
+        <hr />
+      </div>
+      <div class="toolbar-option">
+        <button>Saved</button>
       </div>
     </div>
   </header>
