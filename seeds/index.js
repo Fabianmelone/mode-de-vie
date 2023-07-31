@@ -4,13 +4,11 @@ const seedPosts = require('./postData.json');
 
 const {User, Post} = require('../models');
 
-
 const seedAll = async () => {
     await sequelize.sync({ force: true });
 
-    // await seedUsers();
+    //await seedUsers();
     const allUsers = await User.bulkCreate(seedUsers, {
-
         individualHooks: true,  //ensures that each hooks are created for each row being created.
         returning: true,
     });

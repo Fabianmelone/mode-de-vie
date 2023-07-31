@@ -27,7 +27,6 @@ router.get("/", withAuth, async (req, res) => {
       ],
     });
 
-
     // top posts by views. most viewed post
     const alltopPosts = await Post.findAll({
       order: [
@@ -51,7 +50,6 @@ router.get("/", withAuth, async (req, res) => {
       ],
 
     });
-
 
     // cannot get top users because we don't have the follow implementation yet
     const allTopUsers = await User.findAll();
@@ -114,7 +112,31 @@ router.get("/user", withAuth, async (req, res) => {
 
 // Define a users page route
 router.get("/user/:username", withAuth, async (req, res) => {
-  res.render("user");
+  try {
+    // Get the username from the request params
+    const username = req.params.username;
+
+    // Find the user by their username
+    const user = await User.findByUsername(username);
+
+    if (!user) {
+      // Redirect the user to the homepage if the user doesn't exist
+      return res.redirect("/");
+    }
+
+    // Find all posts belonging to the user
+    const userPosts = await Post.findAll({ where: { user_id: user.id } });
+
+    // Render the profile page and pass the user's information and posts to it
+    res.render("user", {
+      user: user.get({ plain: true }),
+      posts: userPosts.map((post) => post.get({ plain: true })),
+    });
+    console.log("User Posts: ", userPosts);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Internal server error" });
+  }
 });
 
 module.exports = router;

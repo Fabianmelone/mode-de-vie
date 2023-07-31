@@ -2,8 +2,6 @@
 const router = require('express').Router();
 const { User, Post } = require('../../models');
 
-
-
 // add a verification helper method
 
 // Route to user profile

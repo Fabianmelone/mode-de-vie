@@ -1,115 +1,128 @@
 [
-    {
-        "username": "Admin",
-        "email": "admin.adm235@gmail.com",
-        "password": "admin1234",
-        "profile_picture": null,
-        "followers": 10,
-        "following": 2
-    },
-    {
-        "username": "MarioOF",
-        "email": "marioOwb254@gmail.com",
-        "password": "mario1234",
-        "profile_picture": null,
-        "followers": 25,
-        "following": 13
-    },
-    {
-        "username": "AngryGrandpa",
-        "email": "angrygrandpa3423@gmail.com",
-        "password": "angrygrandpa1234",
-        "profile_picture": null,
-        "followers": 30,
-        "following": 5
-    },
-    {
-        "username": "halfwayhipser2",
-        "email": "halwayhipser294@gmail.com",
-        "password": "halwayhipser1234",
-        "profile_picture": null,
-        "followers": 15,
-        "following": 10
-    },
-    {
-        "username": "Meghan",
-        "email": "meghan233423@gmail.com",
-        "password": "meghan1234",
-        "profile_picture": null,
-        "followers": 35,
-        "following": 12
-    },
-    {
-        "username": "Shrek2DvD",
-        "email": "Shrek2DvD394@gmail.com",
-        "password": "shrek21234",
-        "profile_picture": null,
-        "followers": 40,
-        "following": 8
-    },
-    {
-        "username": "picklejuicer",
-        "email": "picklejuicer048@gmail.com",
-        "password": "picklejuicer1234",
-        "profile_picture": null,
-        "followers": 20,
-        "following": 9
-    },
-    {
-        "username": "skeeterMcPoo",
-        "email": "skeetermcpoo4039@gmail.com",
-        "password": "skeetermcpoo1234",
-        "profile_picture": null,
-        "followers": 23,
-        "following": 11
-    },
-    {
-        "username": "ChromieHomie",
-        "email": "chromiehomie03942@gmail.com",
-        "password": "chromiehomie1234",
-        "profile_picture": null,
-        "followers": 45,
-        "following": 7
-    },
-    {
-        "username": "Amanda",
-        "email": "amanda4875@gmail.com",
-        "password": "amanda1234",
-        "profile_picture": null,
-        "followers": 28,
-        "following": 14
-    },
-    {
-        "username": "Tyrone",
-        "email": "tyrone2943@gmail.com",
-        "password": "tyrone1234",
-        "profile_picture": null,
-        "followers": 32,
-        "following": 6
-    },
-    {
-        "username": "RaccAtacc",
-        "email": "raccatacc3049@gmail.com",
-        "password": "angrygrandpa1234",
-        "profile_picture": null,
-        "followers": 22,
-        "following": 17
-    },
-    {
-        "username": "ismellcolors",
-        "email": "ismellcolors20398@gmail.com",
-        "password": "ismellcolors1234",
-        "profile_picture": null,
-        "followers": 27,
-        "following": 19
-    },
-    {
-        "username": "TwinkieEater",
-        "email": "twinkieeater0394@gmail.com",
-        "password": "twinkieeater1234",
-        "profile_picture": null,
-        "followers": 40,
-        "following": 15
-    }
+  {
+    "username": "Admin",
+    "email": "admin.adm235@gmail.com",
+    "password": "admin1234",
+    "profile_picture": null,
+    "bio": "Hello, I'm the Admin! I manage this amazing platform and ensure everything runs smoothly. In my free time, I love to code and explore the latest technologies. Feel free to reach out if you have any questions or need assistance.",
+    "followers": 10,
+    "following": 2
+  },
+  {
+    "username": "MarioOF",
+    "email": "marioOwb254@gmail.com",
+    "password": "mario1234",
+    "profile_picture": null,
+    "bio": "Hey there! I'm MarioOF, your friendly gamer and adventurer. When I'm not saving princesses or jumping on mushrooms, you can find me exploring new games or going on exciting journeys. Join me on my gaming quests!",
+    "followers": 25,
+    "following": 13
+  },
+  {
+    "username": "AngryGrandpa",
+    "email": "angrygrandpa3423@gmail.com",
+    "password": "angrygrandpa1234",
+    "profile_picture": null,
+    "bio": "I'm always angry! Just kidding, but I do have a short temper. Don't worry, I'm working on it. When I'm not angry, you can find me enjoying some good food and spending time with my family.",
+    "followers": 30,
+    "following": 5
+  },
+  {
+    "username": "halfwayhipser2",
+    "email": "halwayhipser294@gmail.com",
+    "password": "halwayhipser1234",
+    "profile_picture": null,
+    "bio": "Living life halfway! I don't conform to mainstream trends and love exploring the unconventional. You'll often find me at local art galleries or trying out unique coffee shops.",
+    "followers": 15,
+    "following": 10
+  },
+  {
+    "username": "Meghan",
+    "email": "meghan233423@gmail.com",
+    "password": "meghan1234",
+    "profile_picture": null,
+    "bio": "Nature lover and photographer! Capturing the beauty of Mother Nature is my passion. Join me as I travel to breathtaking locations and snap mesmerizing photos.",
+    "followers": 35,
+    "following": 12
+  },
+  {
+    "username": "Shrek2DvD",
+    "email": "Shrek2DvD394@gmail.com",
+    "password": "shrek21234",
+    "profile_picture": null,
+    "bio": "Get out of my swamp! Just kidding, I'm a huge Shrek fan. I believe in the power of friendship and love spreading happiness. Join me on my journey to make the world a better place!",
+    "followers": 40,
+    "following": 8
+  },
+  {
+    "username": "picklejuicer",
+    "email": "picklejuicer048@gmail.com",
+    "password": "picklejuicer1234",
+    "profile_picture": null,
+    "bio": "I love pickles and juice! It might sound strange, but I find it refreshing and delicious. I also enjoy experimenting with different pickle recipes. Let's share some juicy stories together!",
+    "followers": 20,
+    "following": 9
+  },
+  {
+    "username": "skeeterMcPoo",
+    "email": "skeetermcpoo4039@gmail.com",
+    "password": "skeetermcpoo1234",
+    "profile_picture": null,
+    "bio": "I'm a bit strange! Embracing my quirks and unique personality is what makes life interesting. I'm an avid reader and love exploring mysterious tales. Let's embark on a weird and wonderful journey together!",
+    "followers": 23,
+    "following": 11
+  },
+  {
+    "username": "ChromieHomie",
+    "email": "chromiehomie03942@gmail.com",
+    "password": "chromiehomie1234",
+    "profile_picture": null,
+    "bio": "Time traveler and adventurer! Traveling through time and exploring different eras is my ultimate dream. If you have a time machine, count me in for an epic adventure!",
+    "followers": 45,
+    "following": 7
+  },
+  {
+    "username": "Amanda",
+    "email": "amanda4875@gmail.com",
+    "password": "amanda1234",
+    "profile_picture": null,
+    "bio": "I love to travel and try new things! Exploring different cultures and cuisines is what I live for. Let's create unforgettable memories together on our journey around the world.",
+    "followers": 28,
+    "following": 14
+  },
+  {
+    "username": "Tyrone",
+    "email": "tyrone2943@gmail.com",
+    "password": "tyrone1234",
+    "profile_picture": null,
+    "bio": "Champion of the people! I believe in fighting for justice and equality. When I'm not standing up for what's right, you can find me playing basketball and spending time with friends.",
+    "followers": 32,
+    "following": 6
+  },
+  {
+    "username": "RaccAtacc",
+    "email": "raccatacc3049@gmail.com",
+    "password": "angrygrandpa1234",
+    "profile_picture": null,
+    "bio": "Racoon lover and mischief maker! Raccons are adorable creatures, and I can't get enough of them. I also have a mischievous side, and life with me is never dull!",
+    "followers": 22,
+    "following": 17
+  },
+  {
+    "username": "ismellcolors",
+    "email": "ismellcolors20398@gmail.com",
+    "password": "ismellcolors1234",
+    "profile_picture": null,
+    "bio": "I see colors everywhere! As an artist, I find inspiration in the vibrant hues that surround us. Let's paint a beautiful picture together!",
+    "followers": 27,
+    "following": 19
+  },
+  {
+    "username": "TwinkieEater",
+    "email": "twinkieeater0394@gmail.com",
+    "password": "twinkieeater1234",
+    "profile_picture": null,
+    "bio": "Twinkie enthusiast! Twinkies are my guilty pleasure, and I never miss a chance to savor their deliciousness. Join me on my sweet journey!",
+    "followers": 40,
+    "following": 15
+  }
 ]
-

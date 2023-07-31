@@ -4,7 +4,7 @@
   justify-content: center;
 }
 
-body { overflow: hidden; }
+body { overflow-y: scroll; }
 
 #user--profile-header {
   height: fit-content;
@@ -22,9 +22,11 @@ body { overflow: hidden; }
   grid-column: 1;
 
   #user--info-container {
-    // border: solid red 1px;
+    width: fit-content;
+    max-width: 40%;
 
     #user--pfp-name {
+      width: fit-content;
       display: flex;
       flex-direction: row;
       align-items: center;
@@ -93,8 +95,7 @@ body { overflow: hidden; }
     }
 
     #user--counters-container {
-      // border: solid pink 1px;
-      
+      width: fit-content;
       @include FC;
       flex-direction: row;
       justify-content: flex-start;
@@ -122,11 +123,11 @@ body { overflow: hidden; }
     }
 
     #user--bio-container {
+      width: 100%;
       margin-top: 0.25rem;
       @include FC;
       justify-content: flex-start;
       font-size: 1.2rem;
-
     }
   }
 
@@ -194,19 +195,27 @@ body { overflow: hidden; }
     height: fit-content;;
     display: none;
     align-items: flex-start;
-    justify-content: space-between;
+    justify-content: center;
     padding: 2rem;
       
     overflow-x: auto;
     gap: 0 2rem;
   
-    .post {
+    .user-post {
       flex: 0 0 24rem;
       aspect-ratio: 1;
       
       background-color: var(--background-color);
       border-radius: 1rem;
       filter: brightness(0.9);
+      
+      position: relative;
+      overflow: hidden;
+
+      img {
+        width: 100% !important;
+        height: 100% !important;
+      }
     }
   }
 

@@ -25,7 +25,7 @@
           />
         </div>
         <div id="user--name-container">
-          <h1 class="username">Username</h1>
+          <h1>{{ user.username }}</h1>
           <h2>@user.handle</h2>
           <button>
             Follow
@@ -37,15 +37,16 @@
       
       <div id="user--counters-container">
         <div class="user--counter">
-          <h1 class="following-counter">10k</h1>
+          <h1>{{ user.following }}</h1>
           <h2>Following</h2>
         </div>
         <div class="user--counter">
-          <h1 class="followers-counter">10k</h1>
+          <h1>{{ user.followers }}</h1>
           <h2>Followers</h2>
         </div>
         <div class="user--counter">
-          <h1 class="likes-counter">10k</h1>
+          {{!-- user.likes is not in the DB yet --}}
+          <h1>0 {{ user.likes }}</h1>
           <h2>Likes</h2>
         </div>
       </div>
@@ -53,8 +54,7 @@
       <div id="user--bio-container">
         <div class="user-bio">
           <p>
-            This is a simple user-driven social media <br/>
-            app to share posts containing images
+            {{ user.bio }}
           </p>
         </div>
       </div>
@@ -67,25 +67,16 @@
   </header>
 
   <div id="body-container">
-    <div id="posts-posts" class="post-container selected">
-      <div class="post"></div>
-      <div class="post"></div>
-      <div class="post"></div>
-      <div class="post"></div>
-    </div>
-    <div id="posts-following" class="post-container">
-      <div class="post"></div>
-      <div class="post"></div>
-      <div class="post"></div>
-      <div class="post"></div>
-    </div>
-    <div id="posts-saved" class="post-container">
-      <div class="post"></div>
-      <div class="post"></div>
-      <div class="post"></div>
-      <div class="post"></div>
+    <div class="post-container selected">
+      {{#each posts}}
+      <div class="user-post">
+        {{!-- Local image in the posts folder --}}
+        <img src="/assets/images/posts/{{ image_url }}" alt="">
+        {{!-- If post image is a URL --}}
+        <img src="{{ image_url }}" alt="">
+      </div>
+      {{/each}}
     </div>
   </div>
-
 </body>
 </html>
