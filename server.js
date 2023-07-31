@@ -4,7 +4,7 @@ const exphbs = require("express-handlebars");
 
 const path = require('path');
 const routes = require('./controllers');  //imports the routes from the ./controllers
-
+const helpers = require("./config/helper");
 
 const session = require('express-session');     // imports 'express-session' middleware. It is used for amanaging user sessions. Sessions store specific data to a user
 const sequelize = require('./config/connection');   //imports a instance of sequelize that connection.js sets up and exports, and is connected to the database
@@ -13,30 +13,6 @@ const SequelizeStore = require('connect-session-sequelize')(session.Store);     
 // Create an instance of Express
 const app = express();
 const port = 3000; // Set the port you want the server to listen on
-
-const withAuth = require("./utils/auth");
-
-const { User } = require("./models");
-
-// Should be controlled by a Auth check function
-// If true, the user will be directed to the homepage route "/"
-// If false, the user will be directed to the login route "/login"
-const isAuthenticated = true;
-
-// Middleware function to check if the user is logged in
-function checkLoggedIn(req, res, next) {
-  // Create local variables to hide static layout elements on the login page. (navbar, sidebar, etc.)
-  res.locals.showNavbar = isAuthenticated;
-  res.locals.showSidebar = isAuthenticated;
-
-  if (isAuthenticated) {
-    // User is logged in, proceed to the next middleware or route handler
-    next();
-  } else {
-    // User is not logged in, redirect to the login page
-    res.redirect("/login");
-  }
-};
 
 const sess = {
   secret: 'Super secret secret',
@@ -61,6 +37,7 @@ app.engine(
   exphbs({
     defaultLayout: "main",
     extname: ".handlebars", // You can use ".hbs" as the extension if preferred
+    helpers: helpers,
   })
 );
 app.set("view engine", "handlebars");

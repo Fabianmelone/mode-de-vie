@@ -38,6 +38,10 @@ User.init(
         profile_picture: {
             type: DataTypes.STRING,
         },
+        bio: {
+          type: DataTypes.STRING,
+          allowNull: true
+        },
         followers: {
             type: DataTypes.INTEGER,
             allowNull: false,

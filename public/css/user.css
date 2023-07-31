@@ -1,5 +1,5 @@
 body {
-  overflow: hidden;
+  overflow-y: scroll;
 }
 
 #user--profile-header {
@@ -16,7 +16,14 @@ body {
   grid-row: 1;
   grid-column: 1;
 }
+#user--profile-header #user--info-container {
+  width: -moz-fit-content;
+  width: fit-content;
+  max-width: 40%;
+}
 #user--profile-header #user--info-container #user--pfp-name {
+  width: -moz-fit-content;
+  width: fit-content;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -73,6 +80,8 @@ body {
   z-index: 99;
 }
 #user--profile-header #user--info-container #user--counters-container {
+  width: -moz-fit-content;
+  width: fit-content;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -100,6 +109,7 @@ body {
   color: var(--primary);
 }
 #user--profile-header #user--info-container #user--bio-container {
+  width: 100%;
   margin-top: 0.25rem;
   display: flex;
   align-items: center;
@@ -173,17 +183,23 @@ body {
   height: fit-content;
   display: none;
   align-items: flex-start;
-  justify-content: space-between;
+  justify-content: center;
   padding: 2rem;
   overflow-x: auto;
   gap: 0 2rem;
 }
-#body-container .post-container .post {
+#body-container .post-container .user-post {
   flex: 0 0 24rem;
   aspect-ratio: 1;
   background-color: var(--background-color);
   border-radius: 1rem;
   filter: brightness(0.9);
+  position: relative;
+  overflow: hidden;
+}
+#body-container .post-container .user-post img {
+  width: 100% !important;
+  height: 100% !important;
 }
 #body-container .post-container.selected {
   display: flex !important;
