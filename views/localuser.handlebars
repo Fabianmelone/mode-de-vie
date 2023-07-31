@@ -1,28 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/global.css">
+  <link rel="stylesheet" href="/css/global.css">
   <link rel="stylesheet" href="/css/user.css">
   <script src="/js/homepage.js"></script>
   <title>Document</title>
 </head>
+
 <body>
   <header id="user--profile-header">
     <div id="user--info-container">
       <div id="user--pfp-name">
         <div id="user--pfp-container">
-          <img
-            src="/assets/icons/user_profile.svg"
-            onload="ImgToSvg(this)"
-            alt="Home button icon"
-          />
-          <img
-            src="/assets/images/pfps/default_pfp_1.png"
-            class="user-pfp"
-            alt="User profile picture"
-          />
+          <img src="/assets/icons/user_profile.svg" onload="ImgToSvg(this)" alt="Home button icon" />
+          <img src="/assets/images/pfps/default_pfp_1.png" class="user-pfp" alt="User profile picture" />
         </div>
         <div id="user--name-container">
           <h1>{{ user.username }}</h1>
@@ -33,7 +27,7 @@
           </button>
         </div>
       </div>
-      
+
       <div id="user--counters-container">
         <div class="user--counter">
           <h1>{{ user.following }}</h1>
@@ -48,7 +42,7 @@
           <h2>Likes</h2>
         </div>
       </div>
-  
+
       <div id="user--bio-container">
         <div class="user-bio">
           <p>
@@ -73,25 +67,14 @@
   </header>
 
   <div id="body-container">
-    <div id="posts-posts" class="post-container selected">
-      <div class="post"></div>
-      <div class="post"></div>
-      <div class="post"></div>
-      <div class="post"></div>
-    </div>
-    <div id="posts-following" class="post-container">
-      <div class="post"></div>
-      <div class="post"></div>
-      <div class="post"></div>
-      <div class="post"></div>
-    </div>
-    <div id="posts-saved" class="post-container">
-      <div class="post"></div>
-      <div class="post"></div>
-      <div class="post"></div>
-      <div class="post"></div>
-    </div>
-  </div>
+{{!-- res.render("myView", { userPosts: myPosts, userFollowingPosts: myFollowingPosts, userSavedPosts: mySavedPosts });
+. --}}
+  {{> userPosts}}
+  {{> userFollowingPosts}}
+  {{> userSavedPosts}}
 
+</div>
+  <script src="/js"></script>
 </body>
+
 </html>

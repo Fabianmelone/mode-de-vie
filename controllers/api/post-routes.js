@@ -58,10 +58,6 @@ router.post('/save', async (req, res) => {
         } catch (error) {
             res.status(500).json(error);
         }
-        
-
-
-
     } catch (error) {
         console.log(error); // log the error
         res.status(500).json(error);

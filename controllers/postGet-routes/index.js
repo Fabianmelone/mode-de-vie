@@ -112,43 +112,19 @@ router.get('/userposts', withAuth, async (req, res) => {
     }
 });
 
-router.get('/', withAuth, async (req, res) => {
+router.get('/savedposts', async (req, res)=> {
+
     try {
-        const randomPost = await Post.findOne({
-            order: sequelize.literal('rand()'),
-            include: [
-                {
-                    model: User,
-                    attributes: ['username'],
-                },
-                // {
-                //     model: Comment,
-                //     include: [
-                //         {
-                //             model: User,
-                //             as: 'user',
-                //             attributes: ['username'],
-                //         },
-                //     ],
-                // },
-            ],
-        });
-
-        if(randomPost) {
-            const post = randomPost.get({ plain: true });
-            res.render('homepage', {
-                ...post,
-                loggedIn: req.session.loggedIn
-            })
-            console.log(post);
-        } else {
-            res.status(404).json({ message: 'No posts found' });
-        }
-
+            const userId = req.session.userID;
+    const userData = await User.findByPk(userId);
+    var savedPosts = await userData.getSavedPosts({});
+    const savedPostsPlain = savedPosts.map(post => post.get({ plain: true }));
+    console.log(savedPostsPlain);
+    res.json(savedPostsPlain);
     } catch (error) {
         res.status(500).json(error);
     }
-});
+})
 
 
 

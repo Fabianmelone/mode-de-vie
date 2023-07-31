@@ -49,11 +49,17 @@ router.get("/", withAuth, async (req, res) => {
     // Find all posts belonging to the user
     const userPosts = await Post.findAll({ where: { user_id: user.id } });
 
+    // Convert sequelize object to plain JavaScript object
+    const userData = user.get({ plain: true });
+    const postsData = userPosts.map((post) => post.get({ plain: true }));
+
     // Render the profile page and pass the user's information and posts to it
     res.render("localuser", {
-      user: user.get({ plain: true }),
-      posts: userPosts.map((post) => post.get({ plain: true })),
+        user: userData,
+        posts: postsData,
     });
+
+    console.log(userPosts.map((post) => post.get({ plain: true })));
   } catch (error) {
     console.error("Error fetching user data:", error);
     res.status(500).send("Internal Server Error");
@@ -89,7 +95,7 @@ router.get("/followingPage", async (req, res) => {
           // include the image_url attribute only
           attributes: ['image_url'],
         });
-        return { user: followingUser.follower, posts};
+        return { user: followingUser.follower, posts };
       })
     );
 
