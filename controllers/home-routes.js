@@ -100,9 +100,40 @@ router.get('/login', async (req, res) => {
   res.render('./login/login');
 });
 
+// Define the /rankings route
 router.get("/rankings", withAuth, async (req, res) => {
-  res.render("rankings");
-})
+  try {
+    // Fetch posts of the people the user follows (you can replace 10 with the actual user's ID)
+    const followingPosts = await Post.findAll({
+      where: {
+        user_id: 10, // Replace with the actual user's ID or get it from the session
+      },
+      order: sequelize.literal("rand()"),
+      include: [{ model: User, attributes: ["username"] }],
+    });
+
+    // Fetch most liked posts
+    const mostLikedPosts = await Post.findAll({
+      order: [["likes", "DESC"]],
+      include: [{ model: User, attributes: ["username"] }],
+    });
+
+    // Fetch most viewed posts
+    const mostViewedPosts = await Post.findAll({
+      order: [["views", "DESC"]],
+      include: [{ model: User, attributes: ["username"] }],
+    });
+
+    // Pass the data to the rankings.handlebars template
+    res.render("rankings", {
+      followingPosts: followingPosts.map((post) => post.get({ plain: true })),
+      mostLikedPosts: mostLikedPosts.map((post) => post.get({ plain: true })),
+      mostViewedPosts: mostViewedPosts.map((post) => post.get({ plain: true })),
+    });
+  } catch (error) {
+    res.status(500).json({ message: "Internal server error" });
+  }
+});
 
 router.get("/followingpage", withAuth, async (req, res) => {
   res.render("followingpage");

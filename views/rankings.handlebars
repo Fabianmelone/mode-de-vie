@@ -13,21 +13,17 @@
         <h1>People You Following</h1>
         <hr>
         <div class="rankings--post-container">
-          <div class="rankings--post"></div>
-          <div class="rankings--post"></div>
-          <div class="rankings--post"></div>
-          <div class="rankings--post"></div>
-          <div class="rankings--post"></div>
-          <div class="rankings--post"></div>
-          <div class="rankings--post"></div>
-          <div class="rankings--post"></div>
-          <div class="rankings--post"></div>
-          <div class="rankings--post"></div>
-          <div class="rankings--post"></div>
-          <div class="rankings--post"></div>
-          <div class="rankings--post"></div>
-          <div class="rankings--post"></div>
-          <div class="rankings--post"></div>
+          {{#each followingPosts}}
+            <div class="rankings--post">
+              {{#if (regexMatch "http" image_url)}}
+                {{!-- External URL image --}}
+                <img src="{{ image_url }}" alt="">
+              {{else}}
+                {{!-- Local image file in posts folder --}}
+                <img src="/assets/images/posts/{{ image_url }}" alt="">
+              {{/if}}
+            </div>
+          {{/each}}
         </div>
       </div>
     </section>
@@ -37,21 +33,21 @@
         <h1>Most Liked</h1>
         <hr>
         <div class="rankings--post-container">
-          <div class="rankings--post"></div>
-          <div class="rankings--post"></div>
-          <div class="rankings--post"></div>
-          <div class="rankings--post"></div>
-          <div class="rankings--post"></div>
-          <div class="rankings--post"></div>
-          <div class="rankings--post"></div>
-          <div class="rankings--post"></div>
-          <div class="rankings--post"></div>
-          <div class="rankings--post"></div>
-          <div class="rankings--post"></div>
-          <div class="rankings--post"></div>
-          <div class="rankings--post"></div>
-          <div class="rankings--post"></div>
-          <div class="rankings--post"></div>
+          {{#each mostLikedPosts}}
+            <div class="rankings--post">
+              {{#if (regexMatch "http" image_url)}}
+                {{!-- External URL image --}}
+                <img src="{{ image_url }}" alt="">
+              {{else}}
+                {{!-- Local image file in posts folder --}}
+                <img src="/assets/images/posts/{{ image_url }}" alt="">
+              {{/if}}
+                <h1 class="counter">
+                <img src="/assets/icons/heart.svg" onload="ImgToSvg(this)" alt="views icon">
+                {{ formatCount views }}
+              </h1>
+            </div>
+          {{/each}}
         </div>
       </div>
     </section>
@@ -61,21 +57,21 @@
         <h1>Most Viewed</h1>
         <hr>
         <div class="rankings--post-container">
-          <div class="rankings--post"></div>
-          <div class="rankings--post"></div>
-          <div class="rankings--post"></div>
-          <div class="rankings--post"></div>
-          <div class="rankings--post"></div>
-          <div class="rankings--post"></div>
-          <div class="rankings--post"></div>
-          <div class="rankings--post"></div>
-          <div class="rankings--post"></div>
-          <div class="rankings--post"></div>
-          <div class="rankings--post"></div>
-          <div class="rankings--post"></div>
-          <div class="rankings--post"></div>
-          <div class="rankings--post"></div>
-          <div class="rankings--post"></div>
+          {{#each mostViewedPosts}}
+            <div class="rankings--post">
+              {{#if (regexMatch "http" image_url)}}
+                {{!-- External URL image --}}
+              <img src="{{ image_url }}" alt="">
+              {{else}}
+                {{!-- Local image file in posts folder --}}
+                <img src="/assets/images/posts/{{ image_url }}" alt="">
+              {{/if}}
+              <h1 class="counter">
+                <img src="/assets/icons/eye.svg" onload="ImgToSvg(this)" alt="views icon">
+                {{ formatCount views }}
+              </h1>
+            </div>
+          {{/each}}
         </div>
       </div>
     </section>

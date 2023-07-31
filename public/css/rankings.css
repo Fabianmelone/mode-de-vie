@@ -4,7 +4,7 @@
   justify-content: center;
   flex-direction: column;
   padding: 2.5rem 0;
-  gap: 4rem 0;
+  gap: 3rem 0;
 }
 #page-body .rankings--section {
   width: 85vw;
@@ -34,12 +34,39 @@
   justify-content: space-between;
   padding: 2rem;
   overflow-x: auto;
-  gap: 0 1rem;
+  gap: 0 2rem;
 }
 #page-body .rankings--section .rankings--post-container .rankings--post {
-  flex: 0 0 10rem;
+  flex: 0 0 12rem;
   aspect-ratio: 1;
-  background-color: var(--background-color);
+  position: relative;
+}
+#page-body .rankings--section .rankings--post-container .rankings--post img {
+  width: 110%;
+  height: 110%;
+}
+#page-body .rankings--section .rankings--post-container .rankings--post .counter {
+  position: absolute;
+  bottom: 0;
+  left: -30px;
+  color: var(--text-color);
+  font-size: 1.25rem;
+  z-index: 99;
+}
+#page-body .rankings--section .rankings--post-container .rankings--post .counter svg {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+#page-body .rankings--section .rankings--post-container .rankings--post .counter::before {
+  content: "";
+  opacity: 0.75;
+  width: 125%;
+  height: 120%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: var(--accent);
   border-radius: 1rem;
-  filter: brightness(0.9);
+  z-index: -1;
 }/*# sourceMappingURL=rankings.css.map */
