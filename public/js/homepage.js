@@ -52,7 +52,7 @@ function loadUserData() {
   });
 }
 
-/** Commented out, was stopping user data from loading.
+/* Commented out, was stopping user data from loading.
 // not yet done!! we need to click once to add a like, and click again to not like
 document.querySelector('#like').addEventListener('click', async (event) => {
 
@@ -125,7 +125,7 @@ document.querySelector('#save').addEventListener('click', async (event) => {
 
 })
 
-
+*/
 // Init
 window.onload = () => {
   loadUserData();
