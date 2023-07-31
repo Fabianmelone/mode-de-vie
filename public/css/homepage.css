@@ -93,6 +93,10 @@
 }
 #home-container #comments-container #post--description #post--author-content h1 {
   font-size: 1.625rem;
+  color: var(--primary);
+}
+#home-container #comments-container #post--description #post--author-content h2 {
+  font-size: 1rem;
 }
 #home-container #comments-container #post--description #post--author-content p {
   font-size: 0.9rem;
