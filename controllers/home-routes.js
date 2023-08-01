@@ -108,7 +108,7 @@ router.get('/login', async (req, res) => {
 router.get("/rankings", withAuth, async (req, res) => {
   try {
     // Get the current user's ID from the session
-    const loggedInUserId = req.session.userID;
+    const loggedInUserId = req.session.user_id;
 
     // Find all the user IDs the current user follows in the Follower_User table
     const followingUsers = await Follower_User.findAll({

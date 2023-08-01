@@ -145,7 +145,7 @@ router.get('/', withAuth, async (req, res) => {
             res.status(404).json({ message: 'No posts found' });
         }
     try {
-        const userId = req.session.userID;
+        const userId = req.session.user_id;
         const userData = await User.findByPk(userId);
         var savedPosts = await userData.getSavedPosts({});
         const savedPostsPlain = savedPosts.map(post => post.get({ plain: true }));
