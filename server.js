@@ -2,6 +2,7 @@
 const express = require("express");
 const exphbs = require("express-handlebars");
 
+
 const path = require('path');
 const routes = require('./controllers');  //imports the routes from the ./controllers
 const helpers = require("./config/helper");
@@ -47,6 +48,12 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use(express.static(path.join(__dirname, "public")));
+
+
+
+
+
+
 app.use('/bootstrap', express.static(path.join(__dirname, '/node_modules/bootstrap/dist')));    //middleware to allow bootstrap to be accessible to public
 
 app.use(routes);

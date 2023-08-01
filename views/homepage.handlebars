@@ -120,18 +120,11 @@
       <img src="./assets/icons/ranking_star.svg" onload="ImgToSvg(this)" alt="">
     </header>
     <div id="rankings-container">
+      {{#each filteredTopUsers as |topUser|}}
       <div class="featured-user">
-        <img class="feature-user--pfp" src="./assets/images/pfps/default_pfp_7.png" alt="Featured post image">
+        <img class="feature-user--pfp" src="./assets/images/pfps/{{topUser.profile_picture}}" alt="Featured post image">
       </div>
-      <div class="featured-user empty"></div>
-      <div class="featured-user empty"></div>
-      <div class="featured-user empty"></div>
-      <div class="featured-user empty"></div>
-      <div class="featured-user empty"></div>
-      <div class="featured-user empty"></div>
-      <div class="featured-user empty"></div>
-      <div class="featured-user empty"></div>
-      <div class="featured-user empty"></div>
+      {{/each}}
     </div>
   </div>
 </body>

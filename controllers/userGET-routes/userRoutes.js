@@ -35,30 +35,32 @@ router.get("/:username", withAuth, async (req, res) => {
 // Route to local user profile
 router.get("/", withAuth, async (req, res) => {
   try {
-    // Get the username from the session request
-    const username = req.session.username;
+ 
+    const userData = await User.findByPk(req.session.userID, {
+      include: { model: Post, include: { model: User, as: 'user', attributes: ['username'] } }
+    });
+    const user = userData.get({ plain: true });
 
-    // Find the user by their username
-    const user = await User.findByUsername(username);
 
-    if (!user) {
-      // Redirect the user to the homepage if the user doesn't exist
-      return res.redirect("/");
-    }
+    const userprofileData = await User.findByPk(req.session.userID);
+    const userProfile = userprofileData.get({plain:true});
 
-    // Find all posts belonging to the user
-    const userPosts = await Post.findAll({ where: { user_id: user.id } });
-
-    // Render the profile page and pass the user's information and posts to it
+    console.log(userProfile);
     res.render("localuser", {
-      user: user.get({ plain: true }),
-      posts: userPosts.map((post) => post.get({ plain: true })),
+      posts: user.posts,
+      user: userProfile,
     });
   } catch (error) {
+    // Log and handle the error
     console.error("Error fetching user data:", error);
     res.status(500).send("Internal Server Error");
   }
 });
+
+
+
+
+
 
 // Route to display page with users that current user is following and also the top three posts of the user being followed
 router.get("/followingPage", async (req, res) => {
@@ -89,7 +91,7 @@ router.get("/followingPage", async (req, res) => {
           // include the image_url attribute only
           attributes: ['image_url'],
         });
-        return { user: followingUser.follower, posts};
+        return { user: followingUser.follower, posts };
       })
     );
 

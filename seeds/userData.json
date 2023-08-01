@@ -3,7 +3,7 @@
     "username": "Admin",
     "email": "admin.adm235@gmail.com",
     "password": "admin1234",
-    "profile_picture": null,
+    "profile_picture": "default_pfp_1.png",
     "bio": "Hello, I'm the Admin! I manage this amazing platform and ensure everything runs smoothly. In my free time, I love to code and explore the latest technologies. Feel free to reach out if you have any questions or need assistance.",
     "followers": 10,
     "following": 2
@@ -12,7 +12,7 @@
     "username": "MarioOF",
     "email": "marioOwb254@gmail.com",
     "password": "mario1234",
-    "profile_picture": null,
+    "profile_picture": "default_pfp_2.png",
     "bio": "Hey there! I'm MarioOF, your friendly gamer and adventurer. When I'm not saving princesses or jumping on mushrooms, you can find me exploring new games or going on exciting journeys. Join me on my gaming quests!",
     "followers": 25,
     "following": 13
@@ -21,7 +21,7 @@
     "username": "AngryGrandpa",
     "email": "angrygrandpa3423@gmail.com",
     "password": "angrygrandpa1234",
-    "profile_picture": null,
+    "profile_picture": "default_pfp_3.png",
     "bio": "I'm always angry! Just kidding, but I do have a short temper. Don't worry, I'm working on it. When I'm not angry, you can find me enjoying some good food and spending time with my family.",
     "followers": 30,
     "following": 5
@@ -30,7 +30,7 @@
     "username": "halfwayhipser2",
     "email": "halwayhipser294@gmail.com",
     "password": "halwayhipser1234",
-    "profile_picture": null,
+    "profile_picture": "default_pfp_4.png",
     "bio": "Living life halfway! I don't conform to mainstream trends and love exploring the unconventional. You'll often find me at local art galleries or trying out unique coffee shops.",
     "followers": 15,
     "following": 10
@@ -39,7 +39,7 @@
     "username": "Meghan",
     "email": "meghan233423@gmail.com",
     "password": "meghan1234",
-    "profile_picture": null,
+    "profile_picture": "default_pfp_5.png",
     "bio": "Nature lover and photographer! Capturing the beauty of Mother Nature is my passion. Join me as I travel to breathtaking locations and snap mesmerizing photos.",
     "followers": 35,
     "following": 12
@@ -48,7 +48,7 @@
     "username": "Shrek2DvD",
     "email": "Shrek2DvD394@gmail.com",
     "password": "shrek21234",
-    "profile_picture": null,
+    "profile_picture": "default_pfp_6.png",
     "bio": "Get out of my swamp! Just kidding, I'm a huge Shrek fan. I believe in the power of friendship and love spreading happiness. Join me on my journey to make the world a better place!",
     "followers": 40,
     "following": 8
@@ -57,7 +57,7 @@
     "username": "picklejuicer",
     "email": "picklejuicer048@gmail.com",
     "password": "picklejuicer1234",
-    "profile_picture": null,
+    "profile_picture": "default_pfp_7.png",
     "bio": "I love pickles and juice! It might sound strange, but I find it refreshing and delicious. I also enjoy experimenting with different pickle recipes. Let's share some juicy stories together!",
     "followers": 20,
     "following": 9
