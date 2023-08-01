@@ -219,7 +219,6 @@ button:hover, .btn:hover {
   padding: 1.6rem 1rem;
   background-color: var(--secondary);
   border-radius: 0rem 1rem 0.5rem 0rem;
-
   position: fixed;
   display: flex;
   flex-direction: column;
@@ -500,7 +499,6 @@ button:hover, .btn:hover {
   background-color: var(--secondary);
   transition: width 350ms ease, background-color 233.3333333333ms ease;
 }
-
 .sidebar.closed #logout {
   width: 3.25rem;
   height: 3.25rem;

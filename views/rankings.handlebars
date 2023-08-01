@@ -12,7 +12,7 @@
       <div>
         <h1>People You Following</h1>
         <hr>
-        <div class="rankings--post-container">
+        <div class="rankings--post-container" id="rankings--post-container-following">
           {{#each followingPosts}}
             <div class="rankings--post">
               {{#if (regexMatch "http" image_url)}}
@@ -22,6 +22,10 @@
                 {{!-- Local image file in posts folder --}}
                 <img src="/assets/images/posts/{{ image_url }}" alt="">
               {{/if}}
+              <h1 class="counter">
+                <img src="/assets/icons/user.svg" onload="ImgToSvg(this)" alt="views icon">
+                {{ user.username }}
+              </h1>
             </div>
           {{/each}}
         </div>
@@ -42,7 +46,7 @@
                 {{!-- Local image file in posts folder --}}
                 <img src="/assets/images/posts/{{ image_url }}" alt="">
               {{/if}}
-                <h1 class="counter">
+              <h1 class="counter">
                 <img src="/assets/icons/heart.svg" onload="ImgToSvg(this)" alt="views icon">
                 {{ formatCount views }}
               </h1>

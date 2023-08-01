@@ -18,13 +18,25 @@ router.get("/:username", withAuth, async (req, res) => {
       return res.redirect("/");
     }
 
+    // Get the logged-in user's ID
+    const loggedInUserId = req.session.userID;
+
+    // Check if the logged-in user is following the current profile user
+    const isFollowing = await Follower_User.findOne({
+      where: {
+        user_id: user.id,
+        follower_id: loggedInUserId,
+      },
+    });
+
     // Find all posts belonging to the user
     const userPosts = await Post.findAll({ where: { user_id: user.id } });
 
-    // Render the profile page and pass the user's information and posts to it
+    // Render the profile page and pass the user's information, posts, and the isFollowing status to it
     res.render("user", {
       user: user.get({ plain: true }),
       posts: userPosts.map((post) => post.get({ plain: true })),
+      isFollowing: !!isFollowing, // Convert isFollowing to a boolean value (true/false)
     });
   } catch (error) {
     console.error(error);
