@@ -21,6 +21,6 @@ document.querySelector('#followingbtn').addEventListener('click', (event)=>{
 
 
 document.querySelector('#savedBtn').addEventListener('click', (event)=>{
-    window.location.replace('/saved')
+    window.location.replace('/posts/saved')
 });
 

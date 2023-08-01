@@ -12,45 +12,25 @@
 <body>
 
 
-
-<div class="saved--post-container">
-  {{#each mostViewedPosts}}
-  <div class="saved--post">
-    {{#if (regexMatch "http" image_url)}}
-    <!-- External URL image -->
-    <img src="{{ image_url }}" alt="">
-    {{else}}
-    <!-- Local image file in posts folder -->
-    <img src="/assets/images/posts/{{ image_url }}" alt="">
-    {{/if}}
-    <h1 class="counter">
-      <img src="/assets/icons/eye.svg" onload="ImgToSvg(this)" alt="views icon">
-      {{ formatCount views }}
-    </h1>
-  </div>
-  {{/each}}
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    <h1>Saved posts</h1>
+    <hr>
+    <div class="saved--post-container">
+        {{#each posts}}
+        <div class="saved--post">
+            {{#if (regexMatch "http" image_url)}}
+            <!-- External URL image -->
+            <img src="{{ image_url }}" alt="">
+            {{else}}
+            <!-- Local image file in posts folder -->
+            <img src="/assets/images/posts/{{ image_url }}" alt="">
+            {{/if}}
+            <h1 class="counter">
+                <img src="/assets/icons/eye.svg" onload="ImgToSvg(this)" alt="views icon">
+                {{ formatCount views }}
+            </h1>
+        </div>
+        {{/each}}
+    </div>
 
 </body>
 
