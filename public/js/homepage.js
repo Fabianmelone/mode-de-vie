@@ -123,30 +123,43 @@ if (document.querySelector("#like") && document.querySelector("#save")) {
 
 
 //event listener for the top users
-  document.getElementById("rankings-container").addEventListener("click", function(event) {
-    const profile = event.target;
-  
-    // Check if the clicked element is one of the profile pictures
-    if (profile.classList.contains("feature-user--pfp")) {
-      const userId = profile.getAttribute('data-id');
-      alert(`Image with user ID ${userId} was clicked!`);
-      // Stop the event from bubbling 
-      event.stopImmediatePropagation();
+document.getElementById("rankings-container").addEventListener("click", async (event) => {
+  const profile = event.target;
 
-    }
-  });
+  // Check if the clicked element is one of the profile pictures
+  if (profile.classList.contains("feature-user--pfp")) {
+    const userId = profile.getAttribute('data-id');
+    alert(`Image with user ID ${userId} was clicked!`);
+    // Stop the event from bubbling 
+    event.stopImmediatePropagation();
 
-  document.getElementById("posts-container").addEventListener("click", function(event) {
-    const profile = event.target;
-  
-    // Check if the clicked element is one of the top post pictures
-    if (profile.classList.contains("feature-post--image")) {
-      const postID = profile.getAttribute('data-id');
-      alert(`Image with post ID ${postID} was clicked!`);
-      // Stop the event from bubbling 
-      event.stopImmediatePropagation();
+  }
+});
+
+document.getElementById("posts-container").addEventListener("click", async (event) => {
+  const profile = event.target;
+
+  // Check if the clicked element is one of the top post pictures
+  if (profile.classList.contains("feature-post--image")) {
+    const postID = profile.getAttribute('data-id');
+    alert(`Image with post ID ${postID} was clicked!`);
+
+    const response = await fetch(`/posts/${postID}`, {
+      method: 'GET',
+    });
+
+    if (response.ok) {
+      const data = await response.json(); // Assuming the response is JSON
+      // Handle the data as needed, such as updating the DOM or redirecting
+      alert('om');
+    } else {
+      alert('Failed to edit blog');
     }
-  });
+    // Stop the event from bubbling 
+    event.stopImmediatePropagation();
+  }
+});
+
 
 
 
@@ -185,18 +198,18 @@ window.onload = () => {
     followButton.addEventListener("click", async () => {
       try {
         const username = followButton.dataset.username;
-  
+
         const response = await fetch(`/api/users/follow/${username}`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
         });
-  
+
         if (!response.ok) {
           throw new Error("Failed to follow user.");
         }
-  
+
         const data = await response.json();
         console.log(data); // Process the response data if needed
 
@@ -212,18 +225,18 @@ window.onload = () => {
     unfollowButton.addEventListener("click", async () => {
       try {
         const username = unfollowButton.dataset.username;
-  
+
         const response = await fetch(`/api/users/unfollow/${username}`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
         });
-  
+
         if (!response.ok) {
           throw new Error("Failed to unfollow user.");
         }
-  
+
         const data = await response.json();
         console.log(data); // Process the response data if needed
 
