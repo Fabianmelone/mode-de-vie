@@ -4,10 +4,10 @@ const signupHandler = async (event) => {
     alert('Signing up...')
 
     //assigns the values of the username, password, email(if using) to constants
-    const username = document.querySelector('#name-signup').value.trim();
-    const password = document.querySelector('#password-signup').value.trim();
+    const username = document.getElementById('name-signup').value.trim();
+    const password = document.getElementById('password-signup').value.trim();
 
-    const email = document.querySelector('#email-signup').value.trim();
+    const email = document.getElementById('email-signup').value.trim();
     
     if (username && password && email) {    //if there is a username, password AND email, a post request will be posted to api/users/signup with its body as the username, password, and email
         alert(username);

@@ -244,6 +244,20 @@ button, .btn {
 }
 
 $closeSpeed: 350ms;
+.sidebar-spacer {
+  width: 16.9rem;
+  height: 100%;
+  padding: 1.6rem 1rem;
+  grid-row: 1 / span 2;
+  grid-column: 1;
+  transition: width $closeSpeed ease;
+
+  &.closed {
+    width: 4.69rem;
+    transition: width $closeSpeed ease;
+  }
+}
+
 .sidebar {
   width: 16.9rem;
   height: 100%;
@@ -252,9 +266,7 @@ $closeSpeed: 350ms;
   background-color: var(--secondary);
   border-radius: 0rem 1rem 0.5rem 0rem;
 
-  position: relative;
-  grid-row: 1 / span 2;
-  grid-column: 1;
+  position: fixed;
 
   display: flex;
   flex-direction: column;
@@ -292,12 +304,12 @@ $closeSpeed: 350ms;
       height: fit-content;
       color: var(--accent);
       font-family: "Montserrat", "Libre Franklin", sans-serif;
-      font-size: 1rem;
+      font-size: 0.9rem;
       font-style: normal;
       font-weight: 700;
       line-height: normal;
       letter-spacing: 0.08125rem;
-      transform: translateY(1.35rem);
+      transform: translateY(1.45rem);
 
       overflow: hidden;
       white-space: nowrap;
@@ -505,6 +517,24 @@ $closeSpeed: 350ms;
     }
   }
 
+  #logout {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 14.75rem;
+    border: none;
+    height: 3rem;
+    
+    position: absolute;
+    bottom: 1rem;
+    left: 1rem;
+    overflow: hidden;
+
+    transition: width $closeSpeed ease;
+
+    svg { display: none; }
+  }
+
   &:hover { cursor: pointer; }
 
   // Sidebar collapsed
@@ -570,6 +600,23 @@ $closeSpeed: 350ms;
     .sidebar--list-item.profile {
       background-color: var(--secondary);
       transition: width $closeSpeed ease, background-color calc($closeSpeed / 1.5) ease;
+    }
+
+    #logout {
+      width: 3.25rem;
+      height: 3.25rem;
+      bottom: 0.75rem;
+      left: 0.75rem;
+
+      span { display: none; }
+      svg {
+        display: block;
+        transform: translateX(1.5px);
+        path {
+          stroke: var(--accent);
+          stroke-width: 3px;
+        }
+      }
     }
   }
 }

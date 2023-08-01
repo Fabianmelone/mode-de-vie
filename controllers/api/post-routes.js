@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { Post, User, UserSavedPosts, Follower_User } = require("../../models");
+const { Post, User, UserSavedPosts, Comment, Follower_User } = require("../../models");
 
 router.put('/like', async (req, res) => {
     try {
@@ -109,5 +109,18 @@ router.post('follow/:username', async (req, res) => {
         return res.status(500).json({ error: 'Something went wrong.' });
     } 
 });
+
+router.post('/', async (req, res) => {
+    try {
+        const newComment = await Comment.create({
+            ...req.body,
+            user_id: req.session.user_id,
+            post_id: req.body.comment_id,
+        });
+        res.status(200).json(newComment);
+    } catch (err) {
+        res.status(400).json(err);
+    }
+})
 
 module.exports = router;

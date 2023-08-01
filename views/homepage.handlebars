@@ -52,6 +52,7 @@
         </div>
         <div id="post--author-content">
           <h1 class="author-username">{{user.username}}</h1>
+          <h2 class="post-title">{{title}}</h2>
           <p>
             {{description}}
           </p>
@@ -66,55 +67,37 @@
         </button>
       </div>
 
+
+
+     {{!-- render comments --}}
       <div id="comments">
         <div class="comment">
+          {{!-- if comments written, render here --}}
+           {{#if comments.length}}
+           {{!-- render each existing comment --}}
+           {{#each comments as |comment|}}
           <div class="comment--user-pfp-container">
-            <img class="comment--user-pfp" src="./assets/images/pfps/default_pfp_3.png" alt="User Pfp" />
+            {{!-- render profile picture --}}
+            <img class="comment--user-pfp" src="{{user.profile_picture}}" alt="{{user.username}} Pfp" />
           </div>
           <div class="comment--content">
-            <h1 class="comment--user-name">Mike</h1>
+            {{!-- render username --}}
+            <h1 class="comment--user-name">{{user.username}}</h1>
             <p class="comment--content">
-              You: 👁️👄👁️
+              {{!-- render comment content --}}
+              {{comment.message}}
             </p>
           </div>
+          {{/each}}
+          {{else}} 
+          {{!-- if no comment written display this message --}}
+          <p>Be the first one to comment on this post!</p>
         </div>
+         {{/if}}
 
-        <div class="comment">
-          <div class="comment--user-pfp-container">
-            <img class="comment--user-pfp" src="./assets/images/pfps/default_pfp_1.png" alt="User Pfp" />
-          </div>
-          <div class="comment--content">
-            <h1 class="comment--user-name">Admin</h1>
-            <p class="comment--content">
-              You look stupid.
-            </p>
-          </div>
-        </div>
+ 
 
-        <div class="comment">
-          <div class="comment--user-pfp-container">
-            <img class="comment--user-pfp" src="./assets/images/pfps/default_pfp_7.png" alt="User Pfp" />
-          </div>
-          <div class="comment--content">
-            <h1 class="comment--user-name">SlimJim</h1>
-            <p class="comment--content">
-              You look awesome. <br>
-              Can't wait to see your other posts.
-            </p>
-          </div>
-        </div>
-
-        <div class="comment">
-          <div class="comment--user-pfp-container">
-            <img class="comment--user-pfp" src="./assets/images/pfps/default_pfp_2.png" alt="User Pfp" />
-          </div>
-          <div class="comment--content">
-            <h1 class="comment--user-name">SlimJim</h1>
-            <p class="comment--content">
-              Love it.
-            </p>
-          </div>
-        </div>
+  
       </div>
     </div>
 
