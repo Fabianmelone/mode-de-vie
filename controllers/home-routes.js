@@ -14,18 +14,21 @@ router.get("/", withAuth, async (req, res) => {
           model: User,
           attributes: ['username'],
         },
-        {
-            model: Comment,
-            include: [
-                {
-                    model: User,
-                    as: 'user',
-                    attributes: ['username'],
-                },
-            ],
-        },
+        // {
+        //     model: Comment,
+        //     include: [
+        //         {
+        //             model: User,
+        //             as: 'user',
+        //             attributes: ['username'],
+        //         },
+        //     ],
+        // },
+
       ],
+      
     });
+    console.log(randomPost);
 
     // top posts by views. most viewed post
     const alltopPosts = await Post.findAll({
@@ -122,7 +125,9 @@ router.get("/rankings", withAuth, async (req, res) => {
     // Fetch posts of the users the current user follows
     const followingPosts = await Post.findAll({
       where: {
-        userID: 10, // Replace with the actual user's ID or get it from the session
+
+        user_id: followedUserIds, // Replace with the actual user's ID or get it from the session
+
       },
       order: sequelize.literal("rand()"),
       include: [{ model: User, attributes: ["username"] }],
