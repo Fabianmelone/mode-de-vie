@@ -111,21 +111,20 @@ router.post('/follow/:username', async (req, res) => {
 
 router.post('/comments', async (req, res) => {
     try {
-        console.log(req.body);
-        console.log(req.session);
-        
         const message = req.body.message;
+        // console.log(typeof message);
         const newComment = await Comment.create({
-            user_id: req.session.user_id,
+
             message: message,
+            user_id: req.session.user_id,
             post_id: req.body.post_id
         });
-        
+        console.log(newComment);
         res.status(200).json(newComment);
     } catch (err) {
         console.log(err);
         res.status(400).json(err);
     }
-})
+});
 
 module.exports = router;
