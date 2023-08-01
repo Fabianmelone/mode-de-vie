@@ -17,10 +17,10 @@
             <div class="rankings--post">
               {{#if (regexMatch "http" image_url)}}
                 {{!-- External URL image --}}
-                <img src="{{ image_url }}" alt="">
+                <img src="{{ image_url }}" alt="" data-id="{{id}}" class="post">
               {{else}}
                 {{!-- Local image file in posts folder --}}
-                <img src="/assets/images/posts/{{ image_url }}" alt="">
+                <img src="/assets/images/posts/{{ image_url }}" alt="" data-id="{{id}}" class="post">
               {{/if}}
               <h1 class="counter">
                 <img src="/assets/icons/user.svg" onload="ImgToSvg(this)" alt="views icon">
@@ -41,10 +41,10 @@
             <div class="rankings--post">
               {{#if (regexMatch "http" image_url)}}
                 {{!-- External URL image --}}
-                <img src="{{ image_url }}" alt="">
+                <img src="{{ image_url }}" alt="" data-id="{{id}}" class="post">
               {{else}}
                 {{!-- Local image file in posts folder --}}
-                <img src="/assets/images/posts/{{ image_url }}" alt="">
+                <img src="/assets/images/posts/{{ image_url }}" alt="" data-id="{{id}}" class="post">
               {{/if}}
               <h1 class="counter">
                 <img src="/assets/icons/heart.svg" onload="ImgToSvg(this)" alt="views icon">
@@ -65,10 +65,10 @@
             <div class="rankings--post">
               {{#if (regexMatch "http" image_url)}}
                 {{!-- External URL image --}}
-              <img src="{{ image_url }}" alt="">
+              <img src="{{ image_url }}" alt="" data-id="{{id}}"  class="post">
               {{else}}
                 {{!-- Local image file in posts folder --}}
-                <img src="/assets/images/posts/{{ image_url }}" alt="">
+                <img src="/assets/images/posts/{{ image_url }}" alt="" data-id="{{id}}" class="post">
               {{/if}}
               <h1 class="counter">
                 <img src="/assets/icons/eye.svg" onload="ImgToSvg(this)" alt="views icon">
@@ -81,3 +81,4 @@
     </section>
   </body>
 </html>
+<script src="/js/rankings.js"></script>
