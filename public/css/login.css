@@ -1,2 +1,93 @@
-body {
-  background-color: var(--primary); }
+#page-body {
+  background-color: var(--primary) !important;
+  position: relative;
+  background-image: url("/assets/images/wave_background.svg");
+  background-position-y: bottom;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center; }
+  #page-body #form-container, #page-body #form-container-signup {
+    width: 37.5625rem;
+    height: 37.6875rem;
+    padding: 2.5rem 4.6875rem 2.1875rem 4.6875rem;
+    background-color: var(--background-color);
+    border-radius: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 1.9rem 0; }
+    #page-body #form-container #form-header h1, #page-body #form-container-signup #form-header h1 {
+      color: var(--primary);
+      text-align: center;
+      font-size: 1.5rem;
+      font-style: normal;
+      font-weight: 800;
+      line-height: normal;
+      letter-spacing: 0.36rem;
+      text-transform: uppercase;
+      white-space: nowrap; }
+    #page-body #form-container #form-header hr, #page-body #form-container-signup #form-header hr {
+      width: 70%;
+      height: 0.3rem;
+      margin: 1rem auto 0.5rem auto;
+      background-color: var(--accent);
+      border: none;
+      border-radius: 0.5rem; }
+    #page-body #form-container .form, #page-body #form-container-signup .form {
+      display: flex;
+      width: 100%;
+      height: 100%;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      gap: 3.2rem 0; }
+      #page-body #form-container .form #input-container, #page-body #form-container-signup .form #input-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+        gap: 1.25rem 0; }
+        #page-body #form-container .form #input-container input, #page-body #form-container-signup .form #input-container input {
+          height: 3.75rem;
+          padding: 0rem 10.0625rem 0rem 1.25rem;
+          align-items: center;
+          background-color: var(--input-background);
+          border: none;
+          border-radius: 0.5rem; }
+          #page-body #form-container .form #input-container input::placeholder, #page-body #form-container-signup .form #input-container input::placeholder {
+            color: var(--inactive-text, #BEBEBE);
+            font-family: "Libre Franklin";
+            font-size: 1rem;
+            font-style: normal;
+            font-weight: 500;
+            line-height: normal;
+            letter-spacing: 0.12rem; }
+        #page-body #form-container .form #input-container .checkbox-container, #page-body #form-container-signup .form #input-container .checkbox-container {
+          margin-top: 0.6rem;
+          font-weight: 500; }
+      #page-body #form-container .form #button-container, #page-body #form-container-signup .form #button-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        width: 100%;
+        gap: 1rem 0; }
+        #page-body #form-container .form #button-container button, #page-body #form-container-signup .form #button-container button {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 100% !important;
+          height: 4.4rem;
+          margin: 0;
+          text-transform: uppercase;
+          border: none; }
+        #page-body #form-container .form #button-container .btn-cta, #page-body #form-container-signup .form #button-container .btn-cta {
+          height: 2.8rem; }
+        #page-body #form-container .form #button-container a, #page-body #form-container-signup .form #button-container a {
+          margin-top: 0.5rem;
+          color: var(--primary); }
