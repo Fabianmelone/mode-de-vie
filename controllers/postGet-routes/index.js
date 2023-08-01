@@ -84,7 +84,7 @@ router.get('/popular', withAuth, async (req, res) => {   //filter all posts from
 
 router.get('/userposts', withAuth, async (req, res) => {
     try {
-        const userData = await User.findByPk(req.session.userID, {
+        const userData = await User.findByPk(req.session.user_id, {
             include: [
                 {
                     model: Post,
