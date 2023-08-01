@@ -38,11 +38,15 @@
         <div id="user--name-container">
           <h1>{{ user.username }}</h1>
           <h2>@user.handle</h2>
-          <button>
-            Follow
-            {{!-- IF FOLLOWING --}}
-            {{!-- Unfollow --}}
-          </button>
+          {{#if isFollowing }}
+            <button id="unfollow-btn" data-username="{{ user.username }}">
+              Unfollow
+            </button>
+          {{else}}
+            <button id="follow-btn" data-username="{{ user.username }}">
+              Follow
+            </button>
+          {{/if}}
         </div>
       </div>
       
