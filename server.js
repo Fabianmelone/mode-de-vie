@@ -1,8 +1,7 @@
 // Import the required modules
 const express = require("express");
 const exphbs = require("express-handlebars");
-const fs = require('fs');
-const hbs = require('hbs');
+
 
 const path = require('path');
 const routes = require('./controllers');  //imports the routes from the ./controllers
@@ -51,17 +50,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
 
 
-// Function to register all partials in a directory
-function registerPartials(directoryPath) {
-  fs.readdirSync(directoryPath).forEach((file) => {
-    const partial = fs.readFileSync(path.join(directoryPath, file), 'utf8');
-    const partialName = path.basename(file, '.handlebars');
-    hbs.handlebars.registerPartial(partialName, partial);
-  });
-}
 
-// Use the function
-registerPartials(path.join(__dirname, 'views', 'partials'));
+
 
 
 app.use('/bootstrap', express.static(path.join(__dirname, '/node_modules/bootstrap/dist')));    //middleware to allow bootstrap to be accessible to public
