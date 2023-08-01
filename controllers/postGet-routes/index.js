@@ -183,7 +183,10 @@ router.get('/:id', withAuth, async (req, res) => {
         });            
         const plainPost = post.get({ plain: true });
         console.log(plainPost);
-        res.json(plainPost);
+
+        res.render('single-post', {
+            plainPost
+        })
 
 
         // console.log(req.session);

@@ -149,9 +149,7 @@ document.getElementById("posts-container").addEventListener("click", async (even
     });
 
     if (response.ok) {
-      const data = await response.json(); // Assuming the response is JSON
-      // Handle the data as needed, such as updating the DOM or redirecting
-      alert('om');
+      window.location.replace(`/posts/${postID}`);
     } else {
       alert('Failed to edit blog');
     }
