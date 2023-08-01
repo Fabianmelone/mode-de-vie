@@ -185,7 +185,7 @@ router.get('/:id', withAuth, async (req, res) => {
         console.log(plainPost);
 
         res.render('single-post', {
-            plainPost
+            ...plainPost
         })
 
 
