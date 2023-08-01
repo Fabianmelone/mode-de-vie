@@ -1,0 +1,131 @@
+{{!-- {{> post-info post}}
+{{#if logged_in}}
+<form class="comment-form">
+    <div>
+        <textarea name="comment-body"></textarea>
+    </div>
+
+    <div>
+        <button type="submit">Add a Comment</button>
+    </div>
+</form>
+{{/if}}
+
+{{> comments post.comments}}
+
+{{#if logged_in}}
+<script src="/js/comment.js"></script>
+{{/if}} --}}
+
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/global.css">
+  <link rel="stylesheet" href="/css/user.css">
+  <script src="/js/homepage.js"></script>
+  <title>Document</title>
+</head>
+
+
+<body>
+    <div id="home-container">
+        {{!-- Post --}}
+        <div id="post-container">
+            <img id="post--image" src="./assets/images/posts/{{image_url}}" alt="Post image" />
+        </div>
+
+        {{!-- Comments --}}
+        <header id="comments--header">
+            {{!-- Where Like, View and Save Counters are --}}
+            <div id="likes-counter-container">
+                <div class="icon-container">
+                    <img src="./assets/icons/heart.svg" onload="ImgToSvg(this)" alt="Likes counter icon">
+                </div>
+                <h1 id="likes-counter">{{likes}}</h1>
+            </div>
+            <div id="views-counter-container">
+                <div class="icon-container">
+                    <img src="./assets/icons/eye.svg" onload="ImgToSvg(this)" alt="Likes counter icon">
+                </div>
+                <h1 id="views-counter">{{formatCount views}}</h1>
+            </div>
+            <div id="saves-counter-container">
+                <div class="icon-container">
+                    <img src="./assets/icons/bookmark.svg" onload="ImgToSvg(this)" alt="Likes counter icon">
+                </div>
+                <h1 id="saves-counter">{{formatCount saves}}</h1>
+            </div>
+        </header>
+
+
+
+        <button class="btn btn-outline-danger" id="like" type="button" data-like="{{likes}}" data-id="{{id}}"
+            data-click="not-liked">like</button>
+        <button class="btn btn-outline-danger" id="save" type="button" data-id="{{id}}" data-saved="false">save</button>
+
+
+
+
+        <div id="comments-container">
+            <div id="post--description">
+                <div id="post--author-pfp-container">
+                    <img id="post--author-pfp" src="./assets/images/pfps/default_pfp_4.png" alt="User Pfp" />
+                </div>
+                <div id="post--author-content">
+                    <h1 class="author-username">{{user.username}}</h1>
+                    <h2 class="post-title">{{title}}</h2>
+                    <p>
+                        {{description}}
+                    </p>
+                </div>
+            </div>
+
+            <div id="comment-box-container">
+                <textarea id="comment-box" placeholder="Add a comment..." maxlength="250"
+                    onkeyup="textAreaAdjust(event, this)"></textarea>
+                <button id="comment-box-send-button" data-id="{{id}}">
+                    <img src="./assets/icons/paper_plane.svg" onload="ImgToSvg(this)" alt="Commnet box send button">
+                </button>
+            </div>
+
+
+
+            {{!-- render comments --}}
+            <div id="comments">
+                <div class="comment">
+                    {{!-- if comments written, render here --}}
+                    {{#if comments.length}}
+                    {{!-- render each existing comment --}}
+                    {{#each comments as |comment|}}
+                    <div class="comment--user-pfp-container">
+                        {{!-- render profile picture --}}
+                        <img class="comment--user-pfp" src="{{user.profile_picture}}" alt="{{user.username}} Pfp" />
+                    </div>
+                    <div class="comment--content">
+                        {{!-- render username --}}
+                        <h1 class="comment--user-name">{{user.username}}</h1>
+                        <p class="comment--content">
+                            {{!-- render comment content --}}
+                            {{comment.message}}
+                        </p>
+                    </div>
+                    {{/each}}
+                    {{else}}
+                    {{!-- if no comment written display this message --}}
+                    <p>Be the first one to comment on this post!</p>
+                </div>
+                {{/if}}
+
+            </div>
+        </div>
+
+</body>
+
+<script src="/js/homepage.js"></script>
+<script src="/js/postComment.js"></script>
+
+</html>

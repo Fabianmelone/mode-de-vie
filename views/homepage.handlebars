@@ -10,7 +10,7 @@
     <div id="home-container">
     {{!-- Post --}}
     <div id="post-container">
-      <img id="post--image" src="./assets/images/posts/{{ image_url }}" alt="Post image" />
+      <img id="post--image" src="./assets/images/posts/{{ image_url }}"  alt="Post image" />
     </div>
 
     {{!-- Comments --}}
@@ -109,7 +109,7 @@
     <div id="posts-container">
       {{#each filteredTopPosts as |topPost|}}
       <div class="featured-post empty">
-        <img class="feature-post--image" src="./assets/images/posts/{{topPost.image_url}}" alt="Featured post image">
+        <img class="feature-post--image" src="./assets/images/posts/{{topPost.image_url}}" data-id="{{topPost.id}}" alt="Featured post image">
 
       </div>
       {{/each}}
@@ -122,7 +122,7 @@
     <div id="rankings-container">
       {{#each filteredTopUsers as |topUser|}}
       <div class="featured-user">
-        <img class="feature-user--pfp" src="./assets/images/pfps/{{topUser.profile_picture}}" alt="Featured post image">
+        <img class="feature-user--pfp" src="./assets/images/pfps/{{topUser.profile_picture}}" data-id="{{topUser.id}}" alt="Featured post image">
       </div>
       {{/each}}
     </div>
