@@ -69,7 +69,7 @@ router.post('/save', async (req, res) => {
 });
 
 // Route to follow a user
-router.post('follow/:username', async (req, res) => {
+router.post('/follow/:username', async (req, res) => {
     const { username } = req.params;
     const { followerUsername } = req.body; 
 
@@ -114,13 +114,15 @@ router.post('follow/:username', async (req, res) => {
     } 
 });
 
-router.post('/', async (req, res) => {
+router.post('/comments', async (req, res) => {
     try {
+        const comment = req.body.comment_id;
         const newComment = await Comment.create({
             ...req.body,
-            user_id: req.session.user_id,
-            post_id: req.body.comment_id,
+            userID: req.session.userID,
+            comment_id: comment,
         });
+        console.log(newComment);
         res.status(200).json(newComment);
     } catch (err) {
         res.status(400).json(err);

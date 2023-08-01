@@ -14,16 +14,16 @@ router.get('/allposts', withAuth, async (req, res) => {   //gets all posts
                     model: User,
                     attributes: ['username'],
                 },
-                // {
-                //     model: Comment,
-                //     include: [
-                //         {
-                //             model: User,
-                //             as: 'user',
-                //             attributes: ['username'],
-                //         },
-                //     ],
-                // },
+                {
+                    model: Comment,
+                    include: [
+                        {
+                            model: User,
+                            as: 'user',
+                            attributes: ['username'],
+                        },
+                    ],
+                },
             ],
         });
         const posts = allPosts.map((post) => post.get({ plain: true })); //maps over all elements of of allPosts and serialeze them
@@ -53,16 +53,16 @@ router.get('/popular', withAuth, async (req, res) => {   //filter all posts from
                     model: User,
                     attributes: ['username'],
                 },
-                // {
-                //     model: Comment,
-                //     include: [
-                //         {
-                //             model: User,
-                //             as: 'user',
-                //             attributes: ['username'],
-                //         },
-                //     ],
-                // },
+                {
+                    model: Comment,
+                    include: [
+                        {
+                            model: User,
+                            as: 'user',
+                            attributes: ['username'],
+                        },
+                    ],
+                },
             ],
 
         });
@@ -121,16 +121,16 @@ router.get('/', withAuth, async (req, res) => {
                     model: User,
                     attributes: ['username'],
                 },
-                // {
-                //     model: Comment,
-                //     include: [
-                //         {
-                //             model: User,
-                //             as: 'user',
-                //             attributes: ['username'],
-                //         },
-                //     ],
-                // },
+                {
+                    model: Comment,
+                    include: [
+                        {
+                            model: User,
+                            as: 'user',
+                            attributes: ['username'],
+                        },
+                    ],
+                },
             ],
         });
 
