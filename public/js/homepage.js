@@ -58,7 +58,7 @@ if (document.querySelector("#like") && document.querySelector("#save")) {
   // not yet done!! we need to click once to add a like, and click again to not like
   document.querySelector("#like").addEventListener("click", async (event) => {
     const likesNum = parseInt(event.target.getAttribute("data-like"));
-    const postId = event.target.getAttribute("data-id");
+    const post_id = event.target.getAttribute("data-id");
 
     const likesCounter = document.querySelector(`#likes-counter`);
 
@@ -75,7 +75,7 @@ if (document.querySelector("#like") && document.querySelector("#save")) {
 
     const response = await fetch("/api/posts/like", {
       method: "PUT", // Change to 'PUT'
-      body: JSON.stringify({ likesNum, postId, isLiked }), // Include postId in the request body
+      body: JSON.stringify({ likesNum, post_id, isLiked }), // Include postId in the request body
       headers: { "Content-Type": "application/json" },
     });
 
@@ -93,7 +93,7 @@ if (document.querySelector("#like") && document.querySelector("#save")) {
   });
 
   document.querySelector("#save").addEventListener("click", async (event) => {
-    const postId = event.target.getAttribute("data-id");
+    const post_id = event.target.getAttribute("data-id");
     var isSaved;
 
     if (event.target.getAttribute("data-saved") === "false") {
@@ -106,7 +106,7 @@ if (document.querySelector("#like") && document.querySelector("#save")) {
 
     const response = await fetch("/api/posts/save", {
       method: "POST",
-      body: JSON.stringify({ isSaved, postId }),
+      body: JSON.stringify({ isSaved, post_id }),
       headers: {
         "Content-Type": "application/json",
       },
