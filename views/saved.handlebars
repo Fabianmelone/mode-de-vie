@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Saved Posts</title>
+    
+</head>
+<body>
+    <h1>Saved Posts</h1>
+    {{#if savedPosts.length}}
+        <ul>
+            {{#each savedPosts}}
+                <li>
+                    <h3>{{this.post.title}}</h3>
+                    <p>{{this.post.content}}</p>
+                    <p>Created by: {{this.post.User.username}}</p>
+                </li>
+            {{/each}}
+        </ul>
+    {{else}}
+        <p>No saved posts found.</p>
+    {{/if}}
+</body>
+</html>
