@@ -14,18 +14,21 @@ router.get("/", withAuth, async (req, res) => {
           model: User,
           attributes: ['username'],
         },
-        {
-            model: Comment,
-            include: [
-                {
-                    model: User,
-                    as: 'user',
-                    attributes: ['username'],
-                },
-            ],
-        },
+        // {
+        //     model: Comment,
+        //     include: [
+        //         {
+        //             model: User,
+        //             as: 'user',
+        //             attributes: ['username'],
+        //         },
+        //     ],
+        // },
+
       ],
+      
     });
+    console.log(randomPost);
 
     // top posts by views. most viewed post
     const alltopPosts = await Post.findAll({

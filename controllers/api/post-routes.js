@@ -117,6 +117,8 @@ router.post('/follow/:username', async (req, res) => {
 router.post('/comments', async (req, res) => {
     try {
         console.log(req.body);
+        console.log(req.session);
+        
         const message = req.body.message;
         const newComment = await Comment.create({
             user_id: req.session.user_id,
