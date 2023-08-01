@@ -72,7 +72,7 @@ router.get("/", withAuth, async (req, res) => {
         filteredTopUsers,
         loggedIn: req.session.loggedIn
       })
-      // console.log(randPost);
+      console.log(filteredTopUsers);
     } else {
       // For testing error has been disabled
       res.render("homepage")

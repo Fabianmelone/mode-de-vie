@@ -122,20 +122,24 @@ if (document.querySelector("#like") && document.querySelector("#save")) {
 
 
 
-//event listener for the top users
-document.getElementById("rankings-container").addEventListener("click", async (event) => {
-  const profile = event.target;
+//event listener for the top users from the page
+document.getElementById('home-container').addEventListener('click', async (event)=> {
+  target = event.target;
 
-  // Check if the clicked element is one of the profile pictures
-  if (profile.classList.contains("feature-user--pfp")) {
-    const userId = profile.getAttribute('data-id');
-    alert(`Image with user ID ${userId} was clicked!`);
-    // Stop the event from bubbling 
-    event.stopImmediatePropagation();
-
+  if(target.classList.contains('profile')) {
+    const username = target.getAttribute('data-name');
+    const response = await fetch(`/user/${username}`, {
+      method: 'GET',
+    });
+    if(response.ok){
+      window.location.replace(`/user/${username}`);
+    }
   }
+
 });
 
+
+// top posts
 document.getElementById("posts-container").addEventListener("click", async (event) => {
   const profile = event.target;
 

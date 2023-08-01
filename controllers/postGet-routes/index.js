@@ -35,7 +35,7 @@ router.get('/allposts', withAuth, async (req, res) => {   //gets all posts
         //     posts,
         //     logged_in: req.session.logged_in
         // });
-        console.log(req.session);
+        // console.log(req.session);
     } catch (error) {
         res.status(500).json(error);
     }
@@ -140,7 +140,7 @@ router.get('/', withAuth, async (req, res) => {
                 ...post,
                 loggedIn: req.session.loggedIn
             })
-            console.log(post);
+            // console.log(post);
         } else {
             res.status(404).json({ message: 'No posts found' });
         }
@@ -149,7 +149,7 @@ router.get('/', withAuth, async (req, res) => {
         const userData = await User.findByPk(userId);
         var savedPosts = await userData.getSavedPosts({});
         const savedPostsPlain = savedPosts.map(post => post.get({ plain: true }));
-        console.log(savedPostsPlain);
+        // console.log(savedPostsPlain);
         res.json(savedPostsPlain);
     } catch (error) {
         res.status(500).json(error);
@@ -182,7 +182,7 @@ router.get('/:id', withAuth, async (req, res) => {
             ],
         });            
         const plainPost = post.get({ plain: true });
-        console.log(plainPost);
+        // console.log(plainPost);
 
         res.render('single-post', {
             ...plainPost
