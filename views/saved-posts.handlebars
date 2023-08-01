@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/global.css">
+    <link rel="stylesheet" href="/css/rankings.css">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+
+<div class="saved--post-container">
+  {{#each mostViewedPosts}}
+  <div class="saved--post">
+    {{#if (regexMatch "http" image_url)}}
+    <!-- External URL image -->
+    <img src="{{ image_url }}" alt="">
+    {{else}}
+    <!-- Local image file in posts folder -->
+    <img src="/assets/images/posts/{{ image_url }}" alt="">
+    {{/if}}
+    <h1 class="counter">
+      <img src="/assets/icons/eye.svg" onload="ImgToSvg(this)" alt="views icon">
+      {{ formatCount views }}
+    </h1>
+  </div>
+  {{/each}}
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>

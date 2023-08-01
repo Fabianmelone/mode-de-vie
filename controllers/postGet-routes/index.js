@@ -134,7 +134,7 @@ router.get('/', withAuth, async (req, res) => {
             ],
         });
 
-        if(randomPost) {
+        if (randomPost) {
             const post = randomPost.get({ plain: true });
             res.render('homepage', {
                 ...post,
@@ -144,23 +144,23 @@ router.get('/', withAuth, async (req, res) => {
         } else {
             res.status(404).json({ message: 'No posts found' });
         }
-    try {
-        const userId = req.session.userID;
-        const userData = await User.findByPk(userId);
-        var savedPosts = await userData.getSavedPosts({});
-        const savedPostsPlain = savedPosts.map(post => post.get({ plain: true }));
-        // console.log(savedPostsPlain);
-        res.json(savedPostsPlain);
+        try {
+            const userId = req.session.userID;
+            const userData = await User.findByPk(userId);
+            var savedPosts = await userData.getSavedPosts({});
+            const savedPostsPlain = savedPosts.map(post => post.get({ plain: true }));
+            // console.log(savedPostsPlain);
+            res.json(savedPostsPlain);
+        } catch (error) {
+            res.status(500).json(error);
+        }
     } catch (error) {
-        res.status(500).json(error);
+        console.log(error);
     }
-  } catch (error) {
-    console.log(error);
-  }
 });
 
 
-router.get('/:id', withAuth, async (req, res) => {   
+router.get('/:id', withAuth, async (req, res) => {
     // console.log(req.params);
     try {
         const post = await Post.findByPk(req.params.id, {
@@ -180,7 +180,7 @@ router.get('/:id', withAuth, async (req, res) => {
                     ],
                 },
             ],
-        });            
+        });
         const plainPost = post.get({ plain: true });
         // console.log(plainPost);
 
@@ -189,6 +189,41 @@ router.get('/:id', withAuth, async (req, res) => {
         })
 
 
+        // console.log(req.session);
+    } catch (error) {
+        res.status(500).json(error);
+    }
+});
+
+router.get('/hi', withAuth, async (req, res) => {   //gets all posts
+    try {
+        const allPosts = await Post.findAll({
+            include: [
+                {
+                    model: User,
+                    attributes: ['username'],
+                },
+                {
+                    model: Comment,
+                    include: [
+                        {
+                            model: User,
+                            as: 'user',
+                            attributes: ['username'],
+                        },
+                    ],
+                },
+            ],
+        });
+        const posts = allPosts.map((post) => post.get({ plain: true })); //maps over all elements of of allPosts and serialeze them
+        //serialize to make the data easier to handle/reaD
+        console.log(posts);
+        res.json(posts);
+
+        // res.render('homepage', {
+        //     posts,
+        //     logged_in: req.session.logged_in
+        // });
         // console.log(req.session);
     } catch (error) {
         res.status(500).json(error);
