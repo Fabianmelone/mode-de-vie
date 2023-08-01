@@ -1,33 +1,12 @@
-{{!-- {{> post-info post}}
-{{#if logged_in}}
-<form class="comment-form">
-    <div>
-        <textarea name="comment-body"></textarea>
-    </div>
-
-    <div>
-        <button type="submit">Add a Comment</button>
-    </div>
-</form>
-{{/if}}
-
-{{> comments post.comments}}
-
-{{#if logged_in}}
-<script src="/js/comment.js"></script>
-{{/if}} --}}
-
-
 <!DOCTYPE html>
 <html>
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="/css/global.css">
-  <link rel="stylesheet" href="/css/user.css">
-  <script src="/js/homepage.js"></script>
-  <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="./css/global.css">
+    <link rel="stylesheet" type="text/css" href="./css/homepage.css">
+
+    <script src="/js/homepage.js"></script>
+    <title>homepage</title>
 </head>
 
 
@@ -35,7 +14,7 @@
     <div id="home-container">
         {{!-- Post --}}
         <div id="post-container">
-            <img id="post--image" src="./assets/images/posts/{{image_url}}" alt="Post image" />
+            <img id="post--image" src="/assets/images/posts/{{image_url}}" alt="Post image" />
         </div>
 
         {{!-- Comments --}}
@@ -43,19 +22,19 @@
             {{!-- Where Like, View and Save Counters are --}}
             <div id="likes-counter-container">
                 <div class="icon-container">
-                    <img src="./assets/icons/heart.svg" onload="ImgToSvg(this)" alt="Likes counter icon">
+                    <img src="/assets/icons/heart.svg" onload="ImgToSvg(this)" alt="Likes counter icon">
                 </div>
                 <h1 id="likes-counter">{{likes}}</h1>
             </div>
             <div id="views-counter-container">
                 <div class="icon-container">
-                    <img src="./assets/icons/eye.svg" onload="ImgToSvg(this)" alt="Likes counter icon">
+                    <img src="/assets/icons/eye.svg" onload="ImgToSvg(this)" alt="Likes counter icon">
                 </div>
                 <h1 id="views-counter">{{formatCount views}}</h1>
             </div>
             <div id="saves-counter-container">
                 <div class="icon-container">
-                    <img src="./assets/icons/bookmark.svg" onload="ImgToSvg(this)" alt="Likes counter icon">
+                    <img src="/assets/icons/bookmark.svg" onload="ImgToSvg(this)" alt="Likes counter icon">
                 </div>
                 <h1 id="saves-counter">{{formatCount saves}}</h1>
             </div>
@@ -73,7 +52,7 @@
         <div id="comments-container">
             <div id="post--description">
                 <div id="post--author-pfp-container">
-                    <img id="post--author-pfp" src="./assets/images/pfps/default_pfp_4.png" alt="User Pfp" />
+                    <img id="post--author-pfp" src="/assets/images/pfps/default_pfp_4.png" alt="User Pfp" />
                 </div>
                 <div id="post--author-content">
                     <h1 class="author-username">{{user.username}}</h1>
@@ -103,7 +82,8 @@
                     {{#each comments as |comment|}}
                     <div class="comment--user-pfp-container">
                         {{!-- render profile picture --}}
-                        <img class="comment--user-pfp" src="{{user.profile_picture}}" alt="{{user.username}} Pfp" />
+                        <img class="comment--user-pfp" src="/assets/images/pfps/{{user.profile_picture}}"
+                            alt="{{user.username}} Pfp" />
                     </div>
                     <div class="comment--content">
                         {{!-- render username --}}
