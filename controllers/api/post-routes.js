@@ -32,7 +32,7 @@ router.post('/save', async (req, res) => {
     try {
 
 
-        const userId = req.session.userID;
+        const userId = req.session.user_id;
         const postId = req.body.postId;
         var isSaved = req.body.isSaved;
         
@@ -87,7 +87,7 @@ router.post('/follow/:username', async (req, res) => {
 
         // Check if follow relationship already exists
         const existingFollow = await Follower_User.findOne({
-            where: { userID: userToFollow.id, follower_id: follower.id },
+            where: { user_id: userToFollow.id, follower_id: follower.id },
         });
 
         // if yes, show error that user is already being followed by you
@@ -119,7 +119,7 @@ router.post('/comments', async (req, res) => {
         console.log(req.body);
         const message = req.body.message;
         const newComment = await Comment.create({
-            userID: req.session.userID,
+            user_id: req.session.user_id,
             message: message,
             post_id: req.body.post_id
         });

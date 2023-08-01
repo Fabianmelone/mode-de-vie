@@ -106,7 +106,7 @@ router.get("/rankings", withAuth, async (req, res) => {
     // Fetch posts of the people the user follows (you can replace 10 with the actual user's ID)
     const followingPosts = await Post.findAll({
       where: {
-        userID: 10, // Replace with the actual user's ID or get it from the session
+        user_id: 10, // Replace with the actual user's ID or get it from the session
       },
       order: sequelize.literal("rand()"),
       include: [{ model: User, attributes: ["username"] }],
