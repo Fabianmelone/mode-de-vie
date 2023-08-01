@@ -71,11 +71,11 @@
 
      {{!-- render comments --}}
       <div id="comments">
+        {{#if comments.length}}
+         {{#each comments as |comment|}}
         <div class="comment">
           {{!-- if comments written, render here --}}
-           {{#if comments.length}}
            {{!-- render each existing comment --}}
-           {{#each comments as |comment|}}
           <div class="comment--user-pfp-container">
             {{!-- render profile picture --}}
             <img class="comment--user-pfp" src="{{user.profile_picture}}" alt="{{user.username}} Pfp" />
@@ -88,18 +88,18 @@
               {{comment.message}}
             </p>
           </div>
-          {{/each}}
-          {{else}} 
           {{!-- if no comment written display this message --}}
-          <p>Be the first one to comment on this post!</p>
         </div>
-         {{/if}}
+        {{/each}}
+        {{else}}
+        <p class="no-comments-message">Be the first one to comment</p>
+        {{/if}}
+      </div>
+    </div>
 
  
 
   
-      </div>
-    </div>
 
     {{!-- Posts --}}
     <header id="posts--header">
