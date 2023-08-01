@@ -14,16 +14,16 @@ router.get('/allposts', withAuth, async (req, res) => {   //gets all posts
                     model: User,
                     attributes: ['username'],
                 },
-                // {
-                //     model: Comment,
-                //     include: [
-                //         {
-                //             model: User,
-                //             as: 'user',
-                //             attributes: ['username'],
-                //         },
-                //     ],
-                // },
+                {
+                    model: Comment,
+                    include: [
+                        {
+                            model: User,
+                            as: 'user',
+                            attributes: ['username'],
+                        },
+                    ],
+                },
             ],
         });
         const posts = allPosts.map((post) => post.get({ plain: true })); //maps over all elements of of allPosts and serialeze them
@@ -53,16 +53,16 @@ router.get('/popular', withAuth, async (req, res) => {   //filter all posts from
                     model: User,
                     attributes: ['username'],
                 },
-                // {
-                //     model: Comment,
-                //     include: [
-                //         {
-                //             model: User,
-                //             as: 'user',
-                //             attributes: ['username'],
-                //         },
-                //     ],
-                // },
+                {
+                    model: Comment,
+                    include: [
+                        {
+                            model: User,
+                            as: 'user',
+                            attributes: ['username'],
+                        },
+                    ],
+                },
             ],
 
         });
@@ -112,8 +112,38 @@ router.get('/userposts', withAuth, async (req, res) => {
     }
 });
 
-router.get('/savedposts', async (req, res) => {
+router.get('/', withAuth, async (req, res) => {
+    try {
+        const randomPost = await Post.findOne({
+            order: sequelize.literal('rand()'),
+            include: [
+                {
+                    model: User,
+                    attributes: ['username'],
+                },
+                {
+                    model: Comment,
+                    include: [
+                        {
+                            model: User,
+                            as: 'user',
+                            attributes: ['username'],
+                        },
+                    ],
+                },
+            ],
+        });
 
+        if(randomPost) {
+            const post = randomPost.get({ plain: true });
+            res.render('homepage', {
+                ...post,
+                loggedIn: req.session.loggedIn
+            })
+            console.log(post);
+        } else {
+            res.status(404).json({ message: 'No posts found' });
+        }
     try {
         const userId = req.session.userID;
         const userData = await User.findByPk(userId);

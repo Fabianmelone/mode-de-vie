@@ -60,15 +60,65 @@ router.post('/save', async (req, res) => {
     }
 });
 
-router.post('/', async (req, res) => {
+// Route to follow a user
+router.post('/follow/:username', async (req, res) => {
+    const { username } = req.params;
+    const { followerUsername } = req.body; 
+
     try {
-        const newComment = await Comment.create({
-            ...req.body,
-            user_id: req.session.user_id,
-            post_id: req.body.comment_id,
+        // Look for the user being followed
+        const userToFollow = await User.findByUsername(username);
+
+        // Look for the user who wants to follow
+        const follower = await User.findByUsername(followerUsername);
+
+        // if not found error
+        if (!userToFollow || !follower) {
+            return res.status(404).json({ error: 'User not found' });
+        }
+
+        // Check if follow relationship already exists
+        const existingFollow = await Follower_User.findOne({
+            where: { userID: userToFollow.id, follower_id: follower.id },
         });
+
+        // if yes, show error that user is already being followed by you
+        if (existingFollow) {
+            return res.status(400).json({ error: 'Already following this user' });
+        }
+
+        // Create the follow relationship in the follower_user table
+        await Follower_User.create({
+            user_id: userToFollow.id,
+            follower_id: follower.id,
+        });
+
+        // The followercount will be updated in both the user table for both users
+        await User.increment('followers', { where: { id: userToFollow.id } });
+        await User.increment('following', { where: { id: follower.id } });
+
+        // success message
+        return res.status(200).json({ message: 'Successfully followed user.' });
+    } catch (err) {
+        console.error(err);
+        // error
+        return res.status(500).json({ error: 'Something went wrong.' });
+    } 
+});
+
+router.post('/comments', async (req, res) => {
+    try {
+        console.log(req.body);
+        const message = req.body.message;
+        const newComment = await Comment.create({
+            userID: req.session.userID,
+            message: message,
+            post_id: req.body.post_id
+        });
+        
         res.status(200).json(newComment);
     } catch (err) {
+        console.log(err);
         res.status(400).json(err);
     }
 })

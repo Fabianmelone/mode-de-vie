@@ -59,10 +59,10 @@
         </div>
       </div>
 
-      <div id="comment-box">
+      <div id="comment-box-container">
         <textarea id="comment-box" placeholder="Add a comment..." maxlength="250"
-          onkeyup="textAreaAdjust(event, this)"></textarea>
-        <button id="comment-box-send-button">
+          onkeyup="textAreaAdjust(event, this)"  ></textarea>
+        <button id="comment-box-send-button" data-id="{{id}}">
           <img src="./assets/icons/paper_plane.svg" onload="ImgToSvg(this)" alt="Commnet box send button">
         </button>
       </div>
@@ -130,5 +130,6 @@
 </body>
 
 <script src="/js/homepage.js"></script>
+<script src="/js/postComment.js"></script>
 
 </html>
