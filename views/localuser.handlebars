@@ -67,13 +67,19 @@
   </header>
 
   <div id="body-container">
-
-    {{!-- {{> userposts}} --}}
-    {{!-- {{> userFollowingPosts}} --}}
- 
-    {{> user-saved-posts}}
-   print
-
+    <div class="post-container selected">
+      {{#each posts}}
+      <div class="user-post">
+        {{#if (regexMatch "http" image_url)}}
+          {{!-- External URL image --}}
+          <img src="{{ image_url }}" alt="">
+        {{else}}
+          {{!-- Local image file in posts folder --}}
+          <img src="/assets/images/posts/{{ image_url }}" alt="">
+        {{/if}}
+      </div>
+      {{/each}}
+    </div>
   </div>
   <script src="/js"></script>
 </body>
