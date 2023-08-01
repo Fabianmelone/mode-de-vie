@@ -55,11 +55,14 @@ app.use(express.static(path.join(__dirname, "public")));
 function registerPartials(directoryPath) {
   fs.readdirSync(directoryPath).forEach((file) => {
     const partial = fs.readFileSync(path.join(directoryPath, file), 'utf8');
-    hbs.registerPartial(path.basename(file, '.hbs'), partial);
+    const partialName = path.basename(file, '.handlebars');
+    hbs.handlebars.registerPartial(partialName, partial);
   });
 }
+
 // Use the function
-registerPartials(__dirname + '/views/partials');
+registerPartials(path.join(__dirname, 'views', 'partials'));
+
 
 app.use('/bootstrap', express.static(path.join(__dirname, '/node_modules/bootstrap/dist')));    //middleware to allow bootstrap to be accessible to public
 

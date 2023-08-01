@@ -67,13 +67,14 @@
   </header>
 
   <div id="body-container">
-{{!-- res.render("myView", { userPosts: myPosts, userFollowingPosts: myFollowingPosts, userSavedPosts: mySavedPosts });
-. --}}
-  {{> userposts}}
-  {{> userFollowingPosts}}
-  {{> userSavedPosts}}
 
-</div>
+    {{!-- {{> userposts}} --}}
+    {{!-- {{> userFollowingPosts}} --}}
+ 
+    {{> user-saved-posts}}
+   print
+
+  </div>
   <script src="/js"></script>
 </body>
 

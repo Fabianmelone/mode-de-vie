@@ -5,32 +5,32 @@ const { User, Post, Follower_User } = require('../../models');
 const withAuth = require("../../utils/auth");
 
 // Route to user profile
-router.get("/:username", withAuth, async (req, res) => {
-  try {
-    // Get the username from the request params
-    const username = req.params.username;
+// router.get("/:username", withAuth, async (req, res) => {
+//   try {
+//     // Get the username from the request params
+//     const username = req.params.username;
 
-    // Find the user by their username
-    const user = await User.findByUsername(username);
+//     // Find the user by their username
+//     const user = await User.findByUsername(username);
 
-    if (!user) {
-      // Redirect the user to the homepage if the user doesn't exist
-      return res.redirect("/");
-    }
+//     if (!user) {
+//       // Redirect the user to the homepage if the user doesn't exist
+//       return res.redirect("/");
+//     }
 
-    // Find all posts belonging to the user
-    const userPosts = await Post.findAll({ where: { user_id: user.id } });
+//     // Find all posts belonging to the user
+//     const userPosts = await Post.findAll({ where: { user_id: user.id } });
 
-    // Render the profile page and pass the user's information and posts to it
-    res.render("user", {
-      user: user.get({ plain: true }),
-      posts: userPosts.map((post) => post.get({ plain: true })),
-    });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: "Internal server error" });
-  }
-});
+//     // Render the profile page and pass the user's information and posts to it
+//     res.render("user", {
+//       user: user.get({ plain: true }),
+//       posts: userPosts.map((post) => post.get({ plain: true })),
+//     });
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).json({ message: "Internal server error" });
+//   }
+// });
 
 // Route to local user profile
 router.get("/", withAuth, async (req, res) => {
@@ -40,41 +40,21 @@ router.get("/", withAuth, async (req, res) => {
 
     // Find the user by their username
     const user = await User.findByUsername(username);
-
-    if (!user) {
-      // Redirect the user to the homepage if the user doesn't exist
-      return res.redirect("/");
-    }
-
-    let userPosts, userFollowingPosts, userSavedPosts;
-
-    if (user.id) {
-      // Find all posts belonging to the user
-      userPosts = await Post.findAll({ where: { user_id: user.id } });
-    }
-
-    if (user.followingIds) {
-      // Find posts from users the current user is following
-      userFollowingPosts = await Post.findAll({ where: { user_id: user.followingIds } });
-    }
-
-    if (user.savedPostIds) {
-      // Find posts that the user has saved
-      userSavedPosts = await Post.findAll({ where: { id: user.savedPostIds } });
-    }
-
-    // Convert sequelize object to plain JavaScript object
     const userData = user.get({ plain: true });
-    const postsData = userPosts ? userPosts.map((post) => post.get({ plain: true })) : [];
-    const followingPostsData = userFollowingPosts ? userFollowingPosts.map((post) => post.get({ plain: true })) : [];
-    const savedPostsData = userSavedPosts ? userSavedPosts.map((post) => post.get({ plain: true })) : [];
 
-    console.log(postsData);
-    // Render the profile page and pass the user's information and posts to it
+    var savedPosts = await user.getSavedPosts({});
+    const savedPostsData = savedPosts.map(post => post.get({ plain: true }));
+
+   
+    const userPosts = await User.findByPk(req.session.userID, {
+      include: { model: Post, include: { model: User, as: 'user', attributes: ['username'] } }
+    });
+    const postsData = userPosts.get({ plain: true });
+    console.log(savedPostsData)
+
     res.render("localuser", {
       user: userData,
       userPosts: postsData,
-      userFollowingPosts: followingPostsData,
       userSavedPosts: savedPostsData,
     });
   } catch (error) {
@@ -83,6 +63,7 @@ router.get("/", withAuth, async (req, res) => {
     res.status(500).send("Internal Server Error");
   }
 });
+
 
 
 

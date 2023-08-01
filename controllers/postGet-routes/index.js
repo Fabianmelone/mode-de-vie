@@ -99,7 +99,7 @@ router.get('/userposts', withAuth, async (req, res) => {
             ]
         });
 
-        const users = userData.get({plain: true});
+        const users = userData.get({ plain: true });
 
         res.render('homepage', {
             ...users,
@@ -112,15 +112,15 @@ router.get('/userposts', withAuth, async (req, res) => {
     }
 });
 
-router.get('/savedposts', async (req, res)=> {
+router.get('/savedposts', async (req, res) => {
 
     try {
-            const userId = req.session.userID;
-    const userData = await User.findByPk(userId);
-    var savedPosts = await userData.getSavedPosts({});
-    const savedPostsPlain = savedPosts.map(post => post.get({ plain: true }));
-    console.log(savedPostsPlain);
-    res.json(savedPostsPlain);
+        const userId = req.session.userID;
+        const userData = await User.findByPk(userId);
+        var savedPosts = await userData.getSavedPosts({});
+        const savedPostsPlain = savedPosts.map(post => post.get({ plain: true }));
+        console.log(savedPostsPlain);
+        res.json(savedPostsPlain);
     } catch (error) {
         res.status(500).json(error);
     }
