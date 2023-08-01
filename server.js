@@ -30,7 +30,6 @@ const sess = {
 };
 app.use(session(sess));     //adds the configured session as middleware to the express app.
 
-
 // Set up the Handlebars view engine
 app.engine(
   "handlebars",
