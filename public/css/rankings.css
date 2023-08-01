@@ -6,6 +6,9 @@
   padding: 2.5rem 0;
   gap: 3rem 0;
 }
+#page-body #rankings--following .rankings--post-container {
+  gap: 0 4rem;
+}
 #page-body .rankings--section {
   width: 85vw;
   height: -moz-fit-content;
@@ -46,11 +49,12 @@
   height: 110%;
 }
 #page-body .rankings--section .rankings--post-container .rankings--post .counter {
+  max-width: 90%;
   position: absolute;
   bottom: 0;
   left: -30px;
   color: var(--text-color);
-  font-size: 1.25rem;
+  font-size: 1cqw;
   z-index: 99;
 }
 #page-body .rankings--section .rankings--post-container .rankings--post .counter svg {

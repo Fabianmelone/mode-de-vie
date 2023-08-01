@@ -59,10 +59,10 @@
         </div>
       </div>
 
-      <div id="comment-box">
+      <div id="comment-box-container">
         <textarea id="comment-box" placeholder="Add a comment..." maxlength="250"
-          onkeyup="textAreaAdjust(event, this)"></textarea>
-        <button id="comment-box-send-button">
+          onkeyup="textAreaAdjust(event, this)"  ></textarea>
+        <button id="comment-box-send-button" data-id="{{id}}">
           <img src="./assets/icons/paper_plane.svg" onload="ImgToSvg(this)" alt="Commnet box send button">
         </button>
       </div>
@@ -120,22 +120,16 @@
       <img src="./assets/icons/ranking_star.svg" onload="ImgToSvg(this)" alt="">
     </header>
     <div id="rankings-container">
+      {{#each filteredTopUsers as |topUser|}}
       <div class="featured-user">
-        <img class="feature-user--pfp" src="./assets/images/pfps/default_pfp_7.png" alt="Featured post image">
+        <img class="feature-user--pfp" src="./assets/images/pfps/{{topUser.profile_picture}}" alt="Featured post image">
       </div>
-      <div class="featured-user empty"></div>
-      <div class="featured-user empty"></div>
-      <div class="featured-user empty"></div>
-      <div class="featured-user empty"></div>
-      <div class="featured-user empty"></div>
-      <div class="featured-user empty"></div>
-      <div class="featured-user empty"></div>
-      <div class="featured-user empty"></div>
-      <div class="featured-user empty"></div>
+      {{/each}}
     </div>
   </div>
 </body>
 
 <script src="/js/homepage.js"></script>
+<script src="/js/postComment.js"></script>
 
 </html>
