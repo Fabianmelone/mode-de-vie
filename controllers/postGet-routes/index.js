@@ -157,9 +157,43 @@ router.get('/', withAuth, async (req, res) => {
   } catch (error) {
     console.log(error);
   }
-})
+});
 
 
+router.get('/:id', withAuth, async (req, res) => {   
+    // console.log(req.params);
+    try {
+        const post = await Post.findByPk(req.params.id, {
+            include: [
+                {
+                    model: User,
+                    attributes: ['username'],
+                },
+                {
+                    model: Comment,
+                    include: [
+                        {
+                            model: User,
+                            as: 'user',
+                            attributes: ['username'],
+                        },
+                    ],
+                },
+            ],
+        });            
+        const plainPost = post.get({ plain: true });
+        console.log(plainPost);
+
+        res.render('single-post', {
+            ...plainPost
+        })
+
+
+        // console.log(req.session);
+    } catch (error) {
+        res.status(500).json(error);
+    }
+});
 
 
 

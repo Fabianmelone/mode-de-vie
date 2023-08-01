@@ -65,7 +65,6 @@ router.get("/", withAuth, async (req, res) => {
         filteredTopUsers[a] = topUsers[a];  //assigns the values of topPost's  a'th index to the filteredTopPosts array. This array will store only the top 7 posts by view counts.
       }
 
-      // console.log(filteredTopUsers);
       // console.log(randPost)
       res.render('homepage', {
         ...randPost,
