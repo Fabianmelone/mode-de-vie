@@ -122,7 +122,7 @@ if (document.querySelector("#like") && document.querySelector("#save")) {
 
 
 
-
+//event listener for the top users
   document.getElementById("rankings-container").addEventListener("click", function(event) {
     const profile = event.target;
   
@@ -133,6 +133,18 @@ if (document.querySelector("#like") && document.querySelector("#save")) {
       // Stop the event from bubbling 
       event.stopImmediatePropagation();
 
+    }
+  });
+
+  document.getElementById("posts-container").addEventListener("click", function(event) {
+    const profile = event.target;
+  
+    // Check if the clicked element is one of the top post pictures
+    if (profile.classList.contains("feature-post--image")) {
+      const postID = profile.getAttribute('data-id');
+      alert(`Image with post ID ${postID} was clicked!`);
+      // Stop the event from bubbling 
+      event.stopImmediatePropagation();
     }
   });
 

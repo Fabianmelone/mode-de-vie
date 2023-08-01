@@ -109,7 +109,7 @@
     <div id="posts-container">
       {{#each filteredTopPosts as |topPost|}}
       <div class="featured-post empty">
-        <img class="feature-post--image" src="./assets/images/posts/{{topPost.image_url}}" alt="Featured post image">
+        <img class="feature-post--image" src="./assets/images/posts/{{topPost.image_url}}" data-id="{{topPost.id}}" alt="Featured post image">
 
       </div>
       {{/each}}
