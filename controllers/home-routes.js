@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const withAuth = require('../utils/auth');
 const sequelize = require('../config/connection');
-const { Post, User, Comment } = require('../models');
+const { Post, User, Follower_User, Comment } = require('../models');
 
 
 // Define the base route, runs login check before rendering
@@ -40,39 +40,43 @@ router.get("/", withAuth, async (req, res) => {
           model: User,
           attributes: ['username'],
         },
-        // {
-        //     model: Comment,
-        //     include: [
-        //         {
-        //             model: User,
-        //             as: 'user',
-        //             attributes: ['username'],
-        //         },
-        //     ],
-        // },
+
       ],
 
     });
 
     // cannot get top users because we don't have the follow implementation yet
     const allTopUsers = await User.findAll();
-    const topUsers = allTopUsers.map(user => user.get({ plain: true }));
+
     // console.log(topUsers);
     
-    if (randomPost && alltopPosts) {
+    if (randomPost && alltopPosts && allTopUsers) {
       const randPost = randomPost.get({ plain: true });
       const topPosts = alltopPosts.map(post => post.get({ plain: true }));
+      const topUsers = allTopUsers.map(user => user.get({ plain: true }));
+
 
       var filteredTopPosts = [];  //an empty array
       for( let a = 0; a < 8; a++) {
         filteredTopPosts[a] = topPosts[a];  //assigns the values of topPost's  a'th index to the filteredTopPosts array. This array will store only the top 7 posts by view counts.
       }
-      // console.log(topPosts);
+
+      var filteredTopUsers = [];  //an empty array
+      for( let a = 0; a < 8; a++) {
+        filteredTopUsers[a] = topUsers[a];  //assigns the values of topPost's  a'th index to the filteredTopPosts array. This array will store only the top 7 posts by view counts.
+      }
+
+      console.log(filteredTopUsers);
+
+    
+
+
 
       console.log(randPost)
       res.render('homepage', {
         ...randPost,
         filteredTopPosts,
+        filteredTopUsers,
         loggedIn: req.session.loggedIn
       })
       // console.log(randPost);
@@ -106,10 +110,24 @@ router.get('/login', async (req, res) => {
 // Define the /rankings route
 router.get("/rankings", withAuth, async (req, res) => {
   try {
-    // Fetch posts of the people the user follows (you can replace 10 with the actual user's ID)
+    // Get the current user's ID from the session
+    const loggedInUserId = req.session.userID;
+
+    // Find all the user IDs the current user follows in the Follower_User table
+    const followingUsers = await Follower_User.findAll({
+      where: { follower_id: loggedInUserId },
+      attributes: ['user_id'], // Only get the user_id from the Follower_User table
+    });
+
+    // Extract the user IDs from the followingUsers array
+    const followedUserIds = followingUsers.map((user) => user.user_id);
+
+    // Fetch posts of the users the current user follows
     const followingPosts = await Post.findAll({
       where: {
-        user_id: 10, // Replace with the actual user's ID or get it from the session
+
+        user_id: followedUserIds, // Replace with the actual user's ID or get it from the session
+
       },
       order: sequelize.literal("rand()"),
       include: [{ model: User, attributes: ["username"] }],

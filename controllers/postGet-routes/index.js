@@ -99,7 +99,7 @@ router.get('/userposts', withAuth, async (req, res) => {
             ]
         });
 
-        const users = userData.get({plain: true});
+        const users = userData.get({ plain: true });
 
         res.render('homepage', {
             ...users,
@@ -144,11 +144,20 @@ router.get('/', withAuth, async (req, res) => {
         } else {
             res.status(404).json({ message: 'No posts found' });
         }
-
+    try {
+        const userId = req.session.userID;
+        const userData = await User.findByPk(userId);
+        var savedPosts = await userData.getSavedPosts({});
+        const savedPostsPlain = savedPosts.map(post => post.get({ plain: true }));
+        console.log(savedPostsPlain);
+        res.json(savedPostsPlain);
     } catch (error) {
         res.status(500).json(error);
     }
-});
+  } catch (error) {
+    console.log(error);
+  }
+})
 
 
 

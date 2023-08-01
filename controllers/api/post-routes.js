@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const { Post, User, UserSavedPosts, Comment, Follower_User } = require("../../models");
+const withAuth = require("../../utils/auth");
 
 router.put('/like', async (req, res) => {
     try {
@@ -25,15 +26,13 @@ router.put('/like', async (req, res) => {
     }
 });
 
-
-
-
 router.post('/save', async (req, res) => {
     try {
 
 
         const userId = req.session.user_id;
         const post_id = req.body.post_id;
+
         var isSaved = req.body.isSaved;
         
         const userData = await User.findByPk(userId);
@@ -58,10 +57,6 @@ router.post('/save', async (req, res) => {
         } catch (error) {
             res.status(500).json(error);
         }
-        
-
-
-
     } catch (error) {
         console.log(error); // log the error
         res.status(500).json(error);

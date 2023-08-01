@@ -123,4 +123,69 @@ if (document.querySelector("#like") && document.querySelector("#save")) {
 // Init
 window.onload = () => {
   loadUserData();
+
+  const rankingsFollowing = document.getElementById("rankings--post-container-following");
+  if (rankingsFollowing.children.length >= 6) {
+    rankingsFollowing.style.justifyContent = "space-between";
+  } else {
+    rankingsFollowing.style.justifyContent = "flex-start";
+  }
+
+  // Get the follow button element
+  const followButton = document.getElementById("follow-btn");
+  const unfollowButton = document.getElementById("unfollow-btn");
+
+  if (followButton) {
+    followButton.addEventListener("click", async () => {
+      try {
+        const username = followButton.dataset.username;
+  
+        const response = await fetch(`/api/users/follow/${username}`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+  
+        if (!response.ok) {
+          throw new Error("Failed to follow user.");
+        }
+  
+        const data = await response.json();
+        console.log(data); // Process the response data if needed
+
+        window.location.reload()
+      } catch (error) {
+        console.log("Error : ");
+        console.error(error);
+      }
+    });
+  }
+
+  if (unfollowButton) {
+    unfollowButton.addEventListener("click", async () => {
+      try {
+        const username = unfollowButton.dataset.username;
+  
+        const response = await fetch(`/api/users/unfollow/${username}`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+  
+        if (!response.ok) {
+          throw new Error("Failed to unfollow user.");
+        }
+  
+        const data = await response.json();
+        console.log(data); // Process the response data if needed
+
+        window.location.reload();
+      } catch (error) {
+        console.log("Error : ");
+        console.error(error);
+      }
+    });
+  }
 };
