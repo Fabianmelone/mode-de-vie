@@ -18,7 +18,7 @@ UserSavedPosts.init(
                 key: 'id',
             },
         },
-        postId: {
+        post_id: {
             type: DataTypes.INTEGER,
             references: {
                 model: 'post',

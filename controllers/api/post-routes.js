@@ -10,10 +10,10 @@ router.put('/like', async (req, res) => {
         } else {
             likesNum = req.body.likesNum - 1;
         }
-        const postId = req.body.postId;
+        const post_id = req.body.post_id;
 
-        await Post.update({ likes: likesNum }, { where: { id: postId } });  //updates the post
-        const updatedData = await Post.findOne({ where: { id: postId } });  //gets the updated post
+        await Post.update({ likes: likesNum }, { where: { id: post_id } });  //updates the post
+        const updatedData = await Post.findOne({ where: { id: post_id } });  //gets the updated post
         const updatedPost = updatedData.get({ plain: true });
 
         res.json({ likes: updatedPost.likes });
@@ -33,11 +33,11 @@ router.post('/save', async (req, res) => {
 
 
         const userId = req.session.user_id;
-        const postId = req.body.postId;
+        const post_id = req.body.post_id;
         var isSaved = req.body.isSaved;
         
         const userData = await User.findByPk(userId);
-        const postData = await Post.findByPk(postId);
+        const postData = await Post.findByPk(post_id);
         console.log(isSaved);
         try {
             if (isSaved === true) {
