@@ -118,7 +118,41 @@ if (document.querySelector("#like") && document.querySelector("#save")) {
       alert(response.statusText);
     }
   });
-}
+};
+
+
+
+
+  document.getElementById("rankings-container").addEventListener("click", function(event) {
+    const profile = event.target;
+  
+    // Check if the clicked element is one of the profile pictures
+    if (profile.classList.contains("feature-user--pfp")) {
+      const userId = profile.getAttribute('data-id');
+      alert(`Image with user ID ${userId} was clicked!`);
+      // Stop the event from bubbling 
+      event.stopImmediatePropagation();
+
+    }
+  });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // Init
 window.onload = () => {

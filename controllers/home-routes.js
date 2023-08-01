@@ -69,7 +69,7 @@ router.get("/", withAuth, async (req, res) => {
 
 
 
-      console.log(randPost)
+      // console.log(randPost)
       res.render('homepage', {
         ...randPost,
         filteredTopPosts,
