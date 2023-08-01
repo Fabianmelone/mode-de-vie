@@ -87,7 +87,7 @@ router.post('/follow/:username', async (req, res) => {
 
         // Check if follow relationship already exists
         const existingFollow = await Follower_User.findOne({
-            where: { user_id: userToFollow.id, follower_id: follower.id },
+            where: { userID: userToFollow.id, follower_id: follower.id },
         });
 
         // if yes, show error that user is already being followed by you
@@ -116,15 +116,17 @@ router.post('/follow/:username', async (req, res) => {
 
 router.post('/comments', async (req, res) => {
     try {
-        const comment = req.body.comment_id;
+        console.log(req.body);
+        const message = req.body.message;
         const newComment = await Comment.create({
-            ...req.body,
             userID: req.session.userID,
-            comment_id: comment,
+            message: message,
+            post_id: req.body.post_id
         });
-        console.log(newComment);
+        
         res.status(200).json(newComment);
     } catch (err) {
+        console.log(err);
         res.status(400).json(err);
     }
 })

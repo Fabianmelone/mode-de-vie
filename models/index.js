@@ -24,7 +24,14 @@ Comment.belongsTo(Post, {
     foreignKey: 'post_id',
 })
 
+User.hasMany(Comment, {
+    foreignKey: 'user_id',
+    onDelete: 'CASCADE'
+})
 
+Comment.belongsTo(User, {
+    foreignKey: 'user_id'
+})
 //many-to-many relationshi0p between user and user.
 // this 'user' is followed by other users
 User.belongsToMany(User, { 

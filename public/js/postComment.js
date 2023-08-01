@@ -1,13 +1,13 @@
 const createNewComment = async (event) => {
     event.preventDefault();
 
-    const comment_id = event.target.getAttribute('data-id');
-    const contents = document.querySelector('#comment-box').value.trim();
+    const post_id = event.target.getAttribute('data-id');
+    const message = document.querySelector('#comment-box').value.trim();
 
-    if (contents) {
+    if (message) {
         const response = await fetch('/api/posts/comments', {
             method: 'POST',
-            body: JSON.stringify({ contents, comment_id }),
+            body: JSON.stringify({ message, post_id }),
             headers: {
                 'Content-Type': 'application/json',
             },
