@@ -27,10 +27,10 @@
           {{else}}
             {{#if (regexMatch "http" image_url)}}
               {{!-- External URL image --}}
-              <img src="{{ user.profile_picture }}" alt="">
+              <img class="user-pfp" src="{{ user.profile_picture }}" alt="">
             {{else}}
               {{!-- Local image file in posts folder --}}
-              <img src="/assets/images/pfps/{{ user.profile_picture }}" alt="{{username}}'s Profile picture">
+              <img class="user-pfp" src="/assets/images/pfps/{{ user.profile_picture }}" alt="{{username}}'s Profile picture">
             {{/if}}
           {{/unless}}
 

@@ -117,6 +117,7 @@ $wh-comment--user-pfp: 3.5rem;
           height: $wh-post--author-pfp;
           aspect-ratio: 1;
           
+          cursor: pointer !important;
           border-radius: 100%;
         }
       }

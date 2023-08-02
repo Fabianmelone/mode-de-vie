@@ -49,7 +49,7 @@
 
     <div id="comments-container">
       <div id="post--description">
-        <div id="post--author-pfp-container">
+        <div onclick="document.location = '/user/{{ user.username }}'" id="post--author-pfp-container">
           {{#if (regexMatch "http" image_url)}}
               {{!-- External URL image --}}
               <img id="post--author-pfp" src="{{user.profile_picture}}" alt="User Pfp" />
