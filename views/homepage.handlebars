@@ -78,7 +78,7 @@
            {{!-- render each existing comment --}}
           <div class="comment--user-pfp-container">
             {{!-- render profile picture --}}
-            <img class="comment--user-pfp" src="{{user.profile_picture}}" alt="{{user.username}} Pfp" />
+            <img class="comment--user-pfp profile" data-element="profile" data-name="{{user.username}}" src="{{user.profile_picture}}" alt="{{user.username}} Pfp" />
           </div>
           <div class="comment--content">
             {{!-- render username --}}
@@ -122,7 +122,7 @@
     <div id="rankings-container">
       {{#each filteredTopUsers as |topUser|}}
       <div class="featured-user">
-        <img class="feature-user--pfp" src="./assets/images/pfps/{{topUser.profile_picture}}" data-id="{{topUser.id}}" alt="Featured post image">
+        <img class="feature-user--pfp profile" src="./assets/images/pfps/{{topUser.profile_picture}}" data-name="{{topUser.username}}" data-id="{{topUser.id}}" alt="Featured post image">
       </div>
       {{/each}}
     </div>

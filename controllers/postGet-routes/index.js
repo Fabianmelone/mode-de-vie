@@ -35,47 +35,56 @@ router.get('/allposts', withAuth, async (req, res) => {   //gets all posts
         //     posts,
         //     logged_in: req.session.logged_in
         // });
-        console.log(req.session);
+        // console.log(req.session);
     } catch (error) {
         res.status(500).json(error);
     }
 });
 
 
-router.get('/popular', withAuth, async (req, res) => {   //filter all posts from most likes
+router.get('/saved', withAuth, async (req, res) => {   //filter all posts from most likes
     try {
-        const allPosts = await Post.findAll({
-            order: [
-                ['likes', 'DESC']
-            ],
-            include: [
-                {
-                    model: User,
-                    attributes: ['username'],
-                },
-                {
-                    model: Comment,
-                    include: [
-                        {
-                            model: User,
-                            as: 'user',
-                            attributes: ['username'],
-                        },
-                    ],
-                },
-            ],
+        // const allPosts = await Post.findAll({
+        //     order: [
+        //         ['likes', 'DESC']
+        //     ],
+        //     include: [
+        //         {
+        //             model: User,
+        //             attributes: ['username'],
+        //         },
+        //         {
+        //             model: Comment,
+        //             include: [
+        //                 {
+        //                     model: User,
+        //                     as: 'user',
+        //                     attributes: ['username'],
+        //                 },
+        //             ],
+        //         },
+        //     ],
 
-        });
+        // });
 
-        const posts = allPosts.map(post => post.get({ plain: true }));
-        // console.log(posts);
-        res.json(posts);
+        // const posts = allPosts.map(post => post.get({ plain: true }));
+        // // console.log(posts);
+        // res.json(posts);
 
         // res.render('homepage', {
         //     posts,
         //     logged_in: req.session.logged_in
         // });
-        console.log(req.session);
+
+        const userId = req.session.user_id;
+        const userData = await User.findByPk(userId);
+        var savedPosts = await userData.getSavedPosts({});
+        const savedPostsPlain = savedPosts.map(post => post.get({ plain: true }));
+        console.log(savedPostsPlain);
+        res.render('saved-posts', {
+            posts: savedPostsPlain,
+        });
+        // console.log(req.session);
     } catch (error) {
         res.status(500).json(error);
     }
@@ -134,33 +143,33 @@ router.get('/', withAuth, async (req, res) => {
             ],
         });
 
-        if(randomPost) {
+        if (randomPost) {
             const post = randomPost.get({ plain: true });
             res.render('homepage', {
                 ...post,
                 loggedIn: req.session.loggedIn
             })
-            console.log(post);
+            // console.log(post);
         } else {
             res.status(404).json({ message: 'No posts found' });
         }
-    try {
-        const userId = req.session.userID;
-        const userData = await User.findByPk(userId);
-        var savedPosts = await userData.getSavedPosts({});
-        const savedPostsPlain = savedPosts.map(post => post.get({ plain: true }));
-        console.log(savedPostsPlain);
-        res.json(savedPostsPlain);
+        try {
+            const userId = req.session.userID;
+            const userData = await User.findByPk(userId);
+            var savedPosts = await userData.getSavedPosts({});
+            const savedPostsPlain = savedPosts.map(post => post.get({ plain: true }));
+            // console.log(savedPostsPlain);
+            res.json(savedPostsPlain);
+        } catch (error) {
+            res.status(500).json(error);
+        }
     } catch (error) {
-        res.status(500).json(error);
+        console.log(error);
     }
-  } catch (error) {
-    console.log(error);
-  }
 });
 
 
-router.get('/:id', withAuth, async (req, res) => {   
+router.get('/:id', withAuth, async (req, res) => {
     // console.log(req.params);
     try {
         const post = await Post.findByPk(req.params.id, {
@@ -180,9 +189,9 @@ router.get('/:id', withAuth, async (req, res) => {
                     ],
                 },
             ],
-        });            
+        });
         const plainPost = post.get({ plain: true });
-        console.log(plainPost);
+        // console.log(plainPost);
 
         res.render('single-post', {
             ...plainPost
@@ -194,6 +203,8 @@ router.get('/:id', withAuth, async (req, res) => {
         res.status(500).json(error);
     }
 });
+
+
 
 
 
