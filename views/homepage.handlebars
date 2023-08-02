@@ -96,22 +96,19 @@
         {{/if}}
       </div>
     </div>
-
- 
-
-  
-
     {{!-- Posts --}}
     <header id="posts--header">
       <img src="./assets/icons/home.svg" onload="ImgToSvg(this)" alt="">
     </header>
     {{!-- !! Do not go past 7 featured posts shown at a time --}}
     <div id="posts-container">
-      {{#each filteredTopPosts as |topPost|}}
-      <div class="featured-post empty">
-        <img class="feature-post--image" src="./assets/images/posts/{{topPost.image_url}}" data-id="{{topPost.id}}" alt="Featured post image">
-
-      </div>
+      {{#each filteredTopPosts as |topPost index|}}
+        {{!-- !! Limit the loop to 7 iterations --}}
+        {{#compare index 'lt' 7}}
+          <div class="featured-post empty">
+            <img class="feature-post--image" src="./assets/images/posts/{{topPost.image_url}}" data-id="{{topPost.id}}" alt="Featured post image">
+          </div>
+        {{/compare}}
       {{/each}}
     </div>
 
