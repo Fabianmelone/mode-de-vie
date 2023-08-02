@@ -41,14 +41,13 @@
 
 
 
-        <button class="btn btn-outline-danger" id="like" type="button" data-like="{{likes}}" data-id="{{id}}"
-            data-click="not-liked">like</button>
-        <button class="btn btn-outline-danger" id="save" type="button" data-id="{{id}}" data-saved="false">save</button>
+
 
 
 
 
         <div id="comments-container">
+
             <div id="post--description">
                 <div id="post--author-pfp-container">
                     <img id="post--author-pfp" src="/assets/images/pfps/default_pfp_4.png" alt="User Pfp" />
@@ -66,7 +65,7 @@
                 <textarea id="comment-box" placeholder="Add a comment..." maxlength="250"
                     onkeyup="textAreaAdjust(event, this)"></textarea>
                 <button id="comment-box-send-button" data-id="{{id}}">
-                    <img src="./assets/icons/paper_plane.svg" onload="ImgToSvg(this)" alt="Commnet box send button">
+                    <img src="/assets/icons/paper_plane.svg" onload="ImgToSvg(this)" alt="Commnet box send button">
                 </button>
             </div>
 
@@ -74,32 +73,39 @@
 
             {{!-- render comments --}}
             <div id="comments">
-                <div class="comment">
-                    {{!-- if comments written, render here --}}
-                    {{#if comments.length}}
-                    {{!-- render each existing comment --}}
-                    {{#each comments as |comment|}}
-                    <div class="comment--user-pfp-container">
-                        {{!-- render profile picture --}}
+                {{#if comments.length}}
+                {{#each comments as |comment|}}
+                <div class="comment row">
+                    <div class="col-2 comment--user-pfp-container">
+                        <!-- render profile picture -->
                         <img class="comment--user-pfp" src="/assets/images/pfps/{{user.profile_picture}}"
                             alt="{{user.username}} Pfp" />
                     </div>
-                    <div class="comment--content">
-                        {{!-- render username --}}
+                    <div class="col-10 comment--content">
+                        <!-- render username -->
                         <h1 class="comment--user-name">{{user.username}}</h1>
                         <p class="comment--content">
-                            {{!-- render comment content --}}
+                            <!-- render comment content -->
                             {{comment.message}}
                         </p>
                     </div>
-                    {{/each}}
-                    {{else}}
-                    {{!-- if no comment written display this message --}}
-                    <p>Be the first one to comment on this post!</p>
                 </div>
+                {{/each}}
+                {{else}}
+                <!-- if no comment written display this message -->
+                <p>Be the first one to comment on this post!</p>
                 {{/if}}
-
             </div>
+
+
+
+            <div id="buttons-container" class="child-div position-absolute bottom-0 pb-5">
+                <button class="btn btn-outline-danger" id="like" type="button" data-like="{{likes}}" data-id="{{id}}"
+                    data-click="not-liked">like</button>
+                <button class="btn btn-outline-danger" id="save" type="button" data-id="{{id}}"
+                    data-saved="false">save</button>
+            </div>
+
         </div>
 
 </body>
