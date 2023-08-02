@@ -38,12 +38,20 @@
 #body-container .following-container .following-user {
   width: 14rem;
   height: 14rem;
-  border-radius: 0.5rem;
+  border-radius: 10rem;
   grid-column: auto;
   border: solid var(--accent) 3px;
   box-shadow: 0 3px 10px var(--accent);
   cursor: pointer;
   transition: filter 100ms ease;
+  position: relative;
+}
+#body-container .following-container .following-user h2 {
+  font-size: 1.5cqw;
+  position: absolute;
+  bottom: -55px;
+  left: 50%;
+  transform: translateX(-50%);
 }
 #body-container .following-container .following-user img {
   width: 100%;
@@ -55,4 +63,4 @@
 #body-container .following-container .following-user:hover {
   filter: brightness(1.1);
   transition: filter 100ms ease;
-}/*# sourceMappingURL=followpage.css.map */
+}/*# sourceMappingURL=following-page.css.map */

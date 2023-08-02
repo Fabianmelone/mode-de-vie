@@ -1,39 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/global.css">
-    <link rel="stylesheet" href="/css/followpage.css">
-    <title>Following</title>
-  </head>
-  <body>
-    <section class="following--section" id="following">
-      <div>
-        <h1>People that you Follow:</h1>
-        <hr>
-        {{!-- render following users and the top three posts --}}
-        {{#if follower_users.length}}
-        {{#each userPostsWithLikes as |userPosts|}}
-        <div class="following--user-container">
-          <div class="following--user">
-            {{!-- Username and profile picture of user that you follow --}}
-            <p>Username: {{userPosts.user.username}}</p>
-            <img src="{{userPosts.user.profile_picture}}" alt="{{userPosts.user.username}}'s Profile picture">
-            <p>Top 3 Posts:</p>
-            <div class="top-posts">
-              {{!-- render top three posts based on their url --}}
-              {{#each userPosts.posts}}
-              <img src="{{this.image_url}}" alt="Post Picture">
-              {{/each}}
-            </div>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/global.css">
+  <link rel="stylesheet" href="/css/following-page.css">
+  <title>Following Page</title>
+</head>
+<body>
+  <div id="body-container">
+    <h1>People You Follow:</h1>
+    <hr>
+    <div class="following-container">
+      {{#if follower_users.length}}
+        {{#each follower_users}}
+          <div class="following-user" onclick="document.location = '/user/{{ username }}'">
+            {{#if (regexMatch "http" image_url)}}
+              {{!-- External URL image --}}
+              <img src="{{ profile_picture }}" alt="{{username}}'s Profile picture">
+            {{else}}
+              {{!-- Local image file in posts folder --}}
+              <img src="/assets/images/pfps/{{ profile_picture }}" alt="{{username}}'s Profile picture">
+            {{/if}}
+            <h2 id="username">{{username}}</h2>
           </div>
-        </div>
         {{/each}}
-        {{else}}
+      {{else}}
         <p>You are not following anybody yet.</p>
-        {{/if}}
-      </div>
-    </section>
+      {{/if}}
+    </div>
+  </div>
   </body>
 </html>

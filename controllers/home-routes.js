@@ -145,7 +145,31 @@ router.get("/rankings", withAuth, async (req, res) => {
 });
 
 router.get("/followingpage", withAuth, async (req, res) => {
-  res.render("followingpage");
-})
+  try {
+    const loggedInUserId = req.session.user_id;
+
+    // Find all the user IDs the current user follows in the Follower_User table
+    const followingUsers = await Follower_User.findAll({
+      where: { follower_id: loggedInUserId },
+      attributes: ["user_id"],
+    });
+
+    const followedUserIds = followingUsers.map((user) => user.user_id);
+
+    // Fetch the user details based on the IDs of users being followed
+    const followedUsers = await User.findAll({
+      where: { id: followedUserIds },
+    });
+
+    // Pass the data to the followingpage.handlebars template
+    res.render("followingpage", {
+      follower_users: followedUsers.map((user) => user.get({ plain: true })),
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
 
 module.exports = router;
