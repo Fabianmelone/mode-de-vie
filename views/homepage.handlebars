@@ -69,13 +69,11 @@
 
       <div id="comment-box-container">
         <textarea id="comment-box" placeholder="Add a comment..." maxlength="250"
-          onkeyup="textAreaAdjust(event, this)"  ></textarea>
+          onkeyup="textAreaAdjust(event, this)"></textarea>
         <button id="comment-box-send-button" data-id="{{id}}">
           <img src="./assets/icons/paper_plane.svg" onload="ImgToSvg(this)" alt="Commnet box send button">
         </button>
       </div>
-
-
 
      {{!-- render comments --}}
       <div id="comments">
@@ -122,10 +120,10 @@
           <div class="featured-post empty">
             {{#if (regexMatch "http" image_url)}}
               {{!-- External URL image --}}
-              <img class="featured-post--image" src="{{topPost.image_url}}" data-id="{{topPost.id}}" alt="Featured post image">
+              <img onclick="document.location = '/posts/{{ topPost.id }}'" class="featured-post--image" src="{{topPost.image_url}}" data-id="{{topPost.id}}" alt="Featured post image">
             {{else}}
               {{!-- Local image file in posts folder --}}
-              <img class="featured-post--image" src="./assets/images/posts/{{topPost.image_url}}" data-id="{{topPost.id}}" alt="Featured post image">
+              <img onclick="document.location = '/posts/{{ topPost.id }}'" class="featured-post--image" src="./assets/images/posts/{{topPost.image_url}}" data-id="{{topPost.id}}" alt="Featured post image">
             {{/if}}
           </div>
         {{/compare}}

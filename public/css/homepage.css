@@ -179,15 +179,23 @@
 }
 #home-container #comments-container #comment-box-container textarea {
   width: 100%;
-  height: 50px;
+  height: 55px;
   max-height: 125px;
   padding: 1rem;
   resize: none;
+  background-color: var(--background-color);
+  border: none;
+  outline: none;
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: left;
   color: var(--text-color);
   font-family: "Libre Franklin";
   font-size: 1rem;
   overflow: hidden;
-  filter: brightness(0.9);
+  filter: brightness(0.95);
 }
 #home-container #comments-container #comment-box-container #comment-box-send-button {
   height: 95%;

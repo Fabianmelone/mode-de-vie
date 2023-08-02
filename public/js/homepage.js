@@ -224,7 +224,8 @@ window.onload = () => {
 
         if (response.ok) {
           // Post created successfully, you can redirect or display a message
-          console.log("Post created successfully");
+          alert("Posted! 📸");
+          document.location = `/`;
         } else {
           // Handle error response
           console.error("Failed to create post");

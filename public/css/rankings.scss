@@ -56,7 +56,6 @@
         position: relative;
 
         border-radius: 0.5rem;
-        overflow: hidden;
         cursor: pointer;
         transition: border 100ms ease;
 
@@ -64,6 +63,7 @@
           height: 100%;
           width: 100%;
           object-fit: cover;
+          border-radius: inherit;
         }
 
         .counter {

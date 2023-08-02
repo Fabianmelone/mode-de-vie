@@ -3,6 +3,7 @@
 
 <head>
     <link rel="stylesheet" type="text/css" href="/css/global.css">
+    <link rel="stylesheet" type="text/css" href="/css/homepage.css">
     <link rel="stylesheet" type="text/css" href="/css/singlepage.css">
     <script src="/js/homepage.js"></script>
     <title>homepage</title>
@@ -41,6 +42,11 @@
                     <img src="/assets/icons/bookmark.svg" onload="ImgToSvg(this)" alt="Likes counter icon">
                 </div>
                 <h1 id="saves-counter">{{formatCount saves}}</h1>
+            </div>
+            <div id="interaction-buttons">
+              <button class="btn" id="like" type="button" data-like="{{likes}}" data-id="{{id}}"
+                data-click="not-liked">like</button>
+              <button class="btn" id="save" type="button" data-id="{{id}}" data-saved="false">save</button>
             </div>
         </header>
 
@@ -91,12 +97,6 @@
                 <!-- if no comment written display this message -->
                 <p>Be the first one to comment on this post!</p>
                 {{/if}}
-            </div>
-            <div id="buttons-container" class="child-div position-absolute bottom-0 pb-5">
-                <button class="btn btn-outline-danger" id="like" type="button" data-like="{{likes}}" data-id="{{id}}"
-                    data-click="not-liked">like</button>
-                <button class="btn btn-outline-danger" id="save" type="button" data-id="{{id}}"
-                    data-saved="false">save</button>
             </div>
         </div>
 </body>
