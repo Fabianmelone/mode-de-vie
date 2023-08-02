@@ -16,7 +16,7 @@ const createNewComment = async (event) => {
         });
         alert(response);
         if(response.ok) {
-            window.location.replace(`/`);
+            window.location.replace(`/posts/${post_id}`);
         } else {
             alert(response.statusText);
         }
