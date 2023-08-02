@@ -323,6 +323,9 @@ $wh-comment--user-pfp: 3.5rem;
       position: absolute;
       right: 0.25rem;
 
+      #like { background-color: var(--like-color); }
+      #save { background-color: var(--save-color); }
+
       button {
         height: 100%;
         width: fit-content;

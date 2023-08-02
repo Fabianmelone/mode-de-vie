@@ -60,6 +60,7 @@ router.post("/save", async (req, res) => {
   }
 });
 
+<<<<<<< HEAD
 // Follower a user by username
 router.post("/follow/:username", async (req, res) => {
   const { username } = req.params;
@@ -75,6 +76,34 @@ router.post("/follow/:username", async (req, res) => {
     // if not found error
     if (!userToFollow || !follower) {
       return res.status(404).json({ error: "User not found" });
+=======
+router.post('/save', async (req, res) => {
+    try {
+        const userId = req.session.user_id;
+        const post_id = req.body.post_id;
+        var isSaved = req.body.isSaved;
+        console.log(isSaved);
+        
+        const userData = await User.findByPk(userId);
+        const postData = await Post.findByPk(post_id);
+        try {
+            if (isSaved === true) {
+                await userData.removeSavedPosts(postData); // Remove post if it's already saved
+            } else {
+                await userData.addSavedPosts(postData); // Save post if it's not already saved
+            }
+        
+            var savedPosts = await userData.getSavedPosts({});
+        
+            const savedPostsPlain = savedPosts.map(post => post.get({ plain: true }));
+        
+            res.json(savedPostsPlain);
+        } catch (error) {
+            res.status(500).json(error);
+        }
+    } catch (error) {
+        res.status(500).json(error);
+>>>>>>> 9dd40ac25a1eb3d5bcbdf5b87eecffd7ec298c09
     }
 
     // Check if follow relationship already exists
