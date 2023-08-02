@@ -7,7 +7,6 @@ const withAuth = require("../../utils/auth");
 // Route to user profile
 router.get("/:username", withAuth, async (req, res) => {
   try {
-    console.log('hi');
     // Get the username from the request params
     const username = req.params.username;
 
@@ -58,7 +57,6 @@ router.get("/", withAuth, async (req, res) => {
     const userprofileData = await User.findByPk(req.session.user_id);
     const userProfile = userprofileData.get({plain:true});
 
-    console.log(userProfile);
     res.render("localuser", {
       posts: user.posts,
       user: userProfile,
