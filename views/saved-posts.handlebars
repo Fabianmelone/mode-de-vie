@@ -19,19 +19,19 @@
         <div class="saved--post">
             {{#if (regexMatch "http" image_url)}}
             <!-- External URL image -->
-            <img src="{{ image_url }}" alt="">
+            <img src="{{ image_url }}" alt="" class="post">
             {{else}}
             <!-- Local image file in posts folder -->
-            <img src="/assets/images/posts/{{ image_url }}" alt="">
+            <img src="/assets/images/posts/{{ image_url }}" alt="" class="post">
             {{/if}}
             <h1 class="counter">
-                <img src="/assets/icons/eye.svg" onload="ImgToSvg(this)" alt="views icon">
+                <img src="/assets/icons/eye.svg" onload="ImgToSvg(this)" alt="views icon" >
                 {{ formatCount views }}
             </h1>
         </div>
         {{/each}}
     </div>
-
+<script src="/js/rankings.js"></script>
 </body>
 
 </html>
