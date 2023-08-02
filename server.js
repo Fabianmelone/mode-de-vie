@@ -13,7 +13,7 @@ const SequelizeStore = require('connect-session-sequelize')(session.Store);     
 
 // Create an instance of Express
 const app = express();
-const port = process.env.PORT|| 3000; // Set the port you want the server to listen on
+const port = process.env.PORT|| 3001; // Set the port you want the server to listen on
 
 const sess = {
   secret: 'Super secret secret',

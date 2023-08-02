@@ -12,7 +12,7 @@ router.get("/", withAuth, async (req, res) => {
       include: [
         {
           model: User,
-          attributes: ['username'],
+          attributes: ['username', 'profile_picture'],
         },
         {
             model: Comment,
@@ -20,7 +20,7 @@ router.get("/", withAuth, async (req, res) => {
                 {
                     model: User,
                     as: 'user',
-                    attributes: ['username'],
+                    attributes: ['username', 'profile_picture'],
                 },
             ],
         },
@@ -36,7 +36,7 @@ router.get("/", withAuth, async (req, res) => {
       include: [
         {
           model: User,
-          attributes: ['username'],
+          attributes: ['username', 'profile_picture'],
         },
 
       ],

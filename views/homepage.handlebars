@@ -48,7 +48,7 @@
     <div id="comments-container">
       <div id="post--description">
         <div id="post--author-pfp-container">
-          <img id="post--author-pfp" src="./assets/images/pfps/default_pfp_4.png" alt="User Pfp" />
+          <img id="post--author-pfp" src="/assets/images/pfps/{{user.profile_picture}}" alt="User Pfp" />
         </div>
         <div id="post--author-content">
           <h1 class="author-username">{{user.username}}</h1>
@@ -78,7 +78,7 @@
            {{!-- render each existing comment --}}
           <div class="comment--user-pfp-container">
             {{!-- render profile picture --}}
-            <img class="comment--user-pfp profile" data-element="profile" data-name="{{user.username}}" src="{{user.profile_picture}}" alt="{{user.username}} Pfp" />
+            <img class="comment--user-pfp profile" data-element="profile" data-name="{{user.username}}" src="/assets/images/pfps/{{user.profile_picture}}" alt="{{user.username}} Pfp" />
           </div>
           <div class="comment--content">
             {{!-- render username --}}
