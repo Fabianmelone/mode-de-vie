@@ -68,11 +68,6 @@ router.get("/", withAuth, async (req, res) => {
   }
 });
 
-
-
-
-
-
 // Route to display page with users that current user is following and also the top three posts of the user being followed
 router.get("/followingPage", async (req, res) => {
   try {

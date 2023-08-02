@@ -7,20 +7,6 @@
   grid-template-columns: 45rem 1fr;
   gap: 1rem 1.25rem;
 }
-#home-container #post-container {
-  grid-row: 1/span 2;
-  grid-column: 1;
-  background-color: var(--text-color);
-  border-radius: 0.75rem;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-#home-container #post-container #post--image {
-  width: 100%;
-  aspect-ratio: 1;
-}
 #home-container #comments-container {
   min-width: 20rem;
   padding: 1rem 1.125rem;

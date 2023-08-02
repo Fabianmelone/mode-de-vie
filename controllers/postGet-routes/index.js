@@ -4,52 +4,6 @@ const { Post, User, Comment } = require("../../models");
 const withAuth = require("../../utils/auth");
 
 // posts/
-router.get("/", withAuth, async (req, res) => {
-  try {
-    const randomPost = await Post.findOne({
-      order: sequelize.literal("rand()"),
-      include: [
-        {
-          model: User,
-          attributes: ["username"],
-        },
-        {
-          model: Comment,
-          include: [
-            {
-              model: User,
-              as: "user",
-              attributes: ["username"],
-            },
-          ],
-        },
-      ],
-    });
-
-    if (randomPost) {
-      const post = randomPost.get({ plain: true });
-      res.render("homepage", {
-        ...post,
-        loggedIn: req.session.loggedIn,
-      });
-    } else {
-      res.status(404).json({ message: "No posts found" });
-    }
-    try {
-      const userId = req.session.userID;
-      const userData = await User.findByPk(userId);
-      var savedPosts = await userData.getSavedPosts({});
-      const savedPostsPlain = savedPosts.map((post) =>
-        post.get({ plain: true })
-      );
-      res.json(savedPostsPlain);
-    } catch (error) {
-      res.status(500).json(error);
-    }
-  } catch (error) {
-    console.log(error);
-  }
-});
 
 router.get("/create", withAuth, async (req, res) => {
   res.render("create-post");

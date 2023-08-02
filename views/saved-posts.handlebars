@@ -1,20 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/global.css">
-    <link rel="stylesheet" href="/css/rankings.css">
-    <title>Document</title>
-</head>
-
-<body>
-
-
-    <h1>Saved posts</h1>
-    <hr>
-    <div class="saved--post-container">
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="/css/global.css">
+      <link rel="stylesheet" href="/css/saved-posts.css">
+      <title>Document</title>
+  </head>
+  <body>
+    <div id="body-container">
+      <h1>Saved posts</h1>
+      <h2>Your Personal Collection of Favorites</h2>
+      <hr>
+      <div class="saved--post-container">
         {{#each posts}}
         <div class="saved--post">
             {{#if (regexMatch "http" image_url)}}
@@ -24,14 +22,10 @@
             <!-- Local image file in posts folder -->
             <img src="/assets/images/posts/{{ image_url }}" alt="" data-id="{{id}}" class="post">
             {{/if}}
-            <h1 class="counter">
-                <img src="/assets/icons/eye.svg" onload="ImgToSvg(this)" data-id="{{id}}" alt="views icon" >
-                {{ formatCount views }}
-            </h1>
         </div>
         {{/each}}
+      </div>
     </div>
-<script src="/js/rankings.js"></script>
-</body>
-
+    <script src="/js/rankings.js"></script>
+  </body>
 </html>
