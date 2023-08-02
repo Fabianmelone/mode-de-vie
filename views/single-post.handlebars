@@ -3,17 +3,23 @@
 
 <head>
     <link rel="stylesheet" type="text/css" href="/css/global.css">
+    <link rel="stylesheet" type="text/css" href="/css/homepage.css">
     <link rel="stylesheet" type="text/css" href="/css/singlepage.css">
     <script src="/js/homepage.js"></script>
     <title>homepage</title>
 </head>
 
-
 <body>
     <div id="home-container">
         {{!-- Post --}}
         <div id="post-container">
-            <img id="post--image" src="/assets/images/posts/{{image_url}}" alt="Post image" />
+            {{#if (regexMatch "http" image_url)}}
+              {{!-- External URL image --}}
+              <img id="post--image" src="{{image_url}}" alt="Post image" />
+            {{else}}
+              {{!-- Local image file in posts folder --}}
+              <img id="post--image" src="/assets/images/posts/{{image_url}}" alt="Post image" />
+            {{/if}}
         </div>
 
         {{!-- Comments --}}
@@ -37,14 +43,12 @@
                 </div>
                 <h1 id="saves-counter">{{formatCount saves}}</h1>
             </div>
+            <div id="interaction-buttons">
+              <button class="btn" id="like" type="button" data-like="{{likes}}" data-id="{{id}}"
+                data-click="not-liked">like</button>
+              <button class="btn" id="save" type="button" data-id="{{id}}" data-saved="false">save</button>
+            </div>
         </header>
-
-
-
-
-
-
-
 
         <div id="comments-container">
 
@@ -68,8 +72,6 @@
                     <img src="/assets/icons/paper_plane.svg" onload="ImgToSvg(this)" alt="Commnet box send button">
                 </button>
             </div>
-
-
 
             {{!-- render comments --}}
             <div id="comments">
@@ -96,18 +98,7 @@
                 <p>Be the first one to comment on this post!</p>
                 {{/if}}
             </div>
-
-
-
-            <div id="buttons-container" class="child-div position-absolute bottom-0 pb-5">
-                <button class="btn btn-outline-danger" id="like" type="button" data-like="{{likes}}" data-id="{{id}}"
-                    data-click="not-liked">like</button>
-                <button class="btn btn-outline-danger" id="save" type="button" data-id="{{id}}"
-                    data-saved="false">save</button>
-            </div>
-
         </div>
-
 </body>
 
 <script src="/js/homepage.js"></script>

@@ -10,437 +10,385 @@ $wh-post--author-pfp: 4.5rem;
 $wh-comment--user-pfp: 3.5rem;
 
 @mixin FC {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.btn{
-
+.btn {
 }
 
 #home-container {
-    width: 100%;
-    height: 100%;
+  width: 100%;
+  height: 100%;
 
-    padding: 1.5rem 3rem 1.5rem 1.5rem;
+  padding: 1.5rem 3rem 1.5rem 1.5rem;
 
+  display: grid;
 
-    display: grid;
+  grid-template-rows: $header-size auto;
+  grid-template-columns: $post-size 1fr;
+  gap: 1rem 1.25rem;
 
-    grid-template-rows: $header-size auto;
-    grid-template-columns: $post-size 1fr $featured-size $rank-size;
-    gap: 1rem 1.25rem;
+  #post-container {
+    grid-row: 1 / span 2;
+    grid-column: 1;
 
+    background-color: var(--text-color);
+    border-radius: 0.75rem;
 
+    overflow: hidden;
 
+    @include FC;
 
+    #post--image {
+      width: 100%;
+      aspect-ratio: 1;
+    }
+  }
 
-    #post-container {
-        grid-row: 1 / span 2;
-        grid-column: 1;
+  // Comments
+  #comments-container {
+    min-width: 20rem;
+    padding: 1rem 1.125rem;
 
-        background-color: var(--text-color);
-        border-radius: 0.75rem;
+    position: relative;
 
-        overflow: hidden;
+    grid-row: 2;
+    grid-column: 2;
+    gap: 1rem 0;
 
-        @include FC;
+    background-color: var(--background-color);
+    border-radius: 0.75rem;
 
-        #post--image {
-            width: 100%;
-            aspect-ratio: 1;
-        }
+    display: flex;
+    flex-flow: column;
+    flex-direction: column;
+    align-items: center;
+
+    overflow: hidden;
+
+    filter: brightness(0.95);
+
+    &::after {
+      content: "";
+
+      width: 105%;
+      height: 6.25rem;
+
+      position: absolute;
+      bottom: -6.25rem;
+
+      background: transparent;
+      box-shadow: 0 -35px 20px rgba(255, 255, 255, 1);
+      filter: brightness(0.95);
+      clip-path: inset(-6.25rem 0px 0px 0px);
     }
 
-    // Comments
-    #comments-container {
-        min-width: 20rem;
-        padding: 1rem 1.125rem;
+    #post--description {
+      width: 100%;
+      height: fit-content;
+      padding: 1rem;
+      gap: 0 1.25rem;
 
+      background-color: inherit;
+      border-radius: 0.5rem;
+
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: flex-start;
+
+      color: var(--text-color);
+
+      filter: brightness(0.95);
+
+      // Profile Picture
+      #post--author-pfp-container {
         position: relative;
 
-        grid-row: 2;
-        grid-column: 2;
-        gap: 1rem 0;
+        width: $wh-post--author-pfp;
+        aspect-ratio: 1;
+        border-radius: 100%;
 
-        background-color: var(--background-color);
-        border-radius: 0.75rem;
+        align-self: flex-start;
+
+        filter: brightness(1.05);
+
+        #post--author-pfp {
+          width: $wh-post--author-pfp;
+          height: $wh-post--author-pfp;
+          aspect-ratio: 1;
+
+          border-radius: 100%;
+        }
+      }
+
+      // Description Content
+      #post--author-content {
+        width: 100%;
+
+        overflow: hidden;
+        white-space: normal;
 
         display: flex;
-        flex-flow: column;
         flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        gap: 0.5rem 0;
+
+        h1,
+        p {
+          margin: 0;
+        }
+
+        h1 {
+          font-size: 1.625rem;
+          color: var(--primary);
+        }
+
+        h2 {
+          font-size: 1rem;
+        }
+
+        p {
+          font-size: 0.9rem;
+          font-family: "Libre Franklin";
+          line-height: 1.75rem;
+          letter-spacing: 0.1rem;
+        }
+      }
+    }
+
+    #comments {
+      width: 100%;
+      height: 1px;
+
+      overflow-y: scroll;
+
+      @include FC;
+      flex: 1 1 auto;
+      flex-direction: column;
+      justify-content: flex-start;
+
+      .comment {
+        width: 100%;
+        height: fit-content;
+        padding: 0.5rem 1rem;
+        gap: 0 0.75rem;
+
+        background-color: inherit;
+        border-radius: 0.5rem;
+
+        display: flex;
+        flex-direction: row;
         align-items: center;
+        justify-content: flex-start;
+
+        color: var(--text-color);
+
+        // User comment, User Picture
+        .comment--user-pfp-container {
+          position: relative;
+
+          width: $wh-comment--user-pfp;
+          aspect-ratio: 1;
+          border-radius: 100%;
+
+          filter: brightness(1.05);
+
+          .comment--user-pfp {
+            width: $wh-comment--user-pfp;
+            height: $wh-comment--user-pfp;
+            aspect-ratio: 1;
+
+            border: solid var(--primary) 0.125rem;
+            border-radius: 100%;
+          }
+        }
+
+        // Comment Content
+        .comment--content {
+          width: fit-content;
+
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          justify-content: center;
+          gap: 0.25rem 0;
+
+          h1,
+          p {
+            margin: 0;
+          }
+
+          h1 {
+            font-size: 1rem;
+          }
+
+          p {
+            font-size: 0.8rem;
+            font-family: "Libre Franklin";
+            line-height: 1.25rem;
+            letter-spacing: 0.1rem;
+          }
+        }
+      }
+    }
+
+    #comment-box-container {
+      width: 100%;
+      height: fit-content;
+
+      @include FC;
+      justify-content: flex-start;
+      gap: 0 0.5rem;
+
+      outline: var(--accent);
+      border: none;
+      border-radius: inherit;
+
+      textarea {
+        width: 100%;
+        height: 50px;
+        max-height: 125px;
+        padding: 1rem;
+
+        resize: none;
+
+        color: var(--text-color);
+        font-family: "Libre Franklin";
+        font-size: 1rem;
 
         overflow: hidden;
 
-        filter: brightness(0.95);
+        filter: brightness(0.9);
+      }
 
-        &::after {
-            content: "";
+      #comment-box-send-button {
+        height: 95%;
+        width: 3.5rem;
 
-            width: 105%;
-            height: 6.25rem;
+        padding: 0;
 
-            position: absolute;
-            bottom: -6.25rem;
-
-            background: transparent;
-            box-shadow: 0 -35px 20px rgba(255, 255, 255, 1);
-            filter: brightness(0.95);
-            clip-path: inset(-6.25rem 0px 0px 0px);
-        }
-
-        #post--description {
-            width: 100%;
-            height: fit-content;
-            padding: 1rem;
-            gap: 0 1.25rem;
-
-            background-color: inherit;
-            border-radius: 0.5rem;
-
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            justify-content: flex-start;
-
-            color: var(--text-color);
-
-            filter: brightness(0.95);
-
-            // Profile Picture
-            #post--author-pfp-container {
-                position: relative;
-
-                width: $wh-post--author-pfp;
-                aspect-ratio: 1;
-                border-radius: 100%;
-
-                align-self: flex-start;
-
-                filter: brightness(1.05);
-
-                #post--author-pfp {
-                    width: $wh-post--author-pfp;
-                    height: $wh-post--author-pfp;
-                    aspect-ratio: 1;
-
-                    border-radius: 100%;
-                }
-            }
-
-            // Description Content
-            #post--author-content {
-                width: 100%;
-
-                overflow: hidden;
-                white-space: normal;
-
-                display: flex;
-                flex-direction: column;
-                align-items: flex-start;
-                justify-content: center;
-                gap: 0.5rem 0;
-
-
-                h1,
-                p {
-                    margin: 0;
-                }
-
-                h1 {
-                    font-size: 1.625rem;
-                    color: var(--primary);
-                }
-
-                h2 {
-                    font-size: 1rem;
-                }
-
-                p {
-                    font-size: 0.9rem;
-                    font-family: "Libre Franklin";
-                    line-height: 1.75rem;
-                    letter-spacing: 0.1rem;
-                }
-            }
-        }
-
-        #comments {
-            width: 100%;
-            height: 1px;
-
-            overflow-y: scroll;
-
-            @include FC;
-            flex: 1 1 auto;
-            flex-direction: column;
-            justify-content: flex-start;
-
-            .comment {
-                width: 100%;
-                height: fit-content;
-                padding: 0.5rem 1rem;
-                gap: 0 0.75rem;
-
-                background-color: inherit;
-                border-radius: 0.5rem;
-
-                display: flex;
-                flex-direction: row;
-                align-items: center;
-                justify-content: flex-start;
-
-                color: var(--text-color);
-
-                // User comment, User Picture
-                .comment--user-pfp-container {
-                    position: relative;
-
-                    width: $wh-comment--user-pfp;
-                    aspect-ratio: 1;
-                    border-radius: 100%;
-
-                    filter: brightness(1.05);
-
-                    .comment--user-pfp {
-                        width: $wh-comment--user-pfp;
-                        height: $wh-comment--user-pfp;
-                        aspect-ratio: 1;
-
-                        border: solid var(--primary) 0.125rem;
-                        border-radius: 100%;
-                    }
-                }
-
-                // Comment Content
-                .comment--content {
-                    width: fit-content;
-
-                    display: flex;
-                    flex-direction: column;
-                    align-items: flex-start;
-                    justify-content: center;
-                    gap: 0.25rem 0;
-
-                    h1,
-                    p {
-                        margin: 0;
-                    }
-
-                    h1 {
-                        font-size: 1rem;
-                    }
-
-                    p {
-                        font-size: 0.8rem;
-                        font-family: "Libre Franklin";
-                        line-height: 1.25rem;
-                        letter-spacing: 0.1rem;
-                    }
-                }
-            }
-        }
-
-        #comment-box-container {
-            width: 100%;
-            height: fit-content;
-
-            @include FC;
-            justify-content: flex-start;
-            gap: 0 0.5rem;
-
-            outline: var(--accent);
-            border: none;
-            border-radius: inherit;
-
-            textarea {
-                width: 100%;
-                height: 50px;
-                max-height: 125px;
-                padding: 1rem;
-
-                resize: none;
-
-                color: var(--text-color);
-                font-family: "Libre Franklin";
-                font-size: 1rem;
-
-                overflow: hidden;
-
-                filter: brightness(0.9);
-            }
-
-            #comment-box-send-button {
-                height: 95%;
-                width: 3.5rem;
-
-                padding: 0;
-
-                border: none;
-                border-radius: 0.5rem;
-
-                @include FC;
-
-                svg {
-                    width: 1.25rem;
-                    aspect-ratio: 1;
-
-                    position: relative;
-                    right: 0.1rem;
-
-                    path {
-                        fill: var(--accent);
-                        transition: fill 150ms ease;
-                    }
-                }
-
-                &:hover {
-                    svg>path {
-                        fill: var(--primary);
-                        transition: fill 150ms ease;
-                    }
-                }
-            }
-        }
-    }
-
-    #comments--header {
-        grid-row: 1;
-        grid-column: 2;
-
-        border-bottom: solid var(--accent) 4px;
+        border: none;
+        border-radius: 0.5rem;
 
         @include FC;
-        flex-direction: row;
-        justify-content: flex-start;
 
-        padding: 0 0.5rem 1rem 0.5rem;
-        gap: 0 2rem;
+        svg {
+          width: 1.25rem;
+          aspect-ratio: 1;
 
-        div {
-            height: 100%;
-            display: flex;
+          position: relative;
+          right: 0.1rem;
 
-            flex-direction: row;
-            align-items: center;
-            justify-content: center;
-            gap: 0 0.5rem;
-
-            .icon-container>svg {
-                width: 1.5rem;
-                height: 1.5rem;
-            }
-
-            h1 {
-                margin: 0;
-                font-size: 1.25rem;
-                font-weight: 700;
-            }
+          path {
+            fill: var(--accent);
+            transition: fill 150ms ease;
+          }
         }
+
+        &:hover {
+          svg > path {
+            fill: var(--primary);
+            transition: fill 150ms ease;
+          }
+        }
+      }
     }
-}
+  }
 
-// Posts and Ranking no longer fit in view
-@media screen and (max-width: 1650px) {
-    #home-container {
-        grid-template-rows: $header-size 1fr $featured-size $rank-size;
-        grid-template-columns: $post-size 1fr;
+  #comments--header {
+    grid-row: 1;
+    grid-column: 2;
 
-        // Hide un-used headers
-        #posts--header,
-        #rankings--header {
-            display: none;
-        }
+    border-bottom: solid var(--accent) 4px;
+    position: relative;
 
-        #post-container {
-            grid-row: 1 / span 4;
-            grid-column: 1;
-        }
+    @include FC;
+    flex-direction: row;
+    justify-content: flex-start;
 
-        // Comments
-        #comments-container,
-        #comments-header {
-            min-width: 20rem;
-            grid-row: 2;
-            grid-column: 2;
+    padding: 0 0.5rem 1rem 0.5rem;
+    gap: 0 2rem;
 
-            #comments {
-                max-height: 16em;
-            }
-        }
+    div {
+      height: 100%;
+      display: flex;
 
-        #posts-container,
-        #rankings-container {
-            height: calc(fit-content + 1rem);
-            max-width: 100%;
-            grid-row: 3;
-            grid-column: 2;
-            gap: 0 1rem;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      gap: 0 0.5rem;
 
-            padding: 0 0.25rem;
+      .icon-container > svg {
+        width: 1.5rem;
+        height: 1.5rem;
+      }
 
-            overflow: scroll;
-            overflow-y: hidden;
-
-            flex-direction: row;
-
-            .featured-post {
-                height: calc(100% - 1rem);
-            }
-        }
-
-        #posts-container {
-            margin-top: 0.5rem;
-        }
-
-        #rankings-container {
-            grid-row: 4;
-            grid-column: 2;
-
-            gap: 0 0.5rem;
-
-            .featured-user {
-                height: calc(100% - 1rem);
-            }
-        }
+      h1 {
+        margin: 0;
+        font-size: 1.25rem;
+        font-weight: 700;
+      }
     }
+
+    #interaction-buttons {
+      height: fit-content;
+      width: fit-content;
+
+      position: absolute;
+      right: 0.25rem;
+
+      button {
+        height: 100%;
+        width: fit-content;
+        padding: 0.5rem 1rem;
+
+        @include FC;
+        text-align: center;
+
+        font-size: 0.75rem;
+        letter-spacing: 0.15rem;
+      }
+    }
+  }
 }
 
 // Can no longer fit Posts or Rankings
-@media screen and (max-width: 1410px) {
-    #home-container {
-        grid-template-rows: 1.25fr $header-size 0.75fr;
-        grid-template-columns: 1fr;
+@media screen and (max-width: 1500px) {
+  #home-container {
+    grid-template-rows: 1.25fr $header-size 0.75fr;
+    grid-template-columns: 1fr;
 
-        // Post
-        #post-container {
-            grid-row: 1;
-            grid-column: 1;
-        }
-
-        // Comments
-        #comments-container,
-        #comments--header {
-            grid-row: 3;
-            grid-column: 1;
-
-            #comments {
-                max-height: fit-content;
-            }
-        }
-
-        #comments--header {
-            display: flex;
-            grid-row: 2;
-        }
-
-        // Posts and Rankings
-        #posts-container,
-        #rankings-container,
-        #posts--header,
-        #rankings--header {
-            display: none;
-        }
+    // Post
+    #post-container {
+      grid-row: 1;
+      grid-column: 1;
     }
+
+    // Comments
+    #comments-container,
+    #comments--header {
+      grid-row: 3;
+      grid-column: 1;
+
+      #comments {
+        max-height: fit-content;
+      }
+    }
+
+    #comments--header {
+      display: flex;
+      grid-row: 2;
+    }
+
+    // Posts and Rankings
+    #posts-container,
+    #rankings-container,
+    #posts--header,
+    #rankings--header {
+      display: none;
+    }
+  }
 }

@@ -1,26 +1,75 @@
-const router = require('express').Router();
-const sequelize = require('../../config/connection');
-const { Post, User, Comment } = require('../../models');
-const withAuth = require('../../utils/auth');
+const router = require("express").Router();
+const sequelize = require("../../config/connection");
+const { Post, User, Comment } = require("../../models");
+const withAuth = require("../../utils/auth");
 
+// posts/
+router.get("/", withAuth, async (req, res) => {
+  try {
+    const randomPost = await Post.findOne({
+      order: sequelize.literal("rand()"),
+      include: [
+        {
+          model: User,
+          attributes: ["username"],
+        },
+        {
+          model: Comment,
+          include: [
+            {
+              model: User,
+              as: "user",
+              attributes: ["username"],
+            },
+          ],
+        },
+      ],
+    });
 
+    if (randomPost) {
+      const post = randomPost.get({ plain: true });
+      res.render("homepage", {
+        ...post,
+        loggedIn: req.session.loggedIn,
+      });
+    } else {
+      res.status(404).json({ message: "No posts found" });
+    }
+    try {
+      const userId = req.session.userID;
+      const userData = await User.findByPk(userId);
+      var savedPosts = await userData.getSavedPosts({});
+      const savedPostsPlain = savedPosts.map((post) =>
+        post.get({ plain: true })
+      );
+      res.json(savedPostsPlain);
+    } catch (error) {
+      res.status(500).json(error);
+    }
+  } catch (error) {
+    console.log(error);
+  }
+});
 
-// /api/post/
-router.get('/allposts', withAuth, async (req, res) => {   //gets all posts
+router.get("/create", withAuth, async (req, res) => {
+  res.render("create-post");
+})
+
+router.get("/allposts", withAuth, async (req, res) => {   //gets all posts
     try {
         const allPosts = await Post.findAll({
             include: [
                 {
                     model: User,
-                    attributes: ['username'],
+                    attributes: ["username"],
                 },
                 {
                     model: Comment,
                     include: [
                         {
                             model: User,
-                            as: 'user',
-                            attributes: ['username'],
+                            as: "user",
+                            attributes: ["username"],
                         },
                     ],
                 },
@@ -30,7 +79,7 @@ router.get('/allposts', withAuth, async (req, res) => {   //gets all posts
         //serialize to make the data easier to handle/reaD
         res.json(posts);
 
-        // res.render('homepage', {
+        // res.render("homepage", {
         //     posts,
         //     logged_in: req.session.logged_in
         // });
@@ -39,15 +88,14 @@ router.get('/allposts', withAuth, async (req, res) => {   //gets all posts
     }
 });
 
-
-router.get('/saved', withAuth, async (req, res) => {   //filter all posts from most likes
+router.get("/saved", withAuth, async (req, res) => {   //filter all posts from most likes
     try {
 
         const userId = req.session.user_id;
         const userData = await User.findByPk(userId);
         var savedPosts = await userData.getSavedPosts({});
         const savedPostsPlain = savedPosts.map(post => post.get({ plain: true }));
-        res.render('saved-posts', {
+        res.render("saved-posts", {
             posts: savedPostsPlain,
         });
     } catch (error) {
@@ -55,8 +103,7 @@ router.get('/saved', withAuth, async (req, res) => {   //filter all posts from m
     }
 });
 
-
-router.get('/userposts', withAuth, async (req, res) => {
+router.get("/userposts", withAuth, async (req, res) => {
     try {
         const userData = await User.findByPk(req.session.user_id, {
             include: [
@@ -65,8 +112,8 @@ router.get('/userposts', withAuth, async (req, res) => {
                     include: [
                         {
                             model: User,
-                            as: 'user',
-                            attributes: ['username']
+                            as: "user",
+                            attributes: ["username"]
                         }
                     ]
                 }
@@ -75,7 +122,7 @@ router.get('/userposts', withAuth, async (req, res) => {
 
         const users = userData.get({ plain: true });
 
-        res.render('homepage', {
+        res.render("homepage", {
             ...users,
             loggedIn: req.session.loggedIn
         });
@@ -84,67 +131,21 @@ router.get('/userposts', withAuth, async (req, res) => {
     }
 });
 
-router.get('/', withAuth, async (req, res) => {
-    try {
-        const randomPost = await Post.findOne({
-            order: sequelize.literal('rand()'),
-            include: [
-                {
-                    model: User,
-                    attributes: ['username'],
-                },
-                {
-                    model: Comment,
-                    include: [
-                        {
-                            model: User,
-                            as: 'user',
-                            attributes: ['username'],
-                        },
-                    ],
-                },
-            ],
-        });
-
-        if (randomPost) {
-            const post = randomPost.get({ plain: true });
-            res.render('homepage', {
-                ...post,
-                loggedIn: req.session.loggedIn
-            })
-        } else {
-            res.status(404).json({ message: 'No posts found' });
-        }
-        try {
-            const userId = req.session.userID;
-            const userData = await User.findByPk(userId);
-            var savedPosts = await userData.getSavedPosts({});
-            const savedPostsPlain = savedPosts.map(post => post.get({ plain: true }));
-            res.json(savedPostsPlain);
-        } catch (error) {
-            res.status(500).json(error);
-        }
-    } catch (error) {
-        console.log(error);
-    }
-});
-
-
-router.get('/:id', withAuth, async (req, res) => {
+router.get("/:id", withAuth, async (req, res) => {
     try {
         const post = await Post.findByPk(req.params.id, {
             include: [
                 {
                     model: User,
-                    attributes: ['username'],
+                    attributes: ["username"],
                 },
                 {
                     model: Comment,
                     include: [
                         {
                             model: User,
-                            as: 'user',
-                            attributes: ['username', 'profile_picture'],
+                            as: "user",
+                            attributes: ["username", "profile_picture"],
                         },
                     ],
                 },
@@ -152,17 +153,13 @@ router.get('/:id', withAuth, async (req, res) => {
         });
         const plainPost = post.get({ plain: true });
 
-        res.render('single-post', {
+        res.render("single-post", {
             ...plainPost
         })
     } catch (error) {
         res.status(500).json(error);
     }
 });
-
-
-
-
 
 module.exports = router;
 

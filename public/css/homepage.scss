@@ -40,7 +40,7 @@ $wh-comment--user-pfp: 3.5rem;
 
     #post--image {
       width: 100%;
-      aspect-ratio: 1;
+      aspect-ratio: fixed;
     }
   }
 
@@ -234,11 +234,19 @@ $wh-comment--user-pfp: 3.5rem;
 
       textarea {
         width: 100%;
-        height: 50px;
+        height: 55px;
         max-height: 125px;
         padding: 1rem;
 
         resize: none;
+
+        background-color: var(--background-color);
+        border: none;
+        outline: none;
+        border-radius: 0.5rem;
+
+        @include FC;
+        text-align: left;
 
         color: var(--text-color);
         font-family: "Libre Franklin";
@@ -246,7 +254,7 @@ $wh-comment--user-pfp: 3.5rem;
 
         overflow: hidden;
 
-        filter: brightness(0.9);
+        filter: brightness(0.95);
       }
 
       #comment-box-send-button {
@@ -292,6 +300,7 @@ $wh-comment--user-pfp: 3.5rem;
     flex-direction: row;
     justify-content: flex-start;
 
+    position: relative;
     padding: 0 0.5rem 1rem 0.5rem;
     gap: 0 2rem;
 
@@ -314,11 +323,32 @@ $wh-comment--user-pfp: 3.5rem;
         font-weight: 700;
       }
     }
+
+    #interaction-buttons {
+      height: fit-content;
+      width: fit-content;
+    
+      position: absolute;
+      right: 0.25rem;
+
+      button {
+        height: 100%;
+        width: fit-content;
+        padding: 0.5rem 1rem;
+
+        @include FC;
+        text-align: center;
+
+        font-size: 0.75rem;
+        letter-spacing: 0.15rem;
+      }
+    }
   }
 
   // ! DO NOT GO PAST 7 FEATURED POSTS
   // Posts
   #posts-container, #rankings-container {
+    height: calc(100% - 1rem);
     padding: 0 1rem;
 
     grid-row: 2;
@@ -327,28 +357,40 @@ $wh-comment--user-pfp: 3.5rem;
     @include FC;
     flex-direction: column;
     justify-content: space-between;
+    gap: 1rem 0;
 
     .featured-post, .featured-user {
       width: 110%;
       aspect-ratio: 1;
+      gap: 1rem 0;
 
       background-color: var(--background-color);
       border-radius: 0.5rem;
 
       position: relative;
 
+      @include FC;
+      overflow: hidden;
+
       filter: brightness(0.9);
+      cursor: pointer;
+      transition: border 100ms ease;
 
       img {
         width: 100%;
         height: 100%;
-        border-radius: inherit;
+        object-fit: cover;
+      }
+
+      &:hover {
+        border: solid 4px var(--primary);
+        transition: border 100ms ease;
       }
 
       &::before {
         content: "";
-        width: 100%;
-        height: 100%;
+        width: calc(100% + 0.5rem);
+        height: calc(100% + 0.5rem);
 
         padding: 0.25rem;
         
@@ -360,10 +402,12 @@ $wh-comment--user-pfp: 3.5rem;
 
         border-radius: inherit;
         z-index: -99;
-      }
+    }
 
       &.empty { &::before { display: none; } }
     }
+
+    .featured-user { border: solid 4px var(--accent); }
   }
   #posts--header, #rankings--header {
     grid-column: 3;
@@ -409,7 +453,7 @@ $wh-comment--user-pfp: 3.5rem;
     }
 
     // Comments
-    #comments-container, #comments-header {
+    #comments-container, #comments--header {
       min-width: 20rem;
       grid-row: 2;
       grid-column: 2;
@@ -420,13 +464,13 @@ $wh-comment--user-pfp: 3.5rem;
     }
 
     #posts-container, #rankings-container {
-      height: calc(fit-content + 1rem);
+      height: 100%;
       max-width: 100%;
       grid-row: 3;
       grid-column: 2;
-      gap: 0 1rem;
 
       padding: 0 0.25rem;
+      gap: 0 1rem;
 
       overflow: scroll;
       overflow-y: hidden;
@@ -450,6 +494,12 @@ $wh-comment--user-pfp: 3.5rem;
 
       .featured-user {
         height: calc(100% - 1rem);
+        aspect-ratio: fixed;
+
+        img {
+          width: calc(100% - 0.25rem);
+          height: calc(100% - 0.25rem);
+        }
       }
     }
   }
