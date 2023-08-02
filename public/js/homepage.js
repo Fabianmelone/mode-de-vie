@@ -201,4 +201,38 @@ window.onload = () => {
     });
   }
   // #endregion
+
+  // #region Post button logic
+  const createPostForm = document.getElementById("create-post-form");
+
+  if (createPostForm) {
+    createPostForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
+
+      const title = createPostForm.querySelector("#title").value;
+      const description = createPostForm.querySelector("#description").value;
+      const image_url = createPostForm.querySelector("#image_url").value;
+
+      try {
+        const response = await fetch("/api/posts/create", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ title, description, image_url }),
+        });
+
+        if (response.ok) {
+          // Post created successfully, you can redirect or display a message
+          console.log("Post created successfully");
+        } else {
+          // Handle error response
+          console.error("Failed to create post");
+        }
+      } catch (error) {
+        console.error("An error occurred:", error);
+      }
+    });
+  }
+  // #endregion
 };

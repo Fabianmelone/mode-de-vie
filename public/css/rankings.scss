@@ -50,12 +50,20 @@
       .rankings--post {
         flex: 0 0 12rem;
         aspect-ratio: 1;
-        
+
+        @include FC;
+
         position: relative;
 
+        border-radius: 0.5rem;
+        overflow: hidden;
+        cursor: pointer;
+        transition: border 100ms ease;
+
         img {
-          width: 110%;
-          height: 110%;
+          height: 100%;
+          width: 100%;
+          object-fit: cover;
         }
 
         .counter {
@@ -90,7 +98,12 @@
 
             z-index: -1;
           }
-        }        
+        }     
+        
+        &:hover {
+          border: solid 4px var(--primary);
+          transition: border 100ms ease;
+        }
       }
     }
   }

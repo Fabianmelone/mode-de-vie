@@ -215,13 +215,14 @@ body { overflow-y: scroll; }
       aspect-ratio: 1;
       
       border-radius: 1rem;
-      
+
+      @include FC;
       position: relative;
       overflow: hidden;
 
       img {
-        width: 100% !important;
         height: 100% !important;
+        aspect-ratio: fixed;
       }
     }
   }
