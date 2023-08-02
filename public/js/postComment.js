@@ -5,8 +5,6 @@ const createNewComment = async (event) => {
         console.log(post_id);
     if (message) {
 
-        alert(post_id);
-        alert(message);
         const response = await fetch('/api/posts/comments', {
             method: 'POST',
             body: JSON.stringify({ message, post_id }),
