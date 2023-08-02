@@ -237,3 +237,16 @@ window.onload = () => {
   }
   // #endregion
 };
+
+
+function searchUser (event) { 
+
+  const username = event.previousElementSibling.value.trim();
+
+  if(!username) {
+    alert("Sorry, but this user doesn't exist!");
+    return;
+  } else {
+    document.location = `/user/${username}`;
+  }
+}
