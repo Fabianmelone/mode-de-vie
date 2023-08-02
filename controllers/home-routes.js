@@ -27,7 +27,6 @@ router.get("/", withAuth, async (req, res) => {
       ],
       
     });
-    // console.log(randomPost);
 
     // top posts by views. most viewed post
     const alltopPosts = await Post.findAll({
@@ -46,15 +45,12 @@ router.get("/", withAuth, async (req, res) => {
     // cannot get top users because we don't have the follow implementation yet
     const allTopUsers = await User.findAll();
 
-    // console.log(topUsers);
-    
     if (randomPost && alltopPosts && allTopUsers) {
       const randPost = randomPost.get({ plain: true });
       const topPosts = alltopPosts.map(post => post.get({ plain: true }));
       const topUsers = allTopUsers.map(user => user.get({ plain: true }));
 
 
-      console.log(randPost);
       var filteredTopPosts = [];  //an empty array
       for( let a = 0; a < 8; a++) {
         filteredTopPosts[a] = topPosts[a];  //assigns the values of topPost's  a'th index to the filteredTopPosts array. This array will store only the top 7 posts by view counts.
@@ -65,14 +61,12 @@ router.get("/", withAuth, async (req, res) => {
         filteredTopUsers[a] = topUsers[a];  //assigns the values of topPost's  a'th index to the filteredTopPosts array. This array will store only the top 7 posts by view counts.
       }
 
-      // console.log(randPost)
       res.render('homepage', {
         ...randPost,
         filteredTopPosts,
         filteredTopUsers,
         loggedIn: req.session.loggedIn
       })
-      console.log(filteredTopUsers);
     } else {
       // For testing error has been disabled
       res.render("homepage")
@@ -139,9 +133,7 @@ router.get("/rankings", withAuth, async (req, res) => {
     });
 
     // Pass the data to the rankings.handlebars template
-    console.log(followingPosts);
-    console.log(mostLikedPosts)
-    console.log(mostViewedPosts)
+   
     res.render("rankings", {
       followingPosts: followingPosts.map((post) => post.get({ plain: true })),
       mostLikedPosts: mostLikedPosts.map((post) => post.get({ plain: true })),

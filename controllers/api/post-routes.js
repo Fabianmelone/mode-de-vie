@@ -19,7 +19,7 @@ router.put('/like', async (req, res) => {
 
         res.json({ likes: updatedPost.likes });
 
-        // console.log(req.body.isLiked);
+
 
     } catch (error) {
         res.status(500).json(error);
@@ -35,28 +35,22 @@ router.post('/save', async (req, res) => {
         
         const userData = await User.findByPk(userId);
         const postData = await Post.findByPk(post_id);
-        console.log(isSaved);
         try {
             if (isSaved === true) {
-                console.log(true);
                 await userData.removeSavedPosts(postData); // Remove post if it's already saved
             } else {
-                console.log(false);
                 await userData.addSavedPosts(postData); // Save post if it's not already saved
             }
         
             var savedPosts = await userData.getSavedPosts({});
-            // console.log(savedPosts);
         
             const savedPostsPlain = savedPosts.map(post => post.get({ plain: true }));
         
-            console.log(savedPostsPlain);
             res.json(savedPostsPlain);
         } catch (error) {
             res.status(500).json(error);
         }
     } catch (error) {
-        console.log(error); // log the error
         res.status(500).json(error);
     }
 });
@@ -110,17 +104,14 @@ router.post('/follow/:username', async (req, res) => {
 router.post('/comments', async (req, res) => {
     try {
         const message = req.body.message;
-        // console.log(typeof message);
         const newComment = await Comment.create({
             userID: req.session.userID,
             message: message,
             user_id: req.session.user_id,
             post_id: req.body.post_id
         });
-        console.log(newComment);
         res.status(200).json(newComment);
     } catch (err) {
-        console.log(err);
         res.status(400).json(err);
     }
 });

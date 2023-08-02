@@ -7,7 +7,6 @@ document.body.addEventListener('click', async (event)=> {
   
     if(target.classList.contains('post')) {
       const postID = target.getAttribute('data-id');
-      alert(postID)
       const response = await fetch(`/user/${postID}`, {
         method: 'GET',
       });
