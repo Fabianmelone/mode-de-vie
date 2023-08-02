@@ -1,23 +1,22 @@
 <html>
   <head>
-    <link rel="stylesheet" type="text/css" href="./css/global.css" />
-    <link rel="stylesheet" type="text/css" href="./css/create-post.css" />
+    <link rel="stylesheet" type="text/css" href="/css/global.css" />
+    <link rel="stylesheet" type="text/css" href="/css/create-post.css" />
     <title>Create Post</title>
   </head>
   <body>
     <div id="create-post-container">
       <h1>Create a New Post</h1>
+      <h2>Share Your Passion & Unleash Your Creativity!</h2>
+      <hr>
       <form id="create-post-form">
           <label for="title">Title</label>
-          <input type="text" id="title" name="title" required>
-          <hr>
+          <input placeholder="Funny cats memes" type="text" id="title" name="title">
           <label for="description">Description</label>
-          <input type="text" id="description" name="description" required>
-          <hr>
+          <input placeholder="Craziest cat in the world" type="text" id="description" name="description">
           <label for="image_url">Image URL</label>
-          <input type="text" id="image_url" name="image_url" required>
-          <hr>
-          <button type="submit" class="btn btn-primary">Post</button>
+          <input placeholder="https://i.imgur.com/hjuNAW4.jpeg" type="text" id="image_url" name="image_url">
+          <button type="submit" class="btn-cta">Post</button>
       </form>
     </div>
   </body>
