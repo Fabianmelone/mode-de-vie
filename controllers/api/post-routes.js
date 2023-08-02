@@ -30,8 +30,6 @@ router.post('/save', async (req, res) => {
     try {
         const userId = req.session.user_id;
         const post_id = req.body.post_id;
-  
-
         var isSaved = req.body.isSaved;
         console.log(isSaved);
         
