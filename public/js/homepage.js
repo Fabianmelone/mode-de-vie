@@ -25,33 +25,7 @@ function textAreaAdjust(e, element) {
   element.style.height = 25 + element.scrollHeight + "px";
 }
 
-// Loads user data
-function loadUserData() {
-  const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
-
-
-  // Load Username
-  document.querySelectorAll(".username").forEach((element) => {
-    if (element.textContent) {
-      element.textContent = loggedInUser.username;
-    }
-  });
-
-  // Load Following
-  document.querySelectorAll(".following-counter").forEach((element) => {
-    if (element.textContent) {
-      element.textContent = loggedInUser.following;
-    }
-  });
-
-  // Load Followers
-  document.querySelectorAll(".followers-counter").forEach((element) => {
-    if (element.textContent) {
-      element.textContent = loggedInUser.followers;
-    }
-  });
-}
-
+// Like and Save button logic
 if (document.querySelector("#like") && document.querySelector("#save")) {
   // not yet done!! we need to click once to add a like, and click again to not like
   document.querySelector("#like").addEventListener("click", async (event) => {
@@ -72,7 +46,7 @@ if (document.querySelector("#like") && document.querySelector("#save")) {
     }
 
     const response = await fetch("/api/posts/like", {
-      method: "PUT", // Change to 'PUT'
+      method: "PUT", // Change to "PUT"
       body: JSON.stringify({ likesNum, post_id, isLiked }), // Include postId in the request body
       headers: { "Content-Type": "application/json" },
     });
@@ -118,78 +92,60 @@ if (document.querySelector("#like") && document.querySelector("#save")) {
   });
 };
 
+// Page event listeners
+if (document.getElementById("home-container") && document.getElementById("post-container")) {
+  //event listener for the top users from the page
+  document.getElementById("home-container").addEventListener("click", async (event)=> {
+    target = event.target;
 
-
-//event listener for the top users from the page
-document.getElementById('home-container').addEventListener('click', async (event)=> {
-  target = event.target;
-
-  if(target.classList.contains('profile')) {
-    const username = target.getAttribute('data-name');
-    const response = await fetch(`/user/${username}`, {
-      method: 'GET',
-    });
-    if(response.ok){
-      window.location.replace(`/user/${username}`);
+    if(target.classList.contains("profile")) {
+      const username = target.getAttribute("data-name");
+      const response = await fetch(`/user/${username}`, {
+        method: "GET",
+      });
+      if(response.ok){
+        window.location.replace(`/user/${username}`);
+      }
     }
-  }
 
-});
+  });
+  // top posts
+  document.getElementById("posts-container").addEventListener("click", async (event) => {
+    const profile = event.target;
 
+    // Check if the clicked element is one of the top post pictures
+    if (profile.classList.contains("feature-post--image")) {
+      const postID = profile.getAttribute("data-id");
 
-// top posts
-document.getElementById("posts-container").addEventListener("click", async (event) => {
-  const profile = event.target;
+      const response = await fetch(`/posts/${postID}`, {
+        method: "GET",
+      });
 
-  // Check if the clicked element is one of the top post pictures
-  if (profile.classList.contains("feature-post--image")) {
-    const postID = profile.getAttribute('data-id');
-
-    const response = await fetch(`/posts/${postID}`, {
-      method: 'GET',
-    });
-
-    if (response.ok) {
-      window.location.replace(`/posts/${postID}`);
-    } else {
-      alert('Failed to edit blog');
+      if (response.ok) {
+        window.location.replace(`/posts/${postID}`);
+      } else {
+        alert("Failed to edit blog");
+      }
+      // Stop the event from bubbling 
+      event.stopImmediatePropagation();
     }
-    // Stop the event from bubbling 
-    event.stopImmediatePropagation();
-  }
-});
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  });
+}
 
 // Init
 window.onload = () => {
-  loadUserData();
-
-  const rankingsFollowing = document.getElementById("rankings--post-container-following");
-  if (rankingsFollowing.children.length >= 6) {
-    rankingsFollowing.style.justifyContent = "space-between";
-  } else {
-    rankingsFollowing.style.justifyContent = "flex-start";
+  // #region Rankings Page, if following post # > 6 change styling
+  if (document.getElementById("rankings--post-container-following")) {
+    const rankingsFollowing = document.getElementById("rankings--post-container-following");
+    if (rankingsFollowing.children.length >= 6) {
+      rankingsFollowing.style.justifyContent = "space-between";
+    } else {
+      rankingsFollowing.style.justifyContent = "flex-start";
+    }
   }
+  // #endregion
 
-  // Get the follow button element
+  // #region Get the follow button element
   const followButton = document.getElementById("follow-btn");
   const unfollowButton = document.getElementById("unfollow-btn");
 
@@ -244,4 +200,5 @@ window.onload = () => {
       }
     });
   }
+  // #endregion
 };
