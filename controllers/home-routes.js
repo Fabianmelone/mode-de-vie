@@ -72,7 +72,7 @@ router.get("/", withAuth, async (req, res) => {
         filteredTopUsers,
         loggedIn: req.session.loggedIn
       })
-      // console.log(randPost);
+      console.log(filteredTopUsers);
     } else {
       // For testing error has been disabled
       res.render("homepage")
@@ -139,6 +139,9 @@ router.get("/rankings", withAuth, async (req, res) => {
     });
 
     // Pass the data to the rankings.handlebars template
+    console.log(followingPosts);
+    console.log(mostLikedPosts)
+    console.log(mostViewedPosts)
     res.render("rankings", {
       followingPosts: followingPosts.map((post) => post.get({ plain: true })),
       mostLikedPosts: mostLikedPosts.map((post) => post.get({ plain: true })),

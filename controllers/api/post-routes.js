@@ -28,8 +28,6 @@ router.put('/like', async (req, res) => {
 
 router.post('/save', async (req, res) => {
     try {
-
-
         const userId = req.session.user_id;
         const post_id = req.body.post_id;
 

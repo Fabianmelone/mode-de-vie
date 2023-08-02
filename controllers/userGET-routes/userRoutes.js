@@ -7,6 +7,7 @@ const withAuth = require("../../utils/auth");
 // Route to user profile
 router.get("/:username", withAuth, async (req, res) => {
   try {
+    console.log('hi');
     // Get the username from the request params
     const username = req.params.username;
 
