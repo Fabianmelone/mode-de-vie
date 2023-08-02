@@ -184,7 +184,7 @@ router.get('/:id', withAuth, async (req, res) => {
                         {
                             model: User,
                             as: 'user',
-                            attributes: ['username'],
+                            attributes: ['username', 'profile_picture'],
                         },
                     ],
                 },
@@ -198,7 +198,8 @@ router.get('/:id', withAuth, async (req, res) => {
         })
 
 
-        // console.log(req.session);
+        console.log(plainPost);
+        console.log(plainPost.comments);
     } catch (error) {
         res.status(500).json(error);
     }

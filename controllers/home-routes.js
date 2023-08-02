@@ -139,6 +139,9 @@ router.get("/rankings", withAuth, async (req, res) => {
     });
 
     // Pass the data to the rankings.handlebars template
+    console.log(followingPosts);
+    console.log(mostLikedPosts)
+    console.log(mostViewedPosts)
     res.render("rankings", {
       followingPosts: followingPosts.map((post) => post.get({ plain: true })),
       mostLikedPosts: mostLikedPosts.map((post) => post.get({ plain: true })),
