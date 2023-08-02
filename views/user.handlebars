@@ -87,14 +87,15 @@
       <div class="user-post">
         {{#if (regexMatch "http" image_url)}}
           {{!-- External URL image --}}
-          <img src="{{ image_url }}" alt="">
+          <img src="{{ image_url }}" alt="" class="post" data-id="{{id}}">
         {{else}}
           {{!-- Local image file in posts folder --}}
-          <img src="/assets/images/posts/{{ image_url }}" alt="">
+          <img src="/assets/images/posts/{{ image_url }}" alt="" class="post" class="post" data-id="{{id}}">
         {{/if}}
       </div>
       {{/each}}
     </div>
   </div>
+  <script src="/js/rankings.js"></script>
 </body>
 </html>
