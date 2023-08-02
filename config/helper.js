@@ -16,6 +16,16 @@ Handlebars.registerHelper('formatCount', (count) => {
   }
 });
 
+// Custom Handlebar helper to compare two values
+Handlebars.registerHelper('compare', function (v1, operator, v2, options) {
+  switch (operator) {
+    case 'lt':
+      return v1 < v2 ? options.fn(this) : options.inverse(this);
+    default:
+      return options.inverse(this);
+  }
+});
+
 module.exports = {
   regexMatch,
   Handlebars
