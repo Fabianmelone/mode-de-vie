@@ -12,7 +12,6 @@ router.post("/login", async (req, res) => {
         .json({ message: "User not found. Please check your email." });
     }
 
-    // console.log(userData);
     const isPasswordValid = await userData.validPassword(req.body.password);
     if (!isPasswordValid) {
       // If the password is incorrect, send an error response
@@ -27,8 +26,6 @@ router.post("/login", async (req, res) => {
       req.session.loggedIn = true;
       req.session.username = userData.username;
 
-      // console.log(userData);
-      // console.log(req.session);
 
       res.json({ user: userData, message: "You are now logged in!" });
     });
@@ -78,9 +75,6 @@ router.post("/follow/:username", async (req, res) => {
     // Return success message
     return res.status(200).json({ message: "Successfully followed user." });
   } catch (err) {
-    console.log("Error : ");
-    console.error(err);
-    console.log("==============");
     return res.status(500).json({ error: "Something went wrong." });
   }
 });
@@ -157,14 +151,10 @@ router.post("/signup", async (req, res) => {
       email: req.body.email,
     });
 
-    // console.log(signupData);
     req.session.save(() => {
-      req.session.user_id = signupData.id;
       req.session.userID = signupData.id;
       req.session.loggedIn = true;
       req.session.username = signupData.username;
-
-      // console.log(signupData);
       res.status(200).json(signupData);
       // res.redirect("/login");
     });

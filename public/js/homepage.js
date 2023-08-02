@@ -17,7 +17,6 @@ async function ImgToSvg(img, id) {
 }
 
 function textAreaAdjust(e, element) {
-  console.log(element.value.length);
   if (e.key === "Backspace" && element.value.length === 0) {
     element.style.height = element.style.minHeight;
     return;
@@ -30,7 +29,6 @@ function textAreaAdjust(e, element) {
 function loadUserData() {
   const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
 
-  console.log(loggedInUser);
 
   // Load Username
   document.querySelectorAll(".username").forEach((element) => {
@@ -146,7 +144,6 @@ document.getElementById("posts-container").addEventListener("click", async (even
   // Check if the clicked element is one of the top post pictures
   if (profile.classList.contains("feature-post--image")) {
     const postID = profile.getAttribute('data-id');
-    alert(`Image with post ID ${postID} was clicked!`);
 
     const response = await fetch(`/posts/${postID}`, {
       method: 'GET',
@@ -213,11 +210,10 @@ window.onload = () => {
         }
 
         const data = await response.json();
-        console.log(data); // Process the response data if needed
 
         window.location.reload()
       } catch (error) {
-        console.log("Error : ");
+
         console.error(error);
       }
     });
@@ -240,11 +236,10 @@ window.onload = () => {
         }
 
         const data = await response.json();
-        console.log(data); // Process the response data if needed
+  
 
         window.location.reload();
       } catch (error) {
-        console.log("Error : ");
         console.error(error);
       }
     });

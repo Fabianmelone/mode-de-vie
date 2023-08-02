@@ -7,7 +7,6 @@ const withAuth = require("../../utils/auth");
 // Route to user profile
 router.get("/:username", withAuth, async (req, res) => {
   try {
-    console.log('hi');
     // Get the username from the request params
     const username = req.params.username;
 
@@ -20,7 +19,7 @@ router.get("/:username", withAuth, async (req, res) => {
     }
 
     // Get the logged-in user's ID
-    const loggedInUserId = req.session.userID;
+    const loggedInUserId = req.session.user_id;
 
     // Check if the logged-in user is following the current profile user
     const isFollowing = await Follower_User.findOne({
@@ -49,16 +48,15 @@ router.get("/:username", withAuth, async (req, res) => {
 router.get("/", withAuth, async (req, res) => {
   try {
  
-    const userData = await User.findByPk(req.session.userID, {
+    const userData = await User.findByPk(req.session.user_id, {
       include: { model: Post, include: { model: User, as: 'user', attributes: ['username'] } }
     });
     const user = userData.get({ plain: true });
 
 
-    const userprofileData = await User.findByPk(req.session.userID);
+    const userprofileData = await User.findByPk(req.session.user_id);
     const userProfile = userprofileData.get({plain:true});
 
-    console.log(userProfile);
     res.render("localuser", {
       posts: user.posts,
       user: userProfile,

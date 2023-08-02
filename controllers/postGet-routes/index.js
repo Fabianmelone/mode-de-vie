@@ -28,14 +28,12 @@ router.get('/allposts', withAuth, async (req, res) => {   //gets all posts
         });
         const posts = allPosts.map((post) => post.get({ plain: true })); //maps over all elements of of allPosts and serialeze them
         //serialize to make the data easier to handle/reaD
-        console.log(posts);
         res.json(posts);
 
         // res.render('homepage', {
         //     posts,
         //     logged_in: req.session.logged_in
         // });
-        // console.log(req.session);
     } catch (error) {
         res.status(500).json(error);
     }
@@ -44,47 +42,14 @@ router.get('/allposts', withAuth, async (req, res) => {   //gets all posts
 
 router.get('/saved', withAuth, async (req, res) => {   //filter all posts from most likes
     try {
-        // const allPosts = await Post.findAll({
-        //     order: [
-        //         ['likes', 'DESC']
-        //     ],
-        //     include: [
-        //         {
-        //             model: User,
-        //             attributes: ['username'],
-        //         },
-        //         {
-        //             model: Comment,
-        //             include: [
-        //                 {
-        //                     model: User,
-        //                     as: 'user',
-        //                     attributes: ['username'],
-        //                 },
-        //             ],
-        //         },
-        //     ],
-
-        // });
-
-        // const posts = allPosts.map(post => post.get({ plain: true }));
-        // // console.log(posts);
-        // res.json(posts);
-
-        // res.render('homepage', {
-        //     posts,
-        //     logged_in: req.session.logged_in
-        // });
 
         const userId = req.session.user_id;
         const userData = await User.findByPk(userId);
         var savedPosts = await userData.getSavedPosts({});
         const savedPostsPlain = savedPosts.map(post => post.get({ plain: true }));
-        console.log(savedPostsPlain);
         res.render('saved-posts', {
             posts: savedPostsPlain,
         });
-        // console.log(req.session);
     } catch (error) {
         res.status(500).json(error);
     }
@@ -114,8 +79,6 @@ router.get('/userposts', withAuth, async (req, res) => {
             ...users,
             loggedIn: req.session.loggedIn
         });
-        console.log(users);
-        // console.log(req.session);
     } catch (error) {
         res.status(500).json(error);
     }
@@ -149,7 +112,6 @@ router.get('/', withAuth, async (req, res) => {
                 ...post,
                 loggedIn: req.session.loggedIn
             })
-            // console.log(post);
         } else {
             res.status(404).json({ message: 'No posts found' });
         }
@@ -158,7 +120,6 @@ router.get('/', withAuth, async (req, res) => {
             const userData = await User.findByPk(userId);
             var savedPosts = await userData.getSavedPosts({});
             const savedPostsPlain = savedPosts.map(post => post.get({ plain: true }));
-            // console.log(savedPostsPlain);
             res.json(savedPostsPlain);
         } catch (error) {
             res.status(500).json(error);
@@ -170,7 +131,6 @@ router.get('/', withAuth, async (req, res) => {
 
 
 router.get('/:id', withAuth, async (req, res) => {
-    // console.log(req.params);
     try {
         const post = await Post.findByPk(req.params.id, {
             include: [
@@ -191,15 +151,10 @@ router.get('/:id', withAuth, async (req, res) => {
             ],
         });
         const plainPost = post.get({ plain: true });
-        // console.log(plainPost);
 
         res.render('single-post', {
             ...plainPost
         })
-
-
-        console.log(plainPost);
-        console.log(plainPost.comments);
     } catch (error) {
         res.status(500).json(error);
     }
