@@ -26,6 +26,32 @@ N/A
 First, when you reach our page, you will be required to login or signup, if not logged in.
 Create a new user, with any username, email-address and your chosen password.
 
+Once signed up or logged in, you will be redirected to the dashboard, which shows you a random post with owner, title and description. You can click the dashboard icon on the side to see a different post.
+
+On the side or in the bottom you will see the most popular posts and the most popular users as well, which are clickable.
+
+If you click one of the posts, you will be redirected to the post page and you can like, comment and save the post. 
+
+The comments will be displayed right under the post description.
+
+Once you click the user profiles, you can view and click their posts and also follow them.
+
+The saved page will show your saved pictures, double click the saved button to unsave the picture.
+
+The same applies to the following page, where you can see the users, that you follow.
+
+Then there is also the ranking page. 
+
+Once you click it you can see your top followed users. You can see the most liked posts and also the most viewed posts from highest to lowest. Those are all clickable as well.
+
+In the searchbar you can search for users as well.
+
+Last but not least, you can also create a post, add a title a description and add the image url from the internet, and the post will be displayed in your profile.
+
+Once your done, you can log out.
+
+Enjoy mode de vie!
+
 ## Credits
 
 [PythonFabi](https://github.com/PythonFabi)
