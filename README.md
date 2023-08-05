@@ -52,6 +52,18 @@ Once your done, you can log out.
 
 Enjoy mode de vie!
 
+## Installing Locally
+1. Clone the project folder
+2. Create the database with MySQL \
+   `CREATE SCHEMA socialmedia_db;`
+3. Use the seed script in the root folder to seed the database \
+   `npm run seed`
+4. Run the start script \
+   `npm run start` \
+   Without SCSS \
+   `npm run startNoScss`
+5. Enjoy Mode de Vie
+
 ## Credits
 
 [PythonFabi](https://github.com/PythonFabi)
