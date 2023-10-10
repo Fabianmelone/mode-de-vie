@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="/css/login.css">
+
   <title>Document</title>
 </head>
+
 <body>
   <div id="form-container">
     <div id="form-header">
@@ -25,10 +28,16 @@
       <div id="button-container">
         <button class="btn" id="loginBtn" onclick="" type="submit">login</button>
         <button class="btn-cta" id="signupBtn">signup</button>
-        <a href="">Forgot Password</a>
+        <span class="action-group">
+          <a href="" class="forgot-password">Forgot Password</a>
+          <button type="button" class="test-acc" data-toggle="popover" title="Popover title"
+            data-content="Some content inside the popover">Testing Account</button>
+        </span>
+
       </div>
     </div>
-  </div>  
+  </div>
   <script src="/js/logins/login.js"></script>
 </body>
+
 </html>
