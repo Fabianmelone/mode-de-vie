@@ -4,86 +4,71 @@
   justify-content: center;
   flex-direction: column;
   padding: 2.5rem 0;
-  gap: 3rem 0;
-}
-#page-body #rankings--following .rankings--post-container {
-  gap: 0 4rem;
-}
-#page-body .rankings--section {
-  width: 85vw;
-  height: -moz-fit-content;
-  height: fit-content;
-  padding: 0 0 0 3rem;
-}
-#page-body .rankings--section h1 {
-  color: var(--primary);
-  font-weight: 600;
-  margin: 0 2rem;
-}
-#page-body .rankings--section hr {
-  margin: 1rem 0 0 2rem;
-  height: 4px;
-  width: 30%;
-  border: none;
-  border-radius: 0.5rem;
-  background-color: var(--accent);
-}
-#page-body .rankings--section .rankings--post-container {
-  width: 100%;
-  height: -moz-fit-content;
-  height: fit-content;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 2rem;
-  overflow-x: auto;
-  gap: 0 2rem;
-}
-#page-body .rankings--section .rankings--post-container .rankings--post {
-  flex: 0 0 12rem;
-  aspect-ratio: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  border-radius: 0.5rem;
-  cursor: pointer;
-  transition: border 100ms ease;
-}
-#page-body .rankings--section .rankings--post-container .rankings--post img {
-  height: 100%;
-  width: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
-  border-radius: inherit;
-}
-#page-body .rankings--section .rankings--post-container .rankings--post .counter {
-  max-width: 90%;
-  position: absolute;
-  bottom: 0;
-  left: -30px;
-  color: var(--text-color);
-  font-size: 1cqw;
-  z-index: 99;
-}
-#page-body .rankings--section .rankings--post-container .rankings--post .counter svg {
-  width: 1.5rem;
-  height: 1.5rem;
-}
-#page-body .rankings--section .rankings--post-container .rankings--post .counter::before {
-  content: "";
-  opacity: 0.75;
-  width: 125%;
-  height: 120%;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: var(--accent);
-  border-radius: 1rem;
-  z-index: -1;
-}
-#page-body .rankings--section .rankings--post-container .rankings--post:hover {
-  border: solid 4px var(--primary);
-  transition: border 100ms ease;
-}/*# sourceMappingURL=rankings.css.map */
+  gap: 3rem 0; }
+  #page-body #rankings--following .rankings--post-container {
+    gap: 0 4rem; }
+  #page-body .rankings--section {
+    width: 85vw;
+    height: fit-content;
+    padding: 0 0 0 3rem; }
+    #page-body .rankings--section h1 {
+      color: var(--primary);
+      font-weight: 600;
+      margin: 0 2rem; }
+    #page-body .rankings--section hr {
+      margin: 1rem 0 0 2rem;
+      height: 4px;
+      width: 30%;
+      border: none;
+      border-radius: 0.5rem;
+      background-color: var(--accent); }
+    #page-body .rankings--section .rankings--post-container {
+      width: 100%;
+      height: fit-content;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 2rem;
+      overflow-x: auto;
+      gap: 0 2rem; }
+      #page-body .rankings--section .rankings--post-container .rankings--post {
+        flex: 0 0 12rem;
+        aspect-ratio: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        border-radius: 0.5rem;
+        cursor: pointer;
+        transition: border 100ms ease; }
+        #page-body .rankings--section .rankings--post-container .rankings--post img {
+          height: 100%;
+          width: 100%;
+          object-fit: cover;
+          border-radius: inherit; }
+        #page-body .rankings--section .rankings--post-container .rankings--post .counter {
+          max-width: 90%;
+          position: absolute;
+          bottom: 0;
+          left: -30px;
+          color: var(--text-color);
+          font-size: 1cqw;
+          z-index: 99; }
+          #page-body .rankings--section .rankings--post-container .rankings--post .counter svg {
+            width: 1.5rem;
+            height: 1.5rem; }
+          #page-body .rankings--section .rankings--post-container .rankings--post .counter::before {
+            content: "";
+            opacity: 0.75;
+            width: 125%;
+            height: 120%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: var(--accent);
+            border-radius: 1rem;
+            z-index: -1; }
+        #page-body .rankings--section .rankings--post-container .rankings--post:hover {
+          border: solid 4px var(--primary);
+          transition: border 100ms ease; }
