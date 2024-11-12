@@ -92,7 +92,7 @@ Enjoy mode de vie!
 
 ## Credits
 
-[PythonFabi](https://github.com/PythonFabi)
+[Fabianmelone](https://github.com/Fabianmelone)
 [cdelacruzzin](https://github.com/cdelacruzzin)
 [hnm938](https://github.com/hnm938)
 
